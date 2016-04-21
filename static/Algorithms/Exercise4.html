@@ -1,0 +1,107 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 4</span></p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">When-statement</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Let us go back to the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LightSwitch</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, that is initially switched off and switched on at time 5. Change this class to contain a when-statement instead of a when-equation. </span></p><br>
+<textarea rows=1 class="target" id=check0textarea>
+
+</textarea>  <div id=check0div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Now change the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LightSwitch</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class so that it in the time interval 5-20 turns the light on every fifth second for one second and then it it switched off again. </span></p><br>
+<textarea rows=1 class="target" id=check1textarea>
+
+</textarea>  <div id=check1div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Tip</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample(start, interval)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> returns true and triggers time events at time instants and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">rem(x, y)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> returns the integer remainder of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x/y</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, such that </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">div(x,y) * y + rem(x, y) = x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
+</h1>
+<div id="answer1" class="collapse">
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">LightSwitch</span></p>
+</h1>
+<textarea rows=11 class="target" id=check2textarea>
+class LightSwitch
+  Boolean on;
+algorithm
+  when sample(5, 5) then
+    if rem(time, 5) == 0 then
+      on := true;
+    else
+      on := false;
+    end if;
+  end when;
+end LightSwitch;
+</textarea>  <div id=check2div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of LightSwitch</span></p>
+</h1>
+<textarea rows=1 class="target" id=check3textarea>
+simulate( LightSwitch, stopTime=20 )
+</textarea>  <div id=check3div> </div> <br>
+<textarea class="target" id=check4textarea>
+plot( on )
+</textarea> <br> <div id=check4div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">LightSwitchExtended</span></p>
+</h1>
+<textarea rows=13 class="target" id=check5textarea>
+class LightSwitchExtended
+  Boolean on;
+algorithm
+  when time < 5 or time >= 25 then
+    on := false;
+  elsewhen sample(5, 1) then
+    if rem(time, 5) == 0 then
+      on := true;
+    else
+      on := false;
+    end if;
+  end when;
+end LightSwitchExtended;
+</textarea>  <div id=check5div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of LightSwitchExtended</span></p>
+</h1>
+<textarea rows=1 class="target" id=check6textarea>
+simulate( LightSwitchExtended, stopTime=25 )
+</textarea>  <div id=check6div> </div> <br>
+<textarea class="target" id=check7textarea>
+plot( on )
+</textarea> <br> <div id=check7div> </div> <br>
+</div>
+</div></body></html>

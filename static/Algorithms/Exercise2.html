@@ -1,0 +1,92 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 2</span></p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Using Algorithm Sections</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Write a class, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FindSmallest</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, that finds the value and position of the smallest element in an arbitrary array.</span></p><br>
+<textarea rows=1 class="target" id=check0textarea>
+
+</textarea>  <div id=check0div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Write a class that makes an instance of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FindSmallest</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class and give the array values.</span></p><br>
+<textarea rows=1 class="target" id=check1textarea>
+
+</textarea>  <div id=check1div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
+</h1>
+<div id="answer1" class="collapse">
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">FindSmallest</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Loop through all elements in the array except the first. The smallest value is initially the first value in the array. </span></p><br>
+<textarea rows=14 class="target" id=check2textarea>
+class FindSmallest
+  Real A[:];
+  Real smallest;
+  Integer place;
+algorithm
+  smallest := A[1];
+  place := 1;
+  for i in 2:size(A, 1) loop
+    if A[i] < smallest then
+      smallest := A[i];
+      place := i;
+    end if;
+  end for;
+end FindSmallest;
+</textarea>  <div id=check2div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">FindSmallestElement</span></p>
+</h1>
+<textarea rows=3 class="target" id=check3textarea>
+class FindSmallestElement
+  FindSmallest findsmallest(A={9, 5, 8, 7, 2, 4});
+end FindSmallestElement;
+</textarea>  <div id=check3div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of FindSmallestElement</span></p>
+</h1>
+<textarea rows=1 class="target" id=check4textarea>
+simulate( FindSmallestElement ) 
+</textarea>  <div id=check4div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here we can see that the smallest value in the array is the element in position 5 with the value 2.</span></p><br>
+<textarea rows=4 class="target" id=check5textarea>
+//{findsmallest.smallest[1], findsmallest.place[1]} //Doesn't work
+//The code below does the thing the previous line intended to do
+val (findsmallest.smallest, 0);
+val (findsmallest.place, 0)
+</textarea>  <div id=check5div> </div> <br>
+</div>
+</div></body></html>

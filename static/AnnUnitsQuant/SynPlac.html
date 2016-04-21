@@ -1,0 +1,150 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Annotation Syntax and Placement</p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Annotation Choice</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">Annotation elements can also be structured as redeclarations. Here is an example of a level-three nested <span style=" font-family:'Courier New';">choices</span> redeclaration annotation using short class definitions in the redeclarations:<br/></p><br>
+<textarea class="target" id=check0textarea>
+class AnnotationChoice
+annotation(choices(
+      choice(redeclare model MyResistor = lib2.Resistor(a = {2})),
+      choice(redeclare model MyResistor = lib2.Resistor2)));
+end AnnotationChoice;
+
+</textarea>  <div id=check0div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Class Annotations</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">The <span style=" font-family:'Courier New';">Resistor2</span> example below illustrates that annotation elements can occur anywhere among the list of elements in a class. The <span style=" font-family:'Courier New';">public</span> keyword is used to end the <span style=" font-family:'Courier New';">equation</span> section before starting the annotation, otherwise the annotation becomes associated with the equation section:</p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical units</p>
+</h1>
+<textarea class="target" id=check1textarea>
+type Voltage         = ElectricPotential;
+type Current         = ElectricCurrent;
+</textarea>  <div id=check1div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Connectors</p>
+</h1>
+<textarea class="target" id=check2textarea>
+connector Pin           "Pin of an electrical component"
+   Voltage v           "Potential at the pin";
+   flow Current i         "Current flowing into the pin";
+end Pin;              //From Modelica.Electrical.Analog.Interfaces
+</textarea>  <div id=check2div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Resistor2</p>
+</h1>
+<textarea class="target" id=check3textarea>
+model Resistor2
+  Pin p, n;
+  parameter Real R        "Resistance in [Ohm]";
+equation
+  R*p.i = p.v - n.v;
+  n.i = p.i;
+public
+  annotation(Icon(
+    Rectangle(extent = [-70, -30, 70, 30], style(fillPattern = 1))
+    ));
+end Resistor2;
+
+</textarea>  <div id=check3div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Class annotations for classes defined by short class definitions are placed at the end of the declaration. For example, the <span style=" font-family:'Courier New';">Icon</span> annotation is placed at the end of the <span style=" font-family:'Courier New';">Velocity</span> declaration below, after the optional string comment:<br/></p><br>
+<textarea class="target" id=check4textarea>
+type Velocity = Real[3](unit="m/s") "a comment"
+  annotation(Icon(
+    Rectangle(extent = [-70, -30, 70, 30], style(fillPattern = 1))));
+
+</textarea>  <div id=check4div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><span style=" font-family:'Courier New';">Annotations</span> can also be used to attach documentation information to a package:</p><br>
+<textarea class="target" id=check5textarea>
+package Modelica
+  annotation(Documentation(info = " "));
+end Modelica;
+
+</textarea>  <div id=check5div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Variable Annotations</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">A variable annotation associates information with a declared variable. Such an annotation is placed at the end of the variable declaration after the optional string comment. </p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Connectors</p>
+</h1>
+<textarea class="target" id=check6textarea>
+connector Pin           "Pin of an electrical component"
+   Voltage v           "Potential at the pin";
+   flow Current i         "Current flowing into the pin";
+end Pin;              //From Modelica.Electrical.Analog.Interfaces
+</textarea>  <div id=check6div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Variable Annotation Example</p>
+</h1>
+<textarea class="target" id=check7textarea>
+class P
+  Pin p  annotation(extent=[-110, -10; -90, 10]);
+end P;
+</textarea>  <div id=check7div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Import Annotations</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">As for variable annotations, <span style=" font-style:italic;">import annotations</span> are placed at the end of the <span style=" font-family:'Courier New';">import</span> statement after the optional string comment, e.g.:</p><br>
+<textarea class="target" id=check8textarea>
+class I
+  import Modelica.Mechanics.Rotational  "Rotational import" annotation();
+end I;
+</textarea>  <div id=check8div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Equation Annotations</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">The most common form of <span style=" font-style:italic;">equation annotation</span> is annotations to connect equations. It is natural to associate graphical attributes such as lines with a certain position, length, and color to such equations. Notice that the declaration is placed at the end, after the optional comment, as in Variable and Import Annotations. <br/></p><br>
+<textarea class="target" id=check9textarea>
+class C
+equation
+  connect(p1.n, p2.p) "comment";
+  annotation(Line(points = [-90, 0; -70, 0]));
+end C;
+</textarea>  <div id=check9div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Statement and Algorithm Annotations</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">Statements can also be annotated, even though the need is less obvious than for connection equations. As for equations, <span style=" font-style:italic;">statement annotations</span> are placed at the end of the statement after the optional string comment, e.g.:<br/></p><br>
+<textarea class="target" id=check10textarea>
+class S
+algorithm
+  name := x+2*y   "comment"  annotation( );
+end S;
+
+</textarea>  <div id=check10div> </div> <br>
+</div></body></html>

@@ -1,0 +1,131 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 1</span></p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Question</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">What does a modifier do?</span></p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
+</h1>
+<div id="answer1" class="collapse">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A modifier modifies one or more declaration(s) from an inherited class by changing some aspect(s) of the inherited declarations.</span></p><br>
+</div>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Easy Example of Using Modifications</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Modify <br/>- the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">start</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> value to 3, <br/>- the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">min</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> value to -22 and <br/>- the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">fixed</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> value to true <br/>of the variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">test</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Test</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below.<br/></span></p><br>
+<textarea rows=3 class="target" id=check0textarea>
+class Test
+  parameter Integer test;
+end Test;
+</textarea>  <div id=check0div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Rewrite the class here.</span></p><br>
+<textarea class="target" id=check1textarea>
+
+</textarea>  <div id=check1div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer2">Answer</button></span></p>
+</h1>
+<div id="answer2" class="collapse">
+<textarea rows=3 class="target" id=check2textarea>
+class Test
+  parameter Integer test(start = 3, min = -22, fixed = true);
+end Test;
+</textarea>  <div id=check2div> </div> <br>
+</div>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Modifiers for Array Values</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In this exercise you should modify different values of the following variables:<br/>Set fixed to true in A1.<br/>Set the start value to false in truthvalues.<br/>Set unit to "kV" in the position: first row and second column of A2.<br/>Set the start value on the first row in A3 to the values 3, 5 and 8. In the second row of the matrix the values should be set to 3, 10 and 22.<br/>Set the matrix elements to "Pippi" in A4.<br/></span></p><br>
+<textarea rows=7 class="target" id=check3textarea>
+class ModArray
+  Integer  A1[5];
+  Boolean  truthvalues[2];
+  Real     A2[2,2];
+  Integer  A3[2,3];
+  Real     A4[2,2];
+end ModArray;
+</textarea>  <div id=check3div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Hint</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Remember that each attribute has the same dimensionality as the array itself.<br/>Read more about predefined Types/Classes in "Introduction to Modelica ..." by Peter Fritzson.</span></p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer3">Answer</button></span></p>
+</h1>
+<div id="answer3" class="collapse">
+<textarea rows=19 class="target" id=check4textarea>
+class ModArray
+
+  Integer A1[5](fixed = true);
+  // Modifies the fixed value for the whole array
+
+  Boolean truthvalues[2](start = {false, false});
+  // Modifies the start value for the whole array
+
+
+  Real A2[2,2](unit[1,2] = "kV");
+  // Modifies the start value for a certain place in the matrix
+
+  Integer A3[2,3](start = {{1, 0, 5}, {0,0,0}} );
+  // Modifies the start value for the first row in the matrix
+
+  String A4[2,2](start = {{"Pippi", "Pippi"},
+                          {"Pippi", "Pippi"}} );
+
+end ModArray;
+</textarea>  <div id=check4div> </div> <br>
+</div>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Modification and Access Control</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Mod</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, below, contains five variables. Are you allowed to modify all of them? Why/Why not?</span></p><br>
+<textarea rows=8 class="target" id=check5textarea>
+class Mod
+  parameter Real x;
+  parameter Real y;
+  parameter Real z;
+protected
+  parameter Real w;
+  parameter Real s;
+end Mod;  
+</textarea>  <div id=check5div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer4">Answer</button></span></p>
+</h1>
+<div id="answer4" class="collapse">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">You are allowed to modify the variables </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">y</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">z</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, but not the variables </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">w</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">s</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, since they are protected.</span></p><br>
+</div>
+</div></body></html>

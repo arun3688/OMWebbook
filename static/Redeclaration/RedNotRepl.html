@@ -1,0 +1,58 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Redeclaration of Elements not Declared Replaceable</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>There are only two kinds of redeclarations that do not require the modified element to be declared replaceable: restricting the variability of a declared variable, e.g. from parameter to constant or restricting array dimension sizes, e.g. from (:) to a specified size. The following examples demonstrates these kinds of redeclarations.<br/></span></p><br>
+<textarea class="target" id=check0textarea>
+class C3
+  Real x1;
+  parameter Real vec[:];
+end C3;
+</textarea>  <div id=check0div> </div> <br>
+<textarea class="target" id=check1textarea>
+class C4 = C3(redeclare parameter Real x1, redeclare parameter Real vec[20]);
+</textarea>  <div id=check1div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C4</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is equivalent to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C4expanded</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below.</span></p><br>
+<textarea class="target" id=check2textarea>
+class C4Expanded
+  parameter Real x1;
+  parameter Real vec[20];
+end C4Expanded;  
+</textarea>  <div id=check2div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of C4</span></p>
+</h1>
+<textarea class="target" id=check3textarea>
+instantiateModel ( C4 ) // 2015-09-08: OMC Bug - modification is not performed
+</textarea>  <div id=check3div> </div> <br>
+</div></body></html>

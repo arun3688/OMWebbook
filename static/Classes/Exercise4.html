@@ -1,0 +1,92 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 4 - Instances</span></p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Creating Instances</span></p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Consider the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Student</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below.</span></p><br>
+<textarea rows=6 class="target" id=check0textarea>
+class Student
+  constant Real legs = 2;
+  constant Real arms = 2;
+  parameter Real nrOfBooks;
+  parameter String name = "Dummy";
+end Student;
+</textarea>  <div id=check0div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Create an instance of the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Student</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. </span></p><br>
+<textarea class="target" id=check1textarea>
+
+</textarea>  <div id=check1div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Create another instance and give the student the name "Alice", who has 65 books.</span></p><br>
+<textarea class="target" id=check2textarea>
+
+</textarea>  <div id=check2div> </div> <br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>You also want to create a student called "Burt" with 32 books.</span></p><br>
+<textarea class="target" id=check3textarea>
+
+</textarea>  <div id=check3div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
+</h1>
+<div id="answer1" class="collapse">
+<textarea rows=3 class="target" id=check4textarea>
+class StudentInst
+  Student s;
+end StudentInst;
+</textarea>  <div id=check4div> </div> <br>
+<textarea rows=3 class="target" id=check5textarea>
+class StudentAlice
+  Student stud(name = "Alice", nrOfBooks = 65);
+end StudentAlice;
+</textarea>  <div id=check5div> </div> <br>
+<textarea rows=3 class="target" id=check6textarea>
+class StudentBurt
+  Student stud(name = "Burt", nrOfBooks = 32);
+end StudentBurt;
+</textarea>  <div id=check6div> </div> <br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of Student, StudentAlice and StudentBurt</span></p>
+</h1>
+<textarea rows=1 class="target" id=check7textarea>
+simulate( StudentInst )
+</textarea>  <div id=check7div> </div> <br>
+<textarea rows=1 class="target" id=check8textarea>
+simulate( StudentAlice )
+</textarea>  <div id=check8div> </div> <br>
+<textarea rows=1 class="target" id=check9textarea>
+simulate( StudentBurt )
+</textarea>  <div id=check9div> </div> <br>
+</div>
+
+</div></body></html>

@@ -1,0 +1,53 @@
+  
+<html>
+<head>
+<script src="../jquery.min1.10.2.js"></script>
+<script src='../dygraph-combined.js'></script>
+<script src='../evalcells.js'></script>
+<link rel="stylesheet" href="../bootstrap.min.css">
+<script src="../bootstrap.min.js"></script>
+<link rel="stylesheet" href="../main.css">
+
+<script src="../trie.js"></script>
+<script src="../helper.js"></script>
+<script src="../jquery.textarea-highlighter.js"></script>
+<script src="../index.js"></script>
+</head>
+
+
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">OMWebBook</a>
+    </div>
+     <button id="evaluate" type="button" class="btn btn-success navbar-btn">Evaluate Cell</button>
+    <button id="evaluateall" type="button" class="btn btn-success navbar-btn">Eval All</button>
+    <img id="progressbar" src="../ajax-loader.gif" class="img-rounded" alt="Cinque Terre">
+  </div>
+</div>
+<div class="container">
+<br> <br> <br>
+
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Arial; font-size:38pt; font-weight:600; color:#000000;">A Coupled Pipelined DEVS Model (p. 400)</p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:18pt; font-weight:600; color:#000000;">The Random Package</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;"><br/>DymolaBUG: for some strange  reason Dymola crashes when the following statement is initialized<br/>type Seed=Integer[3](min=zeros(3),max=ones(3)*255);<br/>this will also cause MathModelica to loop forever in the evaluation of the model.<br/>The follwing statement should be used instead<br/>type Seed;<br/></p><br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;">??Error - not yet implemented.</p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:18pt; font-weight:600; color:#000000;">SimpleDEVSServer</p>
+</h1>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:18pt; font-weight:600; color:#000000;">ThreeServerPipeline Model</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;">Several basic DEVS model components can be connected together to form a coupled model, which itself is a DEVS model. This is illustrated by the Modelica realization of a simple DEVS coupled model by placing three simple servers in series to form a three server pipeline, see Figure ?? In the further down the job generator has been attached to the three server pipeline.  The generator outputs events that are considered to be jobs that need some time to be processed by the server.Inside the basic server model only the time needed to complete a job is represented,not the detailed manner in which the processing is done.When a server receives a job it goes into busy mode (<span style=" font-family:Courier New;">DEVSactive = true</span>). Since the server has no buffering capabilities,if it is already busy,it ignores incoming jobs.When a server has finished processing a job, a job completed event is emitted and the server returns to passive mode (<span style=" font-family:Courier New;">DEVSactive = false</span>).</p><br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;"><span style=" font-family:Courier New; font-weight:600;">Figure ??:</span><span style=" font-family:Courier New;"> Coupled model consisting of three servers S1, S2, and S3, connected in a pipeline.</span></p><br>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;">The coupled pipelined DEVS model class represented in Modelica can be described as follows:</p><br>
+<h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:14pt; font-weight:600; color:#000000;">Simulate</p>
+</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;"><span style=" font-family:Courier New; font-weight:600;">Diagram ??:</span><span style=" font-family:Courier New;"> Signals for the testPipeline model including a ThreeServerPipeline containing the servers S1, S2, and S3.</span></p><br>
+</div></body></html>
