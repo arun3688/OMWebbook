@@ -29,11 +29,10 @@ RUN apt-get install -y omniidl \
                      			   
 RUN sudo pip install git+https://github.com/arun3688/OMPython
 
-ADD . /Flasktest
-WORKDIR /Flasktest
+ADD . /OMWebbook
+WORKDIR /OMWebbook
 
-RUN pip install futures
-RUN pip install gunicorn 
+RUN pip install futures gunicorn
 
 RUN pip install -r requirements.txt
 #EXPOSE 5000
@@ -48,7 +47,6 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 # Setup supervisord
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-#COPY gunicorn.conf /etc/supervisor/conf.d/gunicorn.conf
 
 # Start processes
 CMD ["supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
