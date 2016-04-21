@@ -20,9 +20,9 @@ $(document).ready(function(){
             //alert("loading")
           console.log('loading');
           var uuid = guid();
-          console.log(value);
+          //console.log(value);
           value=uuid        
-          console.log(uuid);  
+          //console.log(uuid);  
           var url = '/createsession'
            $.ajax(
              {
@@ -36,8 +36,7 @@ $(document).ready(function(){
                      }); 
             });
         $( window ).bind("beforeunload",function() {
-                    console.log('unloading');
-                    value
+           console.log('unloading');
            var url = '/deletesession'
            $.ajax(
              {

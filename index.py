@@ -10,11 +10,10 @@ from OMPython import OMCSession
 import tempfile
 import re
 app = Flask(__name__)
-app.secret_key = 'arun'
-'''
-msg=[]
-mat=[]'''
+app.secret_key = 'c\x9e\xdf\xf4\xfc\x15\x84A\xc3\xda\x8d\xdf\xbd\x10\x07\x88C\x10L\xff\xc6h&\n'
+
 sessionobj={}
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -23,15 +22,12 @@ def index():
 @app.route('/evalexpression', methods=['POST'])
 def evalexpression():
     #print 'inside eval'
-    #print sessionobj
     try:
-        text_content=request.form['input'];
-        div_content =request.form['output'];
+        text_content=request.form['input']
+        div_content =request.form['output']
         sidcheck=request.form['sid'] 
         #print sidcheck 
-        #getomcobj=dict(sessionobj)[sidcheck] 
         getomcobj=sessionobj[sidcheck]
-        #print getomcobj.sendExpression("getVersion()")
         #sys.stdout.flush()    
         eval(text_content,div_content,getomcobj)    
         data="\n".join(session['msg'])
@@ -42,7 +38,8 @@ def evalexpression():
 	
 @app.route('/createsession', methods=['POST'])
 def createsession():
-        #print 'inside create'
+        ## Create a new omc session for the users and allot a seperate working directory for the session ##
+        #print 'creating omc session'
         session['msg']=[]
         session['mat']=[]
         sid=request.form['sid']
@@ -50,9 +47,6 @@ def createsession():
         #print session['tmpdir'] 
         os.chdir(session['tmpdir'])
         sess=OMCSession()
-        #print sess.sendExpression("getVersion()")
-        #sitems=(sid,sess)
-        #sessionobj.append(sitems)
         sessionobj[sid]=sess
         #print sessionobj
         #sys.stdout.flush()
@@ -60,19 +54,17 @@ def createsession():
 
 @app.route('/deletesession', methods=['POST'])
 def deletesession():
-       #print 'insidedelete'
-       #print sessionobj
+       ## delete the omc object and process when the user leaves the browser ##
+       #print "Deleting"
        os.chdir("..")
        sid1=request.form['sid']
        if (len(sessionobj)!=0):
            omcobj=sessionobj[sid1]
-           print omcobj.sendExpression("getClassNames()")
+           #print omcobj.sendExpression("getClassNames()")
            omcobj.__del__()
            #print 'objdeleted'
            try:
-               #print 'dirdeleted'
                shutil.rmtree(session['tmpdir'],True)
-               #print 'dirdeleted_end'
            except Exception as e:
                print e
        #sys.stdout.flush()
@@ -80,9 +72,9 @@ def deletesession():
 
     
 def eval(var1,var2,omc):
-   ## run the evaluations in temp directory  
-   #omc=sessionobj[0]
-   #print 'insideevalexpression'
+   ##run the evaluations in temp directory  ##
+   #print 'evalexpression'
+   
    x1=var1.split('#')
    y1=var2.split(',')
    x=filter(None,x1)
@@ -129,20 +121,21 @@ def eval(var1,var2,omc):
             l=omc.sendExpression(z,parsed=False)
             
           divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(l).replace('<','&lt;').replace('>','&gt;'),'</b>','</div>'])
-          #divcontent=" ".join(['<div id='+y[i]+'>',str(output[-1]),'</div>'])
           session['msg'].append(divcontent)
+   
    ## delete the process ##
    ##omc.__del__()
    #os.chdir("..")   
    
 def plotgraph(plotvar,divid,omc):
   
+  ## Function to handle plotting in browser ##
+  
   if (len(session['mat'])!=0):
      res=session['mat'][-1]
      try:
        readResult = omc.sendExpression("readSimulationResult(\"" + os.path.basename(res) + "\",{time," + plotvar + "})")
        omc.sendExpression("closeSimulationResultFile()")
-       #print 'inside_plot'
        plotlabels=['Time']
        exp='(\s?,\s?)(?=[^\[]*\])|(\s?,\s?)(?=[^\(]*\))'
        #print 'inside_plot1'

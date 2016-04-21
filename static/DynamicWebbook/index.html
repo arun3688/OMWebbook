@@ -38,11 +38,11 @@
         
         $( window ).load(function() {
             //alert("loading")
-            console.log('loading');
+          console.log('loading');
           var uuid = guid();
-          console.log(value);
+          //console.log(value);
           value=uuid        
-          console.log(uuid);  
+          //console.log(uuid);  
           var url = '/createsession'
            $.ajax(
              {
@@ -56,8 +56,6 @@
                      }); 
             });
         $( window ).bind("beforeunload",function() {
-                    console.log('unloading');
-                    value
            var url = '/deletesession'
            $.ajax(
              {

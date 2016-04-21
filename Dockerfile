@@ -1,10 +1,9 @@
 FROM ubuntu
+MAINTAINER Arunkumar Palanisamy "arunkumar.palanisamy@liu.se"
 
 RUN apt-get update 
-
 # Install wget
 RUN apt-get install -y wget
-
 
 # Add OpenModelica stable build
 RUN for deb in deb deb-src; do echo "$deb http://build.openmodelica.org/apt `lsb_release -cs` stable"; done | sudo tee /etc/apt/sources.list.d/openmodelica.list
@@ -26,15 +25,17 @@ RUN apt-get install -y omniidl \
                        nginx \
                        supervisor \
                        python-omniorb 
-                     			   
+
+# Install OMPython                        
 RUN sudo pip install git+https://github.com/arun3688/OMPython
 
+# Install webdevelopment tools and webservers
+RUN pip install flask futures gunicorn
+
+# Copy the Project and setup workdir
 ADD . /OMWebbook
 WORKDIR /OMWebbook
 
-RUN pip install futures gunicorn
-
-RUN pip install -r requirements.txt
 #EXPOSE 5000
 
 # Setup nginx
@@ -45,11 +46,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 
 # Setup supervisord
-RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Start processes
 CMD ["supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
-
-#CMD ["sudo","-u","nobody","python","index.py"]
-#CMD ["sudo","-u","nobody","gunicorn","-b 0.0.0.0:5000","index:app"]
