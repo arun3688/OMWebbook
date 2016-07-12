@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:14.04
 MAINTAINER Arunkumar Palanisamy "arunkumar.palanisamy@liu.se"
 
 RUN apt-get update 

@@ -13,6 +13,7 @@ app = Flask(__name__)
 app.secret_key = 'c\x9e\xdf\xf4\xfc\x15\x84A\xc3\xda\x8d\xdf\xbd\x10\x07\x88C\x10L\xff\xc6h&\n'
 
 sessionobj={}
+mat=[]
 
 @app.route('/')
 def index():
@@ -93,7 +94,8 @@ def eval(var1,var2,omc):
           name=s['resultFile']
           addmsg=s['messages']
           if (name!=''):
-             session['mat'].append(name)          
+             #session['mat'].append(name)
+             mat.append(name)             
              tempres="".join(['Simulation Success: Temp/',os.path.basename(name)])
              divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(tempres),'</b>','</div>'])
           else:
@@ -131,8 +133,8 @@ def plotgraph(plotvar,divid,omc):
   
   ## Function to handle plotting in browser ##
   
-  if (len(session['mat'])!=0):
-     res=session['mat'][-1]
+  if (len(mat)!=0):
+     res=mat[-1]
      try:
        readResult = omc.sendExpression("readSimulationResult(\"" + os.path.basename(res) + "\",{time," + plotvar + "})")
        omc.sendExpression("closeSimulationResultFile()")
