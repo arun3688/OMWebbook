@@ -1,0 +1,17 @@
+.CodeMirror {
+        border: 1px solid #eee;
+        width: 100%;
+        background-color: #F0F8FF;
+        font-size: 14px;
+        font-family: "Courier New";        
+        height: auto;
+      }
+
+.CodeMirror-scroll {
+        height: auto;
+    }      
+    
+p {
+  margin-bottom: 30px;
+  text-align: justify;
+}
