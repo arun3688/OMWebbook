@@ -87,7 +87,8 @@ def eval(var1,var2,omc):
       #z1="".join(x[i].splitlines())
       simcommand=z1.replace(' ','').startswith('simulate(')and z1.replace(' ','').endswith(')')
       plotcommand=z1.replace(' ','').startswith('plot(')and z1.replace(' ','').endswith(')')
-     
+      plotparametriccommand=z1.replace(' ','').startswith('plotParametric(')and z1.replace(' ','').endswith(')')
+      print plotparametriccommand
       if (simcommand==True):
         try:
           s=omc.sendExpression(z1)
@@ -107,7 +108,16 @@ def eval(var1,var2,omc):
         
         session['msg'].append(divcontent)
       
-      elif (plotcommand==True):   
+      elif (plotparametriccommand==True):
+          l1=z1.replace(' ','')
+          l=l1[0:-1]
+          plotvar=l[15:].replace('{','').replace('}','')
+          divcontent=" ".join(['<div id='+y[i]+'>'])
+          session['msg'].append(divcontent)
+          plotdivid=y[i]
+          plotgraph(plotvar,plotdivid,omc)
+
+      elif (plotcommand==True):
           l1=z1.replace(' ','')
           l=l1[0:-1]
           plotvar=l[5:].replace('{','').replace('}','')
@@ -115,6 +125,7 @@ def eval(var1,var2,omc):
           session['msg'].append(divcontent)
           plotdivid=y[i]
           plotgraph(plotvar,plotdivid,omc)
+      
       else:
           try:
             l=omc.sendExpression(z)
