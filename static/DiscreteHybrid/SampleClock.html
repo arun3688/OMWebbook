@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Generating Repeated Events Using Sample</span></p>
+Generating Repeated Events Using Sample
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">SamplingClock</span></p>
-</h1>
+<h2>
+1
+SamplingClock
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">(first,interval) returns </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">true</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and can be used to trigger events at time instants </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">first + i*interval (i=0,1,...)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, where </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">first</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is the time of the first event and </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">interval</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is the time interval between the periodic events. It is typically used in models of periodically sampled systems.<br/></span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> acts as a kind of clock that returns true at periodically occurring time instants. We can use this behavior in combination with a when-equation to periodically trigger events, e.g. as below:<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class Squarewave
   parameter Modelica.SIunits.Time first = 0;
   parameter Modelica.SIunits.Time interval = 1;
@@ -50,16 +53,17 @@ equation
   end when;
 end Squarewave;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of SamplingClock</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h3>
+1.1
+Simulation of SamplingClock
+</h3>
+<textarea id=check1textarea>
 loadModel(Modelica)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate( Squarewave, stopTime=10 ) 
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot(x)
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -586,11 +590,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Sampling Values at Clock Ticks Using Clocked sample()</span></p>
-</h1>
+<h2>
+2
+Sampling Values at Clock Ticks Using Clocked sample()
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The clocked version of sample( ) is quite different from the unclocked version generating events, which was described in the previous section. The clocked version of the operator samples a continuous-time expression at the ticks of a clock and returns a clocked expression. Below a very simple example model using sample is given where the variable x is sampled at 5 Hz.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class SampleTime
   parameter Modelica.SIunits.Time interval=1;
   Clock clk; // A clock variable
@@ -601,16 +606,16 @@ equation
   stime = sample(x, clk); // Clocked equation to perform the sampling
 end SampleTime;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 loadModel(Modelica)
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 simulate(SampleTime)
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot(x)
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -1132,12 +1137,13 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Accessing Clocked Values Between Clocked Events Using hold()</span></p>
-</h1>
+<h2>
+3
+Accessing Clocked Values Between Clocked Events Using hold()
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Unclocked discrete-time variables are piece-wise constant, may change at events, and have defined values also between events. This is however not the case for clocked variables which are only defined and may only change at clock ticks for their associated clock. The hold() operator  makes clocked values available also in unclocked equations and expressions. The operator effectively converts a clocked discrete-time expression into an unclocked discrete-time expression which is piece-wise constant and accessible between clock tick events.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the SquareWaveClocked model we instead use Modelica synchronous clocks where the clock variable clk is declared using the builtin Clock type, the clock interval is specified using the Clock constructor, and we have introduced a synchronous clocked discrete-time variable xclocked which is only defined at clock ticks.</span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class SquareWaveClocked
    parameter Modelica.SIunits.Time interval=1;
    Clock clk; // A clock variable
@@ -1152,20 +1158,21 @@ equation
 end SquareWaveClocked;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future. Hence Simulation of this model does not work</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 loadModel(Modelica)
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 simulate(SquareWaveClocked)
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Preventing Events Using smooth () for Continuous Expressions</span></p>
-</h1>
+<h2>
+4
+Preventing Events Using smooth () for Continuous Expressions
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The function smooth(p,expr) evaluates and returns the value of the expression expr in a way that can avoid event generation. This is similar to noEvent(), but with the difference that smooth() does not guarantee preventing events- it lets the Modelica environment decide what is appropriate. By placing a call to smooth() around expr, we state that expr is continuous and its derivates up to order p are continuous. This information can be used by the Modelica environment to avoid event generation and thus increase performance.</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 model SmoothAndEvents
   Real x,y,z;
   parameter Real p;
@@ -1175,10 +1182,10 @@ equation
   z = smooth(1,noEvent(if x<0 then 0 else sqrt(x)*x)); // noEvent is necessary
 end SmoothAndEvents;
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 simulate(SmoothAndEvents)
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 plot({x,y,z})
 </textarea> <br> <div id=check15div> </div> <br>
 <script type="text/javascript">

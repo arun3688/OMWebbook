@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,25 +32,27 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Modifiers in Short Class Definitions</span></p>
+Modifiers in Short Class Definitions
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simple Short Class Definitions</span></p>
-</h1>
+<h2>
+1
+Simple Short Class Definitions
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A few simple examples of short class definitions with modifiers are shown below, all being modifications of the superclass </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Real</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">: </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class Current = Real(unit = "mA");
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 type Force3 = Real[3](unit = {"N", "N", "N"});
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 type Voltage = Real(unit = "V", min = -220.0, max = 220.0);
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">LowPassFilter</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+2
+LowPassFilter
+</h2>
+<textarea id=check3textarea>
 model LowPassFilter1
   constant   Real ystart = 1;
   parameter Real T     = 1;
@@ -59,11 +63,11 @@ equation
 end LowPassFilter1;
 </textarea>  <div id=check3div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter20</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a modification of the model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, with the changed values of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ystart</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">T</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model LowPassFilter20 = LowPassFilter1(ystart = 0, T = 20);
 </textarea>  <div id=check4div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The two models </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter20</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be replaced by the single model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter20</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">B.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model LowPassFilter20B
   constant   Real ystart =  0;
   parameter Real T     = 20;
@@ -73,13 +77,14 @@ equation
   T*der(y) + y = u;
 end LowPassFilter20B;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of LowPassFilter </span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+3
+Simulation of LowPassFilter 
+</h2>
+<textarea id=check6textarea>
 simulate( LowPassFilter1, stopTime=15 )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( y )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -595,18 +600,18 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 simulate( LowPassFilter20, stopTime=20 )
 </textarea>  <div id=check8div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Take a look at some values of y at time=0.0001, time=10, time=20:</span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 {val(y,0.0001), val(y,10.), val(y,20.)}
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Simulate the second filter:</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 simulate( LowPassFilter20B, stopTime=20 )
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 plot( y )
 </textarea> <br> <div id=check11div> </div> <br>
 <script type="text/javascript">

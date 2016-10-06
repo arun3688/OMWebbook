@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,18 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">WatchDog System</span></p>
+WatchDog System
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Event Generator Model</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Event Generator Model
+</h2>
+<textarea id=check0textarea>
 connector eventPort
   discrete Boolean signal;
 end eventPort;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model EventGenerator
    parameter Real eventTime = 1;
    eventPort dOutput;
@@ -48,13 +51,13 @@ equation
    dOutput.signal = time > eventTime;
 end EventGenerator;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector EventPortInput = input Boolean;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector EventPortOutput = output Boolean;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model EventGenerator
   parameter Real eventTime=1;
   EventPortOutput dOutput;
@@ -62,15 +65,16 @@ equation
   dOutput = time>eventTime;
 end EventGenerator;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WatchDog 1</span></p>
-</h1>
+<h2>
+2
+WatchDog 1
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The watchdog system shown in Figure 1 consists of the watchdog itself and three event generators, emitting On events, Off events and deadlineSignal events.</span></p><br>
 <h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">WatchDog System</span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>A Modelica model of the watchdog system follows below, consisting of the watchdog itself and the three event generators. The watchdog is formulated using an algorithm section since otherwise the multiple </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations would cause multiple assignments to be reported for the variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">watchdogActive.<br/><br/></span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This version of the WatchDog receives three events: two commands to switch the watchdog on and off, and a "deadline" event. The watchdog must emit an "alarm" whenewer the deadline occurs when the watchdog is on. Initially it is turned of.<br/>This is the algorithmic implementation.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model WatchDogSystem
    EventGenerator turnOff(eventTime=0.25);
    EventGenerator turnOn(eventTime=1);
@@ -82,7 +86,7 @@ equation
    connect(deadlineEmitter.dOutput, watchdog.dDeadline);
 end WatchDogSystem;
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model WatchDog
    EventPortInput dOn;
    EventPortInput dOff;
@@ -102,13 +106,14 @@ algorithm
    end when;
 end WatchDog;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WatchDogSystem</span></p>
-</h1>
-<textarea class="target" id=check7textarea>
+<h2>
+3
+Simulation of WatchDogSystem
+</h2>
+<textarea id=check7textarea>
 simulate( WatchDogSystem, stopTime=2 ) 
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot( watchdog.dAlarm)
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -629,11 +634,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WatchDog 2</span></p>
-</h1>
+<h2>
+4
+WatchDog 2
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This version of the WatchDog receives three events: two commands to switch the watchdog on and off, and a "deadline" event. The watchdog must emit an "alarm" whenewer the deadline occurs when the watchdog is on. Initially it is turned off. This is the equation-based inplementation of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">watchdog1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 model WatchDog2
    EventPortInput dOn;
    EventPortInput dOff;
@@ -656,7 +662,7 @@ equation
    end when;
 end WatchDog2;
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model WatchDogSystem2
   EventGenerator  turnOn(eventTime=1);
   EventGenerator  turnOff(eventTime=0.25);
@@ -668,13 +674,14 @@ equation
     connect(deadlineEmitter.dOutput, watchdog.dDeadline);
 end WatchDogSystem2;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WatchDogSystem2</span></p>
-</h1>
-<textarea class="target" id=check11textarea>
+<h2>
+5
+Simulation of WatchDogSystem2
+</h2>
+<textarea id=check11textarea>
 simulate( WatchDogSystem2, stopTime=4 ) 
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 plot( watchdog.dAlarm)
 </textarea> <br> <div id=check12div> </div> <br>
 <script type="text/javascript">
@@ -1195,11 +1202,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WatchDog Clocked</span></p>
-</h1>
+<h2>
+6
+WatchDog Clocked
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt;">A clocked version of the model called WatchDogSystemClocked, is shown below. The main difference is that a global clocked timer variable has been introduced, and that the event generator detects when to emit a clocked signal synchronized with the clock ticks of the global clock by the equation dOutput = timecmp==true and previous(timecmp)==false. An if-then-else statement is used instead of the when-statements in the unclocked version since clocked when-statements are currently not available in the Modelica language.</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 model WatchDogClocked "Version with equation section, if-then-else"
    EventPortInput dOn;
    EventPortInput dOff;
@@ -1223,10 +1231,10 @@ equation
 end WatchDogClocked;
 </textarea>  <div id=check13div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 simulate(WatchDogClocked)
 </textarea>  <div id=check15div> </div> <br>
 </div></body></html>

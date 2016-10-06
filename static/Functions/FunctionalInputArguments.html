@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Functional Input Arguments to Functions</span></p>
+Functional Input Arguments to Functions
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Allowing functions to be passed as arguments to a function is a useful feature which allows greater generality and re-use. For example, a sorting function may have a comparison function as a formal parameter. This makes the sorting function more general and reusable, since it can adapt to different comparison schemes. For example, the sort function below sorts an array in decreasing or increasing order depending on the passed compare function.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 partial function CompareFunc "Function type of the comparison function"
   input Real x;
   input Real y;
   output Boolean comp;
 end CompareFunc;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 function sort "Sorting function using the bubblesort algorithm"
    input Real[:] arr;
    input CompareFunc compare;
@@ -57,21 +59,21 @@ algorithm
    end for;
 end sort;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 function greaterThan
   input Real x;
   input Real y;
   output Boolean comp = x>y;
 end greaterThan;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 function lessThan
   input Real x;
   input Real y;
   output Boolean comp = x<y;
 end lessThan;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model SortApplication "Example calls of the sort function"
    parameter Real[:] ax = {4.0,6.0,2.0,5.0,8.0};
    Real[size(ax,1)] xGt;
@@ -81,10 +83,10 @@ equation
    xLt = sort(ax, greaterThan); // Increasing order: {2.0,4.0,5.0,6.0,8.0}
 end SortApplication;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 simulate(SortApplication)
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 plot({xGt[1],xGt[2],xGt[3],xGt[4],xGt[5]})
 </textarea> <br> <div id=check6div> </div> <br>
 <script type="text/javascript">

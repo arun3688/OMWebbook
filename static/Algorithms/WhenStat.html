@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">when-Statements</span></p>
+when-Statements
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</span></p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">When-statements </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">are used to express actions (statements) that are only executed at </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">events</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, e.g. at discontinuities or when certain conditions become true. The executed statements</span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">contain </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">discrete-time</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> expressions since they are computed only at event instants, even expressions that otherwise would be classified as continuous-time. <br/><br/>When-statements are generally used to either reinitialize a continuous variable using the reinit operator or to change the value of a discrete variable. When-statements are closely related to when-equations, the obvious difference between them is that </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements are statements containing other statements and can only be used in algorithm sections whereas </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations are equations which are only allowed in equation sections. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WhenStat</span></p>
-</h1>
+<h2>
+2
+WhenStat
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The when-statement below are executed at the event instant when the Boolean expression</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> x &gt; 2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> becomes true. We should note that this is different from an </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement with the same condition which executes its body each time when invoked provided that the condition of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement is true. This difference is easier to understand if we consider the definition of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements in terms of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements and the edge operator in the section below.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class WhenStat
   Real x(start=1,fixed=true);
   Real y1(fixed=true);
@@ -55,16 +59,17 @@ equation
   der(x) = 2*x;
 end WhenStat;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 setDebugFlags("initialization")
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WhenStat</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+3
+Simulation of WhenStat
+</h2>
+<textarea id=check2textarea>
 simulate( WhenStat )  
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( y1 )
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -581,7 +586,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot( y3 )
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -1098,11 +1103,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WhenStat2</span></p>
-</h1>
+<h2>
+4
+WhenStat2
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">If we use a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Boolean</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> vector expression containing three elements as the </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">conditions</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, then the two statements will be executed at event instants when at least one of the three conditions:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> x &gt; 2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample(0, 2)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x  becomes true. Typically each condition in the vector generates its own event instants.<br/></span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class WhenStat2
   Real x(start = 1,fixed=true);
   Real y1(fixed=true);
@@ -1117,13 +1123,14 @@ equation
   der(x) = 2*x;
 end WhenStat2;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WhenStat2</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+5
+Simulation of WhenStat2
+</h2>
+<textarea id=check6textarea>
 simulate( WhenStat2 )  
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( y1 )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -1644,7 +1651,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot( y3 )
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -2165,11 +2172,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WhenStat</span></p>
-</h1>
+<h2>
+6
+WhenStat
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The order between the statements in the body of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement is of cuorce significant. If you would put the assignment to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">y3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> before the assignment of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">y1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> you would get a different result and thus a different model behavior.<br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class WhenStat3
   Real x(start = 1,fixed=true);
   Real y1(fixed=true);
@@ -2189,13 +2197,14 @@ equation
   der(x) = 2*x;
 end WhenStat3;
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WhenStat3</span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h2>
+7
+Simulation of WhenStat3
+</h2>
+<textarea id=check10textarea>
 simulate( WhenStat3 )  
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 plot( y1 )
 </textarea> <br> <div id=check11div> </div> <br>
 <script type="text/javascript">
@@ -2712,7 +2721,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 plot( y3 )
 </textarea> <br> <div id=check12div> </div> <br>
 <script type="text/javascript">
@@ -3229,9 +3238,10 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Defining when-Statements by if-Statements</span></p>
-</h1>
+<h2>
+8
+Defining when-Statements by if-Statements
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement can be defined as a combination of the following:</span></p><br>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg'; font-size:8pt;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">- An </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement</span></p>
@@ -3242,11 +3252,12 @@ labels:
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">- Calls to the edge operator in the conditional expressions of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Avoiding Multiple-Definition Conflicts for when-Statements</span></p>
-</h1>
+<h2>
+9
+Avoiding Multiple-Definition Conflicts for when-Statements
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Two </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements in different algorithm sections or two </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations may not define the same variable. Without this rule a conflict between the assignment will  occur if both conditions would become true at the same time instant.<br/></span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 model DoubleWhenConflict
   Boolean close;          // Erroneous model: close defined by two equations
   parameter Real x = 5;
@@ -3261,11 +3272,12 @@ algorithm
   end when;
 end DoubleWhenConflict;
 </textarea>  <div id=check13div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">DoubleWhenSequential</span></p>
-</h1>
+<h3>
+9.1
+DoubleWhenSequential
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">One possible way to resolve the conflict would be to put both </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements within the same algorithm section, as in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DoubleWhenSequential</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model below. The sequential execution semantics of algorithm sections allow several assignments to the same variable. If there are several </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements with assignments active at the same time instant, they will be executed in sequential order and the result of the last assignment will prevail.<br/><br/>However, this method is not recommended since the modeling style is less clear than the alternative method presented in the next section. Another disadvantage is the nondeclarative style of using </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-constructs by relying on multiple sequential assignments.<br/></span></p><br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 model DoubleWhenSequential
   Boolean close(fixed=true);   // Possible conflicting definitions resolved 
                        // by sequential assignments in an algorithm section
@@ -3279,18 +3291,20 @@ algorithm
   end when;
 end DoubleWhenSequential;      
 </textarea>  <div id=check14div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of DoubleWhenSequential</span></p>
-</h1>
-<textarea class="target" id=check15textarea>
+<h3>
+9.2
+Simulation of DoubleWhenSequential
+</h3>
+<textarea id=check15textarea>
 simulate( DoubleWhenSequential )  
 
 </textarea>  <div id=check15div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">WhenPriority</span></p>
-</h1>
+<h3>
+9.3
+WhenPriority
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>A more explicit and therefore better way to resolve the conflict would be to give one of the two event handlers higher priority, which is possible using the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">elsewhen</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> construct. Here it is well defined what happens if both conditions become true at the same time instant since the first condition (</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x &gt;= 5</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">) has higher priority than the second condition (</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x ).<br/></span></p><br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 model WhenPriority
   Boolean close (fixed=true);
   parameter Real x = 5;
@@ -3302,10 +3316,11 @@ algorithm
   end when;
 end WhenPriority;
 </textarea>  <div id=check16div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of WhenPriority</span></p>
-</h1>
-<textarea class="target" id=check17textarea>
+<h3>
+9.4
+Simulation of WhenPriority
+</h3>
+<textarea id=check17textarea>
 simulate( WhenPriority )  
 </textarea>  <div id=check17div> </div> <br>
 </div></body></html>

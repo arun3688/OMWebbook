@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Conditional Equations with when-Equations</span></p>
+Conditional Equations with when-Equations
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WhenEquation</span></p>
-</h1>
+<h2>
+1
+WhenEquation
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">When</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations are used to express instantaneous equations that are only valid at events, e.g. at discontinuities or when certain conditions become true. The conditional equations automatically contain only discrete-time expressions since they become active only at event instants. The two equations in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">whenEquation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below become active at the event instant when the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Boolean</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> expression </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">&gt;</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> becomes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">true</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model WhenEquation
   Real x(start = 1);
   discrete Real y1(fixed=true);
@@ -50,14 +53,15 @@ equation
   end when;
 end WhenEquation;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WhenEquation </span></p>
-</h1>
+<h2>
+2
+Simulation of WhenEquation 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">WhenEquation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simulated. Then as below the variables can be plotted.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate( WhenEquation, stopTime=10 )
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot( { y1, y2, y3, x } ) 
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -71,7 +75,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( { y1, y3, x } )  
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -588,12 +592,13 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">WhenSet</span></p>
-</h1>
+<h2>
+3
+WhenSet
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">If we instead use a Boolean vector expression containing three elements as the conditions, then the two equations will be activated at event instants when either of the three conditions: </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x &gt; 2, sample(0,2), </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">or</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> x  becomes true. Sample is more explained </span><a href="static/DiscreteHybrid/SampleClock.html
 "><span style=" font-family:'Courier New'; font-size:12pt; text-decoration: underline; color:#0000ff;">here</span></a><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class WhenSet
   Real x;
   parameter Real y2 = 3;
@@ -607,14 +612,15 @@ equation
   end when;
 end WhenSet;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of WhenSet </span></p>
-</h1>
+<h2>
+4
+Simulation of WhenSet 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">WhenSet</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simulated.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 simulate( WhenSet, stopTime=10 )
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 plot( { y1,  y3, x } )
 </textarea> <br> <div id=check6div> </div> <br>
 <script type="text/javascript">
@@ -1140,11 +1146,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Activate</span></p>
-</h1>
+<h2>
+5
+Activate
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Special behavior can be specified by </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations when a simulation starts and finishes by testing the built-in predicates </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">initial()</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">terminal()</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. The predicate </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">initial()</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> returns true at the beginning of the simulation when time is equal to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time.start</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and the predicate </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">terminal()</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> returns true at the end of the simulation.<br/></span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 class Activate
   Real x = 4;
   Real y, z(fixed=true);
@@ -1159,14 +1166,15 @@ equation
 end Activate;
 
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Activate </span></p>
-</h1>
+<h2>
+6
+Simulation of Activate 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Activate</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simulated.</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 simulate( Activate, stopTime=10 )
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot( {x, y, z } ) 
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">
@@ -1681,14 +1689,16 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Restrictions on Equations within when-Equations</span></p>
-</h1>
+<h2>
+7
+Restrictions on Equations within when-Equations
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">To make it possible both for a Modelica tool and a person to determine which variables are "results" from a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation, Modelica restricts the allowed equations within a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation to a form where the result variable is on the left-hand side.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">WhenNotValid</span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h3>
+7.1
+WhenNotValid
+</h3>
+<textarea id=check10textarea>
 model WhenNotValid
   Real x, y;
 equation
@@ -1698,17 +1708,19 @@ equation
   end when;
 end WhenNotValid;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of WhenNotValid</span></p>
-</h1>
+<h3>
+7.2
+Simulation of WhenNotValid
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">WhenNotValid</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simulated. Since the code </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">2*x + y = 7; </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">is not valid Modelica code the error message</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> Illegal left hand equation in when equation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is shown in the failed simulation message below.<br/></span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 simulate( WhenNotValid )  //Should fail!
 </textarea>  <div id=check11div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">WhenValidResult</span></p>
-</h1>
-<textarea class="target" id=check12textarea>
+<h3>
+7.3
+WhenValidResult
+</h3>
+<textarea id=check12textarea>
 model WhenValidResult
   Real x;
   Real y(fixed=true);
@@ -1719,14 +1731,15 @@ equation
   end when;
 end WhenValidResult;
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of WhenValidResult</span></p>
-</h1>
+<h3>
+7.4
+Simulation of WhenValidResult
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">WhenValidResult</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simulated. </span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 simulate( WhenValidResult )
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 plot({x, y})
 </textarea> <br> <div id=check14div> </div> <br>
 <script type="text/javascript">
@@ -2243,11 +2256,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Nested When</span></p>
-</h1>
+<h3>
+7.5
+Nested When
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When-clauses are not allowed to be nested.</span></p><br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 model ErrorNestedWhen
   Real x, y1, y2;
 equation
@@ -2258,21 +2272,24 @@ equation
   end when;
 end ErrorNestedWhen;    
 </textarea>  <div id=check15div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of ErrorNestedWhen</span></p>
-</h1>
+<h3>
+7.6
+Simulation of ErrorNestedWhen
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ErrorNestedWhen</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simulated. Since it is not allowed to have nested when-clauses. there will be an error.</span></p><br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 simulate( ErrorNestedWhen ) // Simulation should fail
 </textarea>  <div id=check16div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Application of the Single-Assignment Rule on when-Clauses</span></p>
-</h1>
+<h2>
+8
+Application of the Single-Assignment Rule on when-Clauses
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Two when-caluses may not define the same variable. Without this rule that may actually happen for the erroneous model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DoubleConflict</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below a conflict between the equations will occur if both conditions become true at the same time instant.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">DoubleWhenConflict</span></p>
-</h1>
-<textarea class="target" id=check17textarea>
+<h3>
+8.1
+DoubleWhenConflict
+</h3>
+<textarea id=check17textarea>
 model DoubleWhenConflict
   Real x;
   Boolean close;       // Erroneous model: close defined by two equations!
@@ -2287,11 +2304,12 @@ equation
   end when;
 end DoubleWhenConflict;         
 </textarea>  <div id=check17div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of DoubleWhenConflict</span></p>
-</h1>
+<h3>
+8.2
+Simulation of DoubleWhenConflict
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Since the variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">close</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> cannot be defined by two equations the model could not be translated.</span></p><br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 simulate( DoubleWhenConflict )
 </textarea>  <div id=check18div> </div> <br>
 <h1>

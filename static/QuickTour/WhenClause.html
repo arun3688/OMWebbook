@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,15 +32,16 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">When-Equations</span></p>
+When-Equations
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">When</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations have been introduced in Modelica to express instantaneous equations (equations that are valid only at certain points when specific conditions become </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">true</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">). Then equations in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation are activated when at least one of the conditions become </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">true</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Bouncing Ball</span></p>
-</h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A bouncing ball is a good example of a hybrid system for which the when-equation is appropriate when modeled. The motion of the ball is characterized by the variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">height</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> above the ground and the vertical </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">velocity</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> equation is a special from of equation that can be used in </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations to define new values for continuous-time state variables of a model at an </span><a href="../DiscreteHybrid/SampleClock.html
+<h2>
+1
+Bouncing Ball
+</h2>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A bouncing ball is a good example of a hybrid system for which the when-equation is appropriate when modeled. The motion of the ball is characterized by the variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">height</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> above the ground and the vertical </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">velocity</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> equation is a special from of equation that can be used in </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations to define new values for continuous-time state variables of a model at an </span><a href="static/../DiscreteHybrid/SampleClock.html
 "><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">event</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model BouncingBall             "The bouncing ball model"
   constant Real g = 9.81;        // Gravitational acceleration
   parameter Real c = 0.9;        // Elasticity constant of ball
@@ -56,14 +59,15 @@ end BouncingBall;
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A bouncing ball</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation 1 of Bouncing Ball </span></p>
-</h1>
+<h2>
+2
+Simulation 1 of Bouncing Ball 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When we simulate the BouncingBall model from 0 to 8 we see how it bounces </span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate( BouncingBall, stopTime=8 )
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot( { height, velocity } )
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -734,14 +738,15 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation 2 of Bouncing Ball </span></p>
-</h1>
+<h2>
+3
+Simulation 2 of Bouncing Ball 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When we Simulate BouncingBall a little further then it bounces faster and faster. Then the simulation fails and it looks like the ball bounces under the floor. This is called the Zeno effect.</span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">An execution of a hybrid system is called Zeno, if it takes infinitely many discrete transitions in a finite time interval. <br/></span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate( BouncingBall, stopTime=20 )
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot( { height, velocity } )
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">

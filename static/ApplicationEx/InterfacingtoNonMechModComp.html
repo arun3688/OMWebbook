@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Interfacing to Non-Mechanical Model Components</span></p>
+Interfacing to Non-Mechanical Model Components
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>When a multidomain model in Modelica is designed, the mechanical part of the model physically interacts with some other parts of the model. The mechanical part should usually be connected with the part describing the drive train, which is in turn connected to the part describing the energy source, e.g. electrical circuit. There are standard Modelica libraries for all these components. <br/><br/>However, sometimes the attention is focused on an isolated mechanical part of the model. In this case the reference positions as well as forces and torques acting on the model can be specified directly. <br/><br/>There exist three major ways to set up an interface between the mechanical part of Modelica model and other parts. These ways correspond to three connector types: </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Multiboby.Interfaces.Frame, Rotational.Interfaces.Flange</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Translational.Interfaces.Flange</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Using Multibody.Interfaces.Frame</span></p>
-</h1>
+<h2>
+1
+Using Multibody.Interfaces.Frame
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Any object with connector of type </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Frame_a</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Frame_b</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be connected to a model of external force or torque. This external force (or torque) will be applied to the corresponding point on the relevant body. The example below includes a force acting on the end of the pendulum in direction of the local Y-axis (perpendicular to the pendulum bar). When force is attached to the pendulum it does not oscillate;  it rotates instead.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model ExtForcePendulum
    import Modelica.Mechanics.MultiBody.Parts;
    import Modelica.Mechanics.MultiBody.Joints;
@@ -57,18 +60,19 @@ equation
 end ExtForcePendulum;
   
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 loadModel(Modelica)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate(ExtForcePendulum)
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Sometimes it is necessary to specify external force in global coordinates. One connect statement should be replaced by equation (see below). The input signal </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ExtForce</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> object is adjusted according to the orientation matrix </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">S</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ExtForce</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> frame. When such constant force (in direction of vector {1,1,0} in the global coordinate system) is applied to the pendulum, it oscillates near the equilibrium point.<br/></span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Using Rotational.Interfaces.Flange</span></p>
-</h1>
+<h2>
+2
+Using Rotational.Interfaces.Flange
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rotational</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> library describes varius elements for one-dimensional rotational motion. These elements can be attached to the Revolute joint from </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">MultiBody</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> library. A torque, spring, damper or any other component can be attached to the flanges of the revolute joint. The example below illustrates a one-dimensional spring and damper (from </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rotational</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> library) attached to the revolute joint of a simple pendulum.<br/></span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model PendulumWithDampedSpring
    import Modelica.Mechanics.MultiBody.Parts;
    import Modelica.Mechanics.MultiBody.Joints;
@@ -86,17 +90,18 @@ equation
    connect(revolute1.frame_b, body1.frame_a);
 end PendulumWithDampedSpring;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 loadModel(Modelica)
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 simulate(PendulumWithDampedSpring, stopTime=3)
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Pendulum with Rotational Angle Steering</span></p>
-</h1>
+<h2>
+3
+Pendulum with Rotational Angle Steering
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Sometimes there is a need to rotate the body connected to the joint to a certain desired angular position.This can be done by the use of an instance of the class Rotational.Position. In the example pendulum with rotation angle steering, the specified value of the angle is given by the step1 instance of the Step signal source from the Modelica.Block.Sources sublibrary. This value is converted to an angular position by the position1 component. In class Position the reference angle is filtered and the second derivative of the filtered curve is used to compute the reference acceleration of the flange. Angular position of the joint is computed from this acceleration. For filtering, a second order Bessel filter is used. The critical frequency (also called cut-off frequency) of the filter is defined via parameter f_crit in [Hz]. This value should be selected in such a way that it is higher as the essential low frequencies in the signal.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model PendulumRotationalSteering
   import Modelica.Mechanics.MultiBody.Parts;
   import Modelica.Mechanics.MultiBody.Joints;
@@ -114,13 +119,13 @@ equation
   connect(position1.flange_b, revolute1.axis); // Connect position1 to axis
 end PendulumRotationalSteering;
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 loadModel(Modelica)
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 simulate(PendulumRotationalSteering)
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot(body1.frame_b.r_0[2])
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">
@@ -637,11 +642,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Computational Steering of a Pendulum through a PD controller</span></p>
-</h1>
+<h2>
+4
+Computational Steering of a Pendulum through a PD controller
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Another way to steer a joint is to set up a </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">Proportional Derivative (PD) controller</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Instead of computing angular position, the PD controller creates an active torque, which acts on the joint. It behaves like a motor; parameters </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">k</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">d</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be tuned in order to adjust the reaction speed and power.</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model RotationalPDController "Input signal acting as reference value for
     angle, gives external torque on a flange"
    import Modelica.Blocks;
@@ -654,7 +660,7 @@ equation
    flange_b.tau = k*(flange_b.phi-u)+d*der(flange_b.phi);
 end RotationalPDController;
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model PendulumWithPDController
   import Modelica.Mechanics.MultiBody.Parts;
   import Modelica.Mechanics.MultiBody.Joints;
@@ -671,13 +677,13 @@ equation
   connect(world.frame_b, revolute1.frame_a);
 end PendulumWithPDController;  
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 loadModel(Modelica)
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 simulate(PendulumWithPDController)
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 plot(body1.frame_b.r_0[2])
 </textarea> <br> <div id=check14div> </div> <br>
 <script type="text/javascript">

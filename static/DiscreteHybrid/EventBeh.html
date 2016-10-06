@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,48 +32,52 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Expressing Event Behavior in Modelica</span></p>
+Expressing Event Behavior in Modelica
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Expressing Event Behavior in Modelica</span></p>
-</h1>
+<h2>
+1
+Expressing Event Behavior in Modelica
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The conditional equations associated with an event become active when the </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">condition</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of the equations switches from the value false and true. There are basically two groups of conditional equation constructs in Modelica: </span><a href="static/Equations/IfEq.html
 "><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">if-equations</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><a href="static/Equations/WhenEq.html
 "><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">when-equations</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. In the Diode example below different equations are specified.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Units</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h3>
+1.1
+Electrical Units
+</h3>
+<textarea id=check0textarea>
 type Voltage = Real(unit = "V");
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 type Current = Real(unit = "A");
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Connectors</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h3>
+1.2
+Electrical Connectors
+</h3>
+<textarea id=check2textarea>
 connector Pin           "Pin of an electrical component"
    Voltage v           "Potential at the pin";
    flow Current i         "Current flowing into the pin";
 end Pin;              //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector PositivePin       "Positive pin of an electrical component"
    Voltage v           "Potential at the pin";
    flow Current i         "Current flowing into the pin";
 end PositivePin;          //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector NegativePin       "Negative pin of an electrical component"
    Voltage v           "Potential at the pin";
    flow Current i         "Current flowing into the pin";
 end NegativePin;          //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Components</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h3>
+1.3
+Electrical Components
+</h3>
+<textarea id=check5textarea>
 partial model TwoPin          // Same as OnePort in Modelica.Electrical.Analog.Interfaces
                     "Component with two electrical pins p and n and current i from p to n"
   Voltage v                "Voltage drop between the two pins (= p.v - n.v)";
@@ -84,11 +90,12 @@ equation
   i = p.i;
 end TwoPin;  
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Diode</span></p>
-</h1>
+<h3>
+1.4
+Diode
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation in the ideal </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">diode</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> example below, specifies different equations for the variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">v</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in two different operating regions: the</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> v = s</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the region </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">s  and the equation v = 0 in the region s &gt;= 0.<br/></span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model Diode           "Ideal diode"
   extends TwoPin;
   Real s;

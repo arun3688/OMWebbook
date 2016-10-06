@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,28 +32,30 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Subtype and Supertype</span></p>
+Subtype and Supertype
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Connector Classes</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Connector Classes
+</h2>
+<textarea id=check0textarea>
 type Voltage = Real(unit = "V");
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 type Current = Real(unit = "A");
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector Pin
   Voltage       v;
   flow Current  i;
 end Pin;        
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Resistor</span></p>
-</h1>
+<h2>
+2
+Resistor
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The subtype relation between types is analogous to the subset relation between sets. If we have one type Temperature that contains all temperature values and another type Winter-Temperature that contains only negative temperature values, then we say that Temperature is a supertype of Winter-Temperature. This also implies that Winter-Temperature is a subtype of Temperature.<br/><br/>The supertype relation, on the other hand, is the inverse of the subtype relation. Since </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a subtype of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, then </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a supertype of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. <br/></span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model Resistor
   Pin       p, n                "Positive and Negative Pins";
   Voltage     v;
@@ -61,7 +65,7 @@ equation
   v = R*i;
 end Resistor;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model TempResistor   "Temperature dependent Resistor"
   Pin       p, n         "Positive and Negative Pins";
   Voltage     v;

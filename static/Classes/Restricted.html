@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Restricted Classes</span></p>
+Restricted Classes
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</span></p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> concept is fundamental to Modelica, almost anything in Modelica is a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Special keywords, replacing the word </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, are used for different purposes, not changing the syntax of the structure. The keywords </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">model, connector, record, block</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">type</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> have some restrictions compared to the class keyword and they can be used in specific cases.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Model</span></p>
-</h1>
+<h2>
+2
+Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">model</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> keyword is used for modeling purposes. The only restriction is that a</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> model</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> may not be used in connections.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model Resistor "Electrical resistor"
    Pin p, n "positive and negative pins";
    Voltage v;
@@ -50,38 +54,42 @@ equation
    v = i*R;
 end Resistor; 
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Record</span></p>
-</h1>
+<h2>
+3
+Record
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">record</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a class for specifying a record data structure. Equations are not allowed in a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">record</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> at all and a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">record</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> may not be used in a connection.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 record person
   Real age;
   String name;
 end person;  
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Type</span></p>
-</h1>
+<h2>
+4
+Type
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The restricted class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">type</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is often used to introduce new type names. A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">type</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> may be an extension to either a predefined type (e.g. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Real</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Integer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">), a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">record</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or some kind of array.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 type Matrix = Real[3, 3];
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Connector</span></p>
-</h1>
+<h2>
+5
+Connector
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Connector</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> classes are used for communication between objects. No equations are allowed at all in a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">connector</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class. Instances of connector classes form the interface of a component (how it connects to the outer world).</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector Flange
   Position s;
   flow Force f;
 end Flange;
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Block</span></p>
-</h1>
+<h2>
+6
+Block
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">block</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a class for which the data flow direction is known for each of its variables. All variables declared in a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">block</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> must have one of the prefixes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">input</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">output</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">block</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> may not be used in connections. </span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 block Multiply
   input Real x;
   input Real y(start=0);
@@ -90,32 +98,16 @@ equation
   result = x*y;
 end Multiply;  
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Function</span></p>
-</h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">function</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> concept in Modelica corresponds to mathematical functions without external side effects. These are the restrictions of a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">function</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">:</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Each formal parameter of the function must be prefixed by either input or output and be public and non-constant. </span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A function may not be used in connections, may have no equations, and can have at most one algorithm.</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">For a function to be called, it must either have an algorithm or an external function interface as its body.</span></p>
-</h1>
-<h1>
-<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A function cannot contain calls to the Modelica built-in operators, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">der, initial, terminal, sample, pre, edge, change, reinit, delay, cardinality, </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">and is not allowed to contain when-statements.</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A subtype of a function type needs to be equivalent to the function type itself.</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The size of each array result or array local variable of a function must either be given by the formal parameters, or given by constant or parameter expressions.</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Multiply Function Example</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h2>
+7
+Function
+</h2>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">function</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> concept in Modelica corresponds to mathematical functions without external side effects. These are the restrictions of a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">function</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">:Each formal parameter of the function must be prefixed by either input or output and be public and non-constant. A function may not be used in connections, may have no equations, and can have at most one algorithm.For a function to be called, it must either have an algorithm or an external function interface as its body.A function cannot contain calls to the Modelica built-in operators, der, initial, terminal, sample, pre, edge, change, reinit, delay, cardinality, and is not allowed to contain when-statements.A subtype of a function type needs to be equivalent to the function type itself.The size of each array result or array local variable of a function must either be given by the formal parameters, or given by constant or parameter expressions.</span></p><br>
+<h3>
+7.1
+Multiply Function Example
+</h3>
+<textarea id=check5textarea>
 function multiply
   input Real x;
   input Real y = 0;
@@ -125,26 +117,28 @@ algorithm
 end multiply;    
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">multiply</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be called from within a class:</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class MultCall
   Real res;
 equation
   res = multiply(3.5, 2.0);        // Function call
 end MultCall;  
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Calling multiply</span></p>
-</h1>
+<h3>
+7.2
+Calling multiply
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The function multiply can also be called directly: </span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 multiply(2.0, 5.0)
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">MultCall2</span></p>
-</h1>
+<h3>
+7.3
+MultCall2
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The second argument can be left out, since the default value is available for this argument.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The function multiply can also be called directly: </span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 class MultCall2
   Real res;
 equation
@@ -152,10 +146,10 @@ equation
 end MultCall2;  
 </textarea>  <div id=check8div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Simulate MultCall2:</span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 simulate(MultCall2)  
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 plot(res)
 </textarea> <br> <div id=check10div> </div> <br>
 <script type="text/javascript">
@@ -671,18 +665,20 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The function multiply can also be called directly with named arguments: </span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 multiply(x=5.0)  
 </textarea>  <div id=check11div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Package</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">What is a Package?</span></p>
-</h1>
+<h2>
+8
+Package
+</h2>
+<h3>
+8.1
+What is a Package?
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The definitions in a package should be related in some way, which is the main reason they are placed in a particular package. Parameters and variables cannot be declared in a package.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">package</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a restricted and enhanced class that is primarily used to manage name spaces and organize Modelica code. A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">package</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the restrictions of only containing declarations of classes including all kinds of restricted classes and constants, i.e. no variable declarations. Also a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">package</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the enhancement of being allowed to import from. </span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 package SmallPack
 
   constant Real mypi = 3.14159;

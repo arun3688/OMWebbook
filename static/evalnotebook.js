@@ -1,8 +1,8 @@
-$(document).ready(function(){  
-        $("#progressbar").hide();        
-        count=0
+$(document).ready(function(){
+       $("#progressbar").hide();
+        count = 0;
         var editorinstance=[]
-        var editorid='' 
+        var editorid=''
         var value = '';
         
         /* function to generate unique id for each session */
@@ -52,42 +52,33 @@ $(document).ready(function(){
              }                  
                  }); 
 
-        });        
-        
-        /* Add cells */       
-        $('#addtextcells').click(function(){
-           //var newtextarea='<div><textarea id="check'+count+"textarea"+'"> </textarea></div>'
-           var newtextarea='<div id="check'+count+'row" class="row"> <textarea id="check'+count+"textarea"+'" > </textarea> <div id="check'+count+"div"+'"> </div> </div>'
-           textareaid='check'+count+'textarea'
-           $('#cells').append(newtextarea)
-           
-          /* apply codemirror instances */
-          SetCodeMirrorTextArea(textareaid)
-          }); 
+        });
         
         /* Translate html textarea into codemirror textarea editor */
-        function SetCodeMirrorTextArea(id)
-        {
-         var editor= CodeMirror.fromTextArea(document.getElementById(id), {
-            lineNumbers: true,
-            mode: "text/x-modelica",
-           }); 
-           editorinstance.push(editor)
-           
-           /* handle click event for selecting a cells */           
-           editor.on('mousedown', function () {
-            editorid=editor
-            });
-          count++
-        }
-        
-        /* evaluate single cells */        
-        $('#evaluate').click(function(){
+        $('textarea').each(function(){
+              var textareaid=this.id
+              var editor= CodeMirror.fromTextArea(document.getElementById(textareaid), {
+                lineNumbers: true,
+                mode: "text/x-modelica",
+                autoRefresh: true,
+                viewportMargin: Infinity
+              });
+              editorinstance.push(editor)
+              /* handle click event for selecting a cells */
+               editor.on('mousedown', function () {
+               editorid=editor
+                });
+             
+              });
+       
+         /* evaluate single cells */        
+         $('#evaluate').click(function(){
           //alert(value);
           var divid=[]
           var valuesarray=[]
-          //alert(editorid.getValue())
-          //alert(editorid.getTextArea().id)
+
+            //alert(editorid.getValue())
+             //alert(editorid.getTextArea().id)
           if (editorid!='')
           {       
             var textareaid=editorid.getTextArea().id
@@ -141,10 +132,10 @@ $(document).ready(function(){
             {
              alert("Nothing to evaluate, Add cells first to evaluate")
                }            
-              });  
-
-        /* evaluate all cells */        
-        $('#evaluateall').click(function(){
+              });
+         
+          /* evaluate all cells */        
+          $('#evaluateall').click(function(){
           //alert(editorinstance)
            var divid=[]
            var tempArray=[]
@@ -164,7 +155,8 @@ $(document).ready(function(){
            //alert(valuesArray)
 
            var divlisttostring=divid.toString();
-           if (divid.length != 0)
+             //alert(valuesArray)
+             if (divid.length != 0)
               {
               $("#progressbar").show();           
               var url = '/evalexpression'
@@ -200,46 +192,8 @@ $(document).ready(function(){
              {
                alert("No Cells Selected To Evaluate")
               } 
+
      
           });
-        
-        /* delete cells */       
-        $('#deletetextcells').click(function(){
-          if (editorid!='')
-             {
-            var textareaid=editorid.getTextArea().id 
-            var rowid="#"+textareaid.replace('textarea','row')
-            $(rowid).remove();
-                }
-           else
-             {
-              alert("No Cells Selected To Delete")
-                 }             
-               }); 
-               
-        /* insert cells between */              
-        $('#inserttextcells').click(function(){
-            //alert(focusid.id)
-            if (editorid!='')
-             {
-            var textareaid=editorid.getTextArea().id 
-            var divrow="#"+textareaid.replace('textarea','row')
-            //alert(divrow)
-            var newtextareainsert='<div id="check'+count+'row" class="row"> <textarea id="check'+count+"textarea"+'" > </textarea> <div id="check'+count+"div"+'"> </div> </div>'
-            newtextareaid='check'+count+'textarea'
-            $(divrow).after(newtextareainsert);
-            
-            SetCodeMirrorTextArea(newtextareaid)
-              }
-            else
-              {
-               alert("No cells selected to insert between")
-                }              
-          });  
-             
-                
-         /* save the document */
-           $('#save').click(function(){
-                window.print();     
-           });
-    });
+
+});

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,10 +32,10 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Functions with Multiple Results</span></p>
+Functions with Multiple Results
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>There is a special form of assignment statement that is only used when the right-hand side contains a call to a function with multiple results. The left-hand side contains a parenthesized, comma-separated list of variables receiving the results from the function call. A function with n results needs n receiving variables on the left-hand side. <br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 function f
   input Real x;
   input Real y;
@@ -46,7 +48,7 @@ algorithm
   r3 := x*y;
 end f;    
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model fCall
   Real x[3];
   Real a, b, c;
@@ -55,30 +57,32 @@ equation
   (x[1], x[2], x[3]) = f(3.0, 4.0);
 end fCall;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Calling the function f</span></p>
-</h1>
+<h2>
+1
+Calling the function f
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We can call </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">f</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with some input values and see what outputs it returns.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 f(2.5, 3)
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 f(3, 4)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 f(1.0, 2.0)
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of the fCall model</span></p>
-</h1>
+<h2>
+2
+Simulation of the fCall model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">fCall</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the interval from 0 to 1, then we can look at the values of the variables.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 simulate (fCall )  
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 {val(a,0), val(b,0), val(c,0)} 
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( {x[1],x[2],x[3]} )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">

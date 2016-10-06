@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,19 +32,20 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Parameterization and Extension of Interfaces</span></p>
+Parameterization and Extension of Interfaces
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank</span></p>
-</h1>
+<h2>
+1
+Tank
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">External interfaces to component classes are defined primarily through the use of connectors.  Assume that we have a definition of a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Tank</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model in a model library. The model has an external interface in terms of the connectors </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">inlet</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">outlet</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, as well as a formal class parameter </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankStream</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> which is a connector class with its default class value being the Stream connector class. (See ModelicaBook page 176)<br/> </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 connector Stream   //Connector class
   Real pressure;
   flow Real volumeFlowRate;
 end Stream;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model Tank
   parameter Real area = 1;
   replaceable connector TankStream = Stream;    // Class parameterization
@@ -54,23 +57,25 @@ equation
   outlet.pressure = inlet.pressure;
 end Tank;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Instantiation of Tank </span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h3>
+1.1
+Instantiation of Tank 
+</h3>
+<textarea id=check2textarea>
 instantiateModel( Tank )
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">HeatTank</span></p>
-</h1>
+<h2>
+2
+HeatTank
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We would like to extend the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Tank</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model to include temperature dependent effects, analogous to how we extended a resistor to a temperature dependent resistor.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector HeatStream
   extends Stream;
   Real temp;
 end HeatStream;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model HeatTank
   extends Tank(redeclare connector TankStream = HeatStream);
   Real level(start=2);
@@ -84,18 +89,20 @@ equation
   outlet.temp = temp; // Perfect mixing assumed.
 end HeatTank;  
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Instantiation of HeatTank</span></p>
-</h1>
+<h3>
+2.1
+Instantiation of HeatTank
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Instantiate it:</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 instantiateModel(HeatTank) // 2015-09-08 - Warning about non-balanced connector OK?
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">HeatTankExpanded</span></p>
-</h1>
+<h2>
+3
+HeatTankExpanded
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The definition of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">HeatTank</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is equivalent to the definition of HeatTankExpanded</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model HeatTankExpanded  //Modelica Book version, Added start values etc.
   parameter Real area=1;          // and some inlet and outlet equations
   TankStream inlet, outlet;
@@ -119,10 +126,11 @@ equation
   outlet.temp = temp;
 end HeatTankExpanded;
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 instantiateModel(HeatTankExpanded)
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">TODO provide simulation model</span></p>
-</h1>
+<h2>
+4
+TODO provide simulation model
+</h2>
 </div></body></html>

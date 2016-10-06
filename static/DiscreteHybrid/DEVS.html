@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,12 +32,13 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Discrete Event System Specification (DEVS)</span></p>
+Discrete Event System Specification (DEVS)
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">The Random Package</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+The Random Package
+</h2>
+<textarea id=check0textarea>
 package Random
 import Modelica.Math;
 constant Real NV_MAGICCONST = 4 * exp( -0.5 ) / sqrt( 2.0 );
@@ -93,22 +96,23 @@ end discreteConnector;
 
 end Random;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">DEVS Model</span></p>
-</h1>
+<h2>
+2
+DEVS Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We will now describe a fairly comprehensive example on how DEVS models can be represented in Modelica. One difference in Modelica is that we have a built-in time variable for absolute time rather than a local timer tlocal that is reset at the most recent event. This local timer is not really needed for modeling purposes since time is available, but is included to show the relation to traditional DEVS models. The facilities for model structuring and reuse are in general much greater in Modelica due to its object-oriented properties compared to traditional DEVS. In order to simplify comparisons this example connects model components such as servers or generators in a way that is analogous to traditional DEVS.<br/></span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 connector EventPort
   Boolean signal;
 end EventPort;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector EventPortInput = input Boolean;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector EventPortOutput = output Boolean;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 partial model BasicDEVSTwoPort
    import Modelica.Constants.inf;
    input EventPortInput inp; // Input port for external events
@@ -131,11 +135,12 @@ end BasicDEVSTwoPort;
 <h1>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">The testDEVSServer model connects a job generator to a simple DEVS-based server.</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">testDEVSServer Model</span></p>
-</h1>
+<h3>
+2.1
+testDEVSServer Model
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">testDEVSServer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model contains two main items: a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">generateJobEvents</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> generator component that generates arriving jobs at regular intervals, and a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">simpleDEVSServer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> server component being a very simple model of a job shop system that services arriving jobs with a normally distributed service time. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">SignalView</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class instances are needed to widen sharp peaks for plotting.<br/></span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model testDEVSServer
    GenerateJobEvents generateJobEvents(period=1.5,startTime=3) "generator";
    SimpleDEVSServer simpleDEVSServer "server";
@@ -147,7 +152,7 @@ equation
    connect(generateJobEvents.outp, viewSignal1.inp); // Just for plotting
 end testDEVSServer;
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model GenerateJobEvents "Generates Job events periodically"
    EventPortOutput outp; // Output port
    parameter Real startTime = 0;
@@ -156,11 +161,12 @@ equation
    outp = sample(startTime,period);
 end GenerateJobEvents;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">SimpleDEVSServer</span></p>
-</h1>
+<h3>
+2.2
+SimpleDEVSServer
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">SimpleDEVSServer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class is a fairly straightforward extension of the basic DEVS class BasicDEVSTwoPort. A randomly distributed service time variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">servTime</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has been added with a normal distribution determined by parameters </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">mean</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">stdev</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. The discrete </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">randomSeed</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> variable is needed to store the seed between calls to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">normalvariate</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which as all Modelica functions is a mathematical function whose value is completely determined by its inputs. The absolute value of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">servTime</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is used to guarantee positive service times.<br/></span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 model SimpleDEVSServer
    extends BasicDEVSTwoPort;
    Boolean internalEvent;
@@ -192,7 +198,7 @@ equation
    end when;
 end SimpleDEVSServer;
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 model SignalView "Increase width of sample trigger signals"
    EventPortInput inp;
    EventPortOutput outp;
@@ -206,32 +212,34 @@ equation
 end SignalView;
 </textarea>  <div id=check8div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Remember the following two connect equations from the testDEVSServer model. When using the currently available Modelica tools it is necessary to employ some kind of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">SignalView</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> peak widening facility in order to plot sharp peaks that have zero width, i.e. have no time duration. Otherwise these peaks would not be visible in the diagram.<br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class Conn1
 equation
   connect(simpleDEVSServer.outp, viewSignal2.inp);
 end Conn1;
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 class Conn2
 equation
   connect(generateJobEvents.outp, viewSignal1.inp);
 end Conn2;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of testDEVSServer</span></p>
-</h1>
+<h3>
+2.3
+Simulation of testDEVSServer
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the testDEVSServer model to be able to view some of the input and output signals. The plot agrees with the specification of the generateJobEvents instance, where the first event is generated at time = 3 and subsequent events are generated with a periodicity 1.5 seconds.<br/></span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 loadModel(Modelica)
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 simulate( testDEVSServer, stopTime=10 )
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check13textarea>
+<h4>
+2.3.1
+Plot
+</h4>
+<textarea id=check13textarea>
 plot( { viewSignal1.outp, viewSignal2.outp, simpleDEVSServer.DEVSactive } )
 </textarea> <br> <div id=check13div> </div> <br>
 <script type="text/javascript">
@@ -1323,10 +1331,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 1:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> viewSignal1.outp.signal, viewSignal2.outp.signal and DEVSactive</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check14textarea>
+<h4>
+2.3.2
+Plot
+</h4>
+<textarea id=check14textarea>
 plot( { viewSignal1.outp, viewSignal2.outp } )
 </textarea> <br> <div id=check14div> </div> <br>
 <script type="text/javascript">
@@ -1879,10 +1888,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 2:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - viewSignal1.outp.signal and viewSignal2.outp.signal</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check15textarea>
+<h4>
+2.3.3
+Plot
+</h4>
+<textarea id=check15textarea>
 plot( viewSignal1.outp )
 </textarea> <br> <div id=check15div> </div> <br>
 <script type="text/javascript">
@@ -2435,10 +2445,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 3:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - The output signal outp of the generateJobEvents generator component in testDEVSServer.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check16textarea>
+<h4>
+2.3.4
+Plot
+</h4>
+<textarea id=check16textarea>
 plot( simpleDEVSServer.tNextEvent )
 </textarea> <br> <div id=check16div> </div> <br>
 <script type="text/javascript">
@@ -2991,10 +3002,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 4:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - The output signal simpleDEVSServer.tNextEvent.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check17textarea>
+<h4>
+2.3.5
+Plot
+</h4>
+<textarea id=check17textarea>
 plot( viewSignal2.outp)
 </textarea> <br> <div id=check17div> </div> <br>
 <script type="text/javascript">
@@ -3547,10 +3559,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 5:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - A signal is emitted through simpleDEVSServer.outp when completing \\ service of a job, here Job 1 and Job 3.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check18textarea>
+<h4>
+2.3.6
+Plot
+</h4>
+<textarea id=check18textarea>
 plot( simpleDEVSServer.DEVSactive )
 </textarea> <br> <div id=check18div> </div> <br>
 <script type="text/javascript">
@@ -4103,10 +4116,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 6:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - The variable simpleDEVSServer.DEVSactive is true while a job is being serviced.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check19textarea>
+<h4>
+2.3.7
+Plot
+</h4>
+<textarea id=check19textarea>
 plot( simpleDEVSServer.servTime )
 </textarea> <br> <div id=check19div> </div> <br>
 <script type="text/javascript">
@@ -4659,10 +4673,11 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 7:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - The service time variable simpleDEVSServer.servTime obtains new values at events.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Plot</span></p>
-</h1>
-<textarea class="target" id=check20textarea>
+<h4>
+2.3.8
+Plot
+</h4>
+<textarea id=check20textarea>
 plot( simpleDEVSServer.internalEvent )
 </textarea> <br> <div id=check20div> </div> <br>
 <script type="text/javascript">
@@ -5215,13 +5230,14 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Diagram 8:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> - The output signal simpleDEVSServer.internalEvent.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">A Coupled Pipelined DEVS Model</span></p>
-</h1>
+<h2>
+3
+A Coupled Pipelined DEVS Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Several basic DEVS model components can be connected together to form a coupled model, which itself is</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">a DEVS model. This is illustrated by the Modelica realization of a simple DEVS coupled model by placing</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">three simple servers in series to form a three-server pipeline.</span></p><br>
-<textarea class="target" id=check21textarea>
+<textarea id=check21textarea>
 model ThreeServerPipeline
   EventPortInput extInSignal;
   EventPortOutput outSignal;
@@ -5236,7 +5252,7 @@ equation
 end ThreeServerPipeline;
 </textarea>  <div id=check21div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The three-server coupled DEVS pipeline model can be tested using the following model</span></p><br>
-<textarea class="target" id=check22textarea>
+<textarea id=check22textarea>
 model testPipeline
    ThreeServerPipeline pipeLine;
    GenerateJobEvents jobgenerator(period=4);
@@ -5252,10 +5268,10 @@ equation
    connect(pipeLine.S3.outp, viewS3.inp); // Just for plotting
 end testPipeline;
 </textarea>  <div id=check22div> </div> <br>
-<textarea class="target" id=check23textarea>
+<textarea id=check23textarea>
 simulate(testPipeline,stopTime=10)
 </textarea>  <div id=check23div> </div> <br>
-<textarea class="target" id=check24textarea>
+<textarea id=check24textarea>
 plot({viewS3.outp,pipeLine.S3.DEVSactive,viewS1.outp})
 </textarea> <br> <div id=check24div> </div> <br>
 <script type="text/javascript">

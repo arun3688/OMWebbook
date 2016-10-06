@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Arial; font-size:38pt; font-weight:600; color:#000000;">Package and Library Structuring</p>
+Package and Library Structuring
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:18pt; font-weight:600; color:#000000;">General Description</p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;">A well-designed package structure is one of the most important aspects that influences the complexity, comprehension, and maintainability of large software systems. There are many factors to consider when designing a package, for example the name of the package or the structuring the package into subpackages. Other factors that are important to consider are reusability and encapsulation of the package as well as considering dependencies on other packages. </p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:18pt; font-weight:600; color:#000000;">Subpackages and Hierarchical Libraries</p>
-</h1>
+<h2>
+2
+Subpackages and Hierarchical Libraries
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;">The main use of Modelica packages and subpackages is to structure hierarchical model libraries, of which the standard Modelica library is a good example. Below is a small example of a hierarchical package structure which has been extracted and adapted from the Modelica standard library. <br/><br/>The example is a bit misleading since these packages are quite large, normally stored on separate files and directories, and not seen as a piece of code below. See the comments for the fully qualified names of each package or model component. <br/></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 encapsulated package Modelica      // Modelica
 
   encapsulated package Mechanics    // Modelica.Mechanics
@@ -61,17 +65,18 @@ end Modelica;
 
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;"><br/>Public components in hierchical libraries can be accessed through their fully qualified name. See model <span style=" font-family:Courier New;">InertiaUser</span> below.</p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model InertiaUser
   Modelica.Mechanics.Rotational.Inertia w;
   // internal code
 end InertiaUser;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times; font-size:14pt; font-weight:600; color:#000000;">Encapsulated Packages and Classes</p>
-</h1>
+<h3>
+2.1
+Encapsulated Packages and Classes
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:Times New Roman; font-size:12pt; color:#000000;">As emphasized before, the useage of the word "encapsulated" before a package name is good for eliminating the possibility of implicit dependences. However, sometimes it is useful to have <span style=" font-family:Courier New;">encapsulated</span> <span style=" font-style:italic;">models</span> where there is no danger of implicit dependences, e.g. application examples that are intended to be self consistent and might be sent around to other users and developers. <br/></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 encapsulated model TorqueUserExample1
   import Modelica.Mechanics.Rotational;  // Import package Rotational
   Rotational.Torque t2;                  // Use Torque OK!

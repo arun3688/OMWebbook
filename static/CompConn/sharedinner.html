@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,10 +32,10 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Access of shared inner Environment variable</span></p>
+Access of shared inner Environment variable
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A rather common kind of implicit interaction is where a shared attribute of a single environment object is accessed by a number of components within that environment. For example, we might have anenvironment including house components, each accessing a shared environment temperature, or a circuit board environment with electronic components accessing the board temperature. A Modelica environment-component example model along these lines is shown below, where a shared environment temperature variable T0 is declared as a definition declaration marked by the keyword inner. This declaration is implicitly accessed by the reference declarations of T0 marked by the prefix outer in the components comp1 and comp2.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model Component
   outer Real T0; // Reference to temperature T0 defined in the environments
   Real T;
@@ -41,7 +43,7 @@ equation
   T = T0;
 end Component;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model Environment
   inner Real T0; // Definition of actual environment temperature T0
   Component comp1, comp2; // Lookup match makes comp1.T0 = comp2.T0 = T0
@@ -50,7 +52,7 @@ equation
   T0 = sin(k*time);
 end Environment;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model EnvironmentInstances
    Environment env1(k=1);
    Environment env2(k=4);
@@ -58,10 +60,10 @@ end EnvironmentInstances;
 </textarea>  <div id=check2div> </div> <br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The instance hierarchy lookup is from an outer reference declaration to a matching inner definition declaration with the same name. The search is upward in the instance hierarchy starting from the currentinstance. In this example, the search starts at the components comp1 or comp2 upward to the Environment instances env1 or env2 where the matching inner definition declaration of T0 is found. Note that there exists only one actual instance of T0 in each environment, marked by the prefix inner. All outer reference declarations of T0 within the components of an environment are just references to this single instance. A nice property of the instance hierarchy lookup mechanism provided by the inner/outer language feature is its selectiveness. Thus we can have several simultaneously existing environment hierarchies, with independent lookup within each hierarchy.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the EnvironmentInstances model containing the two environments env1 and env2</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate(EnvironmentInstances, stopTime=2)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot({env1.comp1.T,env2.comp1.T})
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,18 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Repetitive Equation Structures with for-equations</span></p>
+Repetitive Equation Structures with for-equations
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Gneral Description</span></p>
-</h1>
+<h2>
+1
+Gneral Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Repetitive equation structures can be expressed rather compactly with the special syntactic form of equation called a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation. Such a structured equation can be expanded to a sometimes large number of simple equations. The </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">iteration-variable</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> ranges over the set of values in the </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">iteration-set-expression</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> which must be a </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">vector expression</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with parameter or constant variability. This expression is evaluated once in each </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation, and is evaluated in the scope immediately enclosing the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation. Such a scope can typically be the scope of an enclosing class definition or the scope of an enclosing </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">FiveEquations</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+2
+FiveEquations
+</h2>
+<textarea id=check0textarea>
 class FiveEquations
   Real[5] x;
 equation
@@ -48,14 +52,15 @@ equation
   end for;
 end FiveEquations;      
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of FiveEquations</span></p>
-</h1>
+<h2>
+3
+Simulation of FiveEquations
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here the simulation of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FiveEquations</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is shown.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate( FiveEquations )
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot({x[1],x[4]})
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -570,11 +575,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">FiveEquationsUnrolled</span></p>
-</h1>
+<h2>
+4
+FiveEquationsUnrolled
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FiveEquations</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the same behavior as the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FiveEquationsUnrolled</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> where the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation has been unrolled into five simple equations.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 class FiveEquationsUnrolled
   Real[5] x;
 equation
@@ -585,14 +591,15 @@ equation
   x[5] = 6;
 end FiveEquationsUnrolled;      
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of FiveEquationsUnrolled</span></p>
-</h1>
+<h2>
+5
+Simulation of FiveEquationsUnrolled
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here the simulation of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FiveEquationsUnrolled</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is shown.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 simulate( FiveEquationsUnrolled )
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot({x[1], x[5]})
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">
@@ -1107,11 +1114,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">HideVariable</span></p>
-</h1>
+<h2>
+6
+HideVariable
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Since the scope of the iteration variable is the enclosing </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation, it may hide other variables with the same name, e.g. the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">constant</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">k</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> declared in the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">HideVariable</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Note that the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">k</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> used in the iteration expression </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">1:k+1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is the constant k declared in the class, whereas the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">k</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> used in the equations inside the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">for</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-clause is the iteration variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">k</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. You should avoid this style of modeling, even if it is legal, since it is confusing and hard to read such code.<br/></span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class HideVariable
   constant Integer k = 4;
   Real     x[k + 1];
@@ -1121,14 +1129,15 @@ equation
   end for;
 end HideVariable;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of HideVariable</span></p>
-</h1>
+<h2>
+7
+Simulation of HideVariable
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here we simulate </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">HideVariable</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 simulate( HideVariable )
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot({x[1], x[3]})
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">

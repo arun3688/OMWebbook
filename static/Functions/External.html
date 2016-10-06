@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,32 +32,35 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">External Functions</span></p>
+External Functions
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</span></p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">It is possible to call functions defined outside the Modelica language. The body of an external function is marked with the keyword </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">external</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> possibly followed by any of he optional items </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">language_spec, external_function_call_spec or external_function_annotation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. If you just user the keyword external without any of the optional items a number of default rules apply, e.g. , if no external language is specified the implementation language for the function is assumed to be C.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">(??Note- should also give examples of executable external calls)</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Default Call</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+2
+Default Call
+</h2>
+<textarea id=check0textarea>
 clear()
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">log</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, the default mapping rules apply.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 function log
   input Real x;
   output Real y;
 external;
 end log;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Specified Call</span></p>
-</h1>
+<h2>
+3
+Specified Call
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The leastSquares function uses an external function. Here the language is specified to be Fortran 77.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 function leastSquares    "Solves a linear least squares problem"
   input Real A[:,:];
   input Real B[:,:];
@@ -76,11 +81,12 @@ protected
         );
 end leastSquares;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">A Large Example</span></p>
-</h1>
+<h2>
+4
+A Large Example
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The external function interface supports a number of advanced features such as in-out parameters and declaration of temporary work variables, which are illustrated by the following rather complicated example.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 function BilinearSampling
 "Function for Discrete-time <--> continuous-time systems conversion by a bilinear transformation"
   input  Real alpha := 1, beta := 1;
@@ -102,7 +108,7 @@ external "FORTRAN 77" abo4md(c2dstring, size(A,1), size(B,2), size(C,1),
 end BilinearSampling;
 </textarea>  <div id=check3div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The following Modelica class contains an example call to BilinearSampling, which via the external function interface is transformed to a call to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ab04md</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class BilinearSamplingTest
   parameter Real alpha = 1, beta = 1;
   parameter Real A[:, :] = [0, 1; 2, 4],    // Coefficients

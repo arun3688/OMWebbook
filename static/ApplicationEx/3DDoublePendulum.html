@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,18 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">A 3D Double Pendulum</span></p>
+A 3D Double Pendulum
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>In this section an idealized model of a double pendulum is considered. This pendulum consists of two boxes linked by a hinge. The upper box is lined by a hinge to a non-movable platform, i.e. an inertial system. Both the boxes can move in the XY plane. The corresponding kinematic outline consists of two revolute joints, one frame translation and one inertial system. <br/><br/>The motion of dynamic system cannot be defined just by its kinematic outline, since an outline does not contain mass objects yet. The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Body</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> represents mechanical objects with mass. This class has a connector </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">frame_a</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as well as the parameters </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">m</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> (mass of the body), </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">rCM[3]</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> (position of center of mass with respect to frame a) and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">I[3, 3]</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> (inertia tensor with respect to the position of the center of the mass; it's defined by 6 numbers since it's symmetric).<br/></span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">See the Modelica Book, Section 15.10.7.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">A Double Pendulum Consisting of two Cylinders</span></p>
-</h1>
+<h2>
+1
+A Double Pendulum Consisting of two Cylinders
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In this example the pendulum consists of two cylinders. The textual representation of Modelica model is following:  </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 loadModel(Modelica) 
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model doublePendulumCylinders
    import Modelica.Mechanics.MultiBody.Parts;
    import Modelica.Mechanics.MultiBody.Joints;
@@ -61,13 +64,14 @@ equation
    connect(body1.frame_b, revolute2.frame_a);
 end doublePendulumCylinders;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of DoublePendulum</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+2
+Simulation of DoublePendulum
+</h2>
+<textarea id=check2textarea>
 simulate(doublePendulumCylinders, stopTime=1)
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot({body2.a_0[1], body2.a_0[2], body2.a_0[3]})
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Demonstration of Access Control</span></p>
+Demonstration of Access Control
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Members of a Modelica class can have two levels of visibility: </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">public</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">protected</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. The default is </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">public</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> if nothing else is specified. Publically declared variables can be  can be read or updated by any code with access to that class. Variables that are declared protected can be reched only by code inside the class as well as code in classes that inherit this class. However, only code inside the class is allowed access to the same instance of a protected variable.You can read about this in </span><a href="static/../Inheritance/ProtectedElements.html"><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">Private and Protected Elements</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">AccessDemo</span></p>
-</h1>
+<h2>
+1
+AccessDemo
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The variables </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">a, x, z </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">u3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is public and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">w, u </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">u2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> are protected in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">AccessDemo</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class AccessDemo       "Illustration of access prefixes"
    parameter Real p1 = 2;
   public
@@ -54,13 +57,14 @@ equation
 end AccessDemo;
 
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of AccessDemo</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+2
+Simulation of AccessDemo
+</h2>
+<textarea id=check1textarea>
 simulate( AccessDemo, simflags = "-emit_protected" )
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot({x1,x2,p1,p2})
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -1077,11 +1081,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">A</span></p>
-</h1>
+<h2>
+3
+A
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">A</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> an illegal modification is done, since p2 is protected it can not be modified if </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">AccessDemo</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is not inherited. Additionally, accessing </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> via dot notation </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ad.x2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is illegal since </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a protected variable.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 class A
   AccessDemo ad(p1 = 2.5, p2 = 3.5); // Illegal, since AccessDemo is not inherited
   Real y1, y2;
@@ -1091,14 +1096,15 @@ equation
 end A;
 
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of AccessDemo, A and B</span></p>
-</h1>
+<h2>
+4
+Simulation of AccessDemo, A and B
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Here we can see that if we try to simulate class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">A</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with the erroneous modification"p2 = 3.5" we get a warning for trying to modify a protected variable.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 simulate( A, simflags = "-emit_protected" ) // 2015-09-08: OMC bug, simulates without warning
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot({y1,y2,ad.p1,ad.p2})
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">
@@ -2115,11 +2121,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">B</span></p>
-</h1>
+<h2>
+5
+B
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the class B </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">AccessDemo</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is inherited, then it is legal to change the value p</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class B
   extends AccessDemo(p1=2.7, p2=3.7); // Legal, since AccessDemo is inherited
   Real y1, y2;
@@ -2129,13 +2136,14 @@ equation
 end B;
 
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of B</span></p>
-</h1>
-<textarea class="target" id=check7textarea>
+<h2>
+6
+Simulation of B
+</h2>
+<textarea id=check7textarea>
 simulate( B, simflags = "-emit_protected")
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot({y1,y2,p1,p2})
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">

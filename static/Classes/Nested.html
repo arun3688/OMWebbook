@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Local Classes </span></p>
+Local Classes 
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</span></p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In Modelica it is possible to defin</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">e</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> local classes nested inside a class, like </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Lpin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class C1
   class Lpin              // Local class
     Real p;
@@ -50,13 +53,14 @@ class C1
 end C1;
 
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of C1</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+2
+Simulation of C1
+</h2>
+<textarea id=check1textarea>
 simulate( C1 )  
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot({v1})
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -571,11 +575,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Classes That Contain Local Classes</span></p>
-</h1>
+<h2>
+3
+Classes That Contain Local Classes
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Local classes are considered as elements of the type of the class within which they are declared. The "</span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">field name</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">" of such a local class is the class name, and the type is the type representation of the local class as a set of pairs according to our general type representation.<br/></span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 class Main
   constant Real x = 3.14;   // constant variable (class field) x
 
@@ -596,13 +601,14 @@ class Main
 
 end Main;
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Main</span></p>
-</h1>
-<textarea class="target" id=check4textarea>
+<h2>
+4
+Simulation of Main
+</h2>
+<textarea id=check4textarea>
 simulate( Main )
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot({L1x.x, L2x.y})
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">
@@ -1117,18 +1123,19 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Alternative to Local Classes</span></p>
-</h1>
+<h2>
+5
+Alternative to Local Classes
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The local classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LocalClass1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LocalClass2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> could be moved outside the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Main</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with some changes of names. </span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class Main_LocalClass1   // Hypothetical LocalClass1 outside Main
   Integer x;
 equation
   x = 2;                // Refers to local x inside Main_LocalClass1
 end Main_LocalClass1;
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 class Main_LocalClass2   // Hypothetical LocalClass2 outside Main
   Real y;
   Main main;
@@ -1136,7 +1143,7 @@ equation
   main.x = y;            // Refers to x in the main instance of Main
 end Main_LocalClass2;
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 class Main2  // Hypothetical Main referrring to
              // outside LocalClass1 and LocalClass2
   Real x;                // class field x
@@ -1146,13 +1153,14 @@ equation
   x = 3.14;
 end Main2;
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Main2</span></p>
-</h1>
-<textarea class="target" id=check9textarea>
+<h2>
+6
+Simulation of Main2
+</h2>
+<textarea id=check9textarea>
 simulate( Main2 )
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 plot({L1x.x, L2x.y})
 </textarea> <br> <div id=check10div> </div> <br>
 <script type="text/javascript">

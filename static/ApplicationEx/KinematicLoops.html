@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,11 +32,11 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Kinematic Loops</span></p>
+Kinematic Loops
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The chain consisting of joints and coordinate transforms may form a loop, also called closed </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">kinematic loop</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. In order to handle such loops correctly, special joints from </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CutJoints</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> library are used. In order to make possible for the user to specify valid initial state for such mechanical system, a hint can be given to the translator, and a joint with state variable is selected. The parameter </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">startValueFixed</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is set to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">true</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for this purpose. The example below shows a system with a single closed kinematic loop. The upper bar (a cylinder with small radius) is fixed; three other bars are connected by revolute joints. The whole system behaves like a pendulum.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The Modelica code of the PendulumLoop2D model with these attributes is represented below</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model PendulumLoop2D
    import Modelica.Mechanics.MultiBody.Parts;
    import Modelica.Mechanics.MultiBody.Joints;
@@ -60,16 +62,17 @@ equation
    connect(body4.frame_b, revolute4.frame_a);
 end PendulumLoop2D;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of PendulumLoop2D</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+1
+Simulation of PendulumLoop2D
+</h2>
+<textarea id=check1textarea>
 loadModel(Modelica)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate(PendulumLoop2D, stopTime=1)
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot(revolute1.angle)
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">

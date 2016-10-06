@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Redeclarations of Annotation Choices</span></p>
+Redeclarations of Annotation Choices
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The user interface can suggest reasonable redeclarations, where the string comment in the choice declaration can be used as a textual explanation of a choice. Based on the interactions with the user, the GUI  then generates the appropriate Modelica code. The annotation can also be used as a hint to the user doing textual Modelica programming. In order to support this mode of operation, an </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">annotation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> called </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">choices</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> containing choice elements is predefined to be recognized with certain semantics in Modelica, including recognition of redeclaration statements in the annotation. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Resistor</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Resistor
+</h2>
+<div id=answer0 class=collapse><textarea id=check0textarea>
 class Resistor               "Ideal linear electrical Resistor"
   extends TwoPin;            // Same as OnePort
   parameter Real R(unit = "Ohm")     "Resistance";
@@ -44,10 +47,11 @@ equation
   R*i = v;
 end Resistor;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">MyResistor</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+</div><h2>
+2
+MyResistor
+</h2>
+<textarea id=check1textarea>
 model ReplResistor
 replaceable model MyResistor = Resistor
   annotation(choices(
@@ -62,37 +66,40 @@ end ReplResistor;
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg'; font-size:12pt; color:#000000;"> MyCircuit x(redeclare MyResistor=lib2.Resistor(a={2}))</span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Additional examples of replaceable class declarations with redeclaration choices are shown below.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of ReplResistor</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+3
+Simulation of ReplResistor
+</h2>
+<textarea id=check2textarea>
 simulate( ReplResistor )
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical Connectors</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+4
+Electrical Connectors
+</h2>
+<textarea id=check3textarea>
 connector Pin         "Pin of an electrical component"
    Voltage v         "Potential at the pin";
    flow Current i       "Current flowing into the pin";
 end Pin;            //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector PositivePin     "Positive pin of an electrical component"
    Voltage v         "Potential at the pin";
    flow Current i       "Current flowing into the pin";
 end PositivePin;        //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 connector NegativePin     "Negative pin of an electrical component"
    Voltage v         "Potential at the pin";
    flow Current i       "Current flowing into the pin";
 end NegativePin;        //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical Components</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+5
+Electrical Components
+</h2>
+<textarea id=check6textarea>
 partial model TwoPin    // Same as OnePort in Modelica.Electrical.Analog.Interfaces
               "Component with two electrical pins p and n and current i from p to n"
   Voltage v          "Voltage drop between the two pins (= p.v - n.v)";
@@ -105,10 +112,11 @@ equation
   i = p.i;
 end TwoPin;          
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Replaceable Resistor</span></p>
-</h1>
-<textarea class="target" id=check7textarea>
+<h2>
+6
+Replaceable Resistor
+</h2>
+<textarea id=check7textarea>
 model R
 replaceable Resistor Load(R=2)
   extends TwoPin;
@@ -117,15 +125,16 @@ replaceable Resistor Load(R=2)
           choice(redeclare Capacitor Load(L = 3) )));
 end R;          
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Friction</span></p>
-</h1>
-<textarea class="target" id=check8textarea>
+<h2>
+7
+Friction
+</h2>
+<textarea id=check8textarea>
 model Friction
   // ...
 end Friction;
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 model FF
 replaceable FrictionFunction a(func = exp)
   extends Friction;
@@ -135,11 +144,12 @@ replaceable FrictionFunction a(func = exp)
           choice(redeclare FunctionFriction a(func = exp) )));
 end FF;   
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">KindOfController</span></p>
-</h1>
+<h2>
+8
+KindOfController
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">choices annotation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is not restricted to replaceable elements. It is also applicable to nonreplaceable elements, simple variables and types used for enummerations. For example, consider the following Integer type called </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">KindOfController</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> used to represent a choice of controller in the modeling process out of the following enumeration of three recommended alternatives.<br/></span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 type KindOfController = Integer(min=1, max=3)
   annotation(choices(
           choice = 1 "P",
@@ -147,24 +157,25 @@ type KindOfController = Integer(min=1, max=3)
           choice = 3 "PID"));
 </textarea>  <div id=check10div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Assume that </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">KindOfController</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is used in a model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">KindOfControllerInst</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as below:</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model KindOfControllerInst
   KindOfController x;      // Instance of KindOfController
 end KindOfControllerInst;
 </textarea>  <div id=check11div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>An interactive choice of the third alternative from a menu containing the alternatives {"P", "PI", "PID"} would result in the default value 3 for the instatiated variable x in the following code for an instance a2 of the model A.</span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 class KOCInst
   KindOfControllerInst a2(x = 3 "PID");
 end KOCInst;
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of KindOfController</span></p>
-</h1>
-<textarea class="target" id=check13textarea>
+<h2>
+9
+Simulation of KindOfController
+</h2>
+<textarea id=check13textarea>
 simulate( KOCInst )
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 plot(a2.x)
 </textarea> <br> <div id=check14div> </div> <br>
 <script type="text/javascript">

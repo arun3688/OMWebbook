@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,20 +32,22 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Frequency Analysis of Simulation Data</span></p>
+Frequency Analysis of Simulation Data
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Fourier Analysis</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">The Model</span></p>
-</h1>
+<h2>
+1
+Fourier Analysis
+</h2>
+<h3>
+1.1
+The Model
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Consider a weak axis excited by a torque pulse train. The axis is modeled by three segments joined by two torsion springs. The following diagram is imported from the </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">MathModelica</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">Lite</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">Graphic Editor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> where the model was defined. (See Section 15.8 in the Modelica Book).</span></p><br>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Diagram: WeakAxis</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 loadModel(Modelica)
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model WeakAxis
   import Modelica.Mechanics.Rotational;
   import Modelica.Blocks.Sources;
@@ -63,15 +67,16 @@ equation
   connect(spring2.flange_b, inertia3.flange_a);
 end WeakAxis;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of WeakAxis</span></p>
-</h1>
+<h3>
+1.2
+Simulation of WeakAxis
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the model in 100 seconds ...</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate( WeakAxis, stopTime=100 )
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">and plot the angular velocity of the rightmost axis-segment.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( { inertia3.w, torque1.tau } )
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">

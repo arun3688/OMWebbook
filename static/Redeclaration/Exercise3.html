@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,45 +32,48 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 3</span></p>
+Exercise 3
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">More on redeclaration</span></p>
-</h1>
+<h2>
+1
+More on redeclaration
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Write a class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">MoreRed</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> that declares two variables </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">v1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">v2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> being vectors and one variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> being an </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Integer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Set x to a value.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Use the class above to redeclare the dimension sizes of  </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">v1 and</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">v2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and the type of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Hint</span></p>
-</h1>
+<h3>
+1.1
+Hint
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the redeclaration-statement of the variables, you have to include the term "parameter" so that they, as parameters, can be modified.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
-</h1>
-<div id="answer1" class="collapse">
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Answer - MoreRed</span></p>
-</h1>
-<textarea rows=5 class="target" id=check2textarea>
+<h3>
+1.2
+<button type= button class="btn btn-info" data-toggle="collapse" data-target= #answer0 > Answer</button>
+</h3>
+<div id=answer0 class=collapse><h4>
+1.2.1
+MoreRed
+</h4>
+<textarea id=check2textarea>
 class MoreRed
   parameter Real v1[3];
   parameter Real v2[:];
   Integer x = 2;
 end MoreRed;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Answer MoreRed2</span></p>
-</h1>
+<h4>
+1.2.2
+MoreRed2
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Notice that you don't need the keyword </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">replaceable</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for v1 and v2.</span></p><br>
-<textarea rows=3 class="target" id=check3textarea>
+<textarea id=check3textarea>
 class MoreRed2 = MoreRed(redeclare parameter Integer x,
              redeclare parameter Real v1[5],
              redeclare parameter Real v2[12]);
 </textarea>  <div id=check3div> </div> <br>
-</div>
-</div></body></html>
+</div></div></body></html>

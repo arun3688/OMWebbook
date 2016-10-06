@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,24 +32,25 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 1 - Classes</span></p>
+Exercise 1 - Classes
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Creating a Class</span></p>
-</h1>
+<h2>
+1
+Creating a Class
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Create a class, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Multiply</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, that calculates the product of two variables, which are </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Real</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> numbers with given values. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Make the previous class into a model.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
-</h1>
-<div id="answer1" class="collapse">
-<textarea rows=7 class="target" id=check2textarea>
+<h3>
+1.1
+<button type= button class="btn btn-info" data-toggle="collapse" data-target= #answer0 > Answer</button>
+</h3>
+<div id=answer0 class=collapse><textarea id=check2textarea>
 class Multiply
   parameter Real x = 2;
   parameter Real y = 3;
@@ -56,15 +59,15 @@ equation
   product = x*y;
 end Multiply;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of Multiply</span></p>
-</h1>
+<h4>
+1.1.1
+Simulation of Multiply
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate Multiply in the interval {0, 1}, since we see that both x, y and product will get constant values. Then we can plot these variables.</span></p><br>
-<textarea rows=1 class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate( Multiply )
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
-plot({x,y,product})
+<textarea id=check4textarea>
+plot( {x,y,product} )
 </textarea> <br> <div id=check4div> </div> <br>
-</div>
-</div></body></html>
+</div></div></body></html>

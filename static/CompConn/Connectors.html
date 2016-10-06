@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,25 +32,26 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Connectors and Connector Classes</span></p>
+Connectors and Connector Classes
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Pin</span></p>
-</h1>
+<h2>
+1
+Pin
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The by now well-known class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Pin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a connector class that can be used to specify the external interface for electrical components that have pins as interaction points.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 connector Pin
   Voltage        v;
   flow Current   i;
 end Pin;        // From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class PinInst
   Pin pin;        // An instance of class Pin
 end PinInst;  
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Another way to use the connector </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Pin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is to refer to it from the library using the full path. This method can be used to create instances of all classes that belong to the Modelica library, instead of writing the whole classes every time.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 class PinInst
   Modelica.Electrical.Analog.Interfaces.Pin pin;
 end PinInst;
@@ -56,17 +59,18 @@ end PinInst;
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A component with an electrical pin connector.</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Flange</span></p>
-</h1>
+<h2>
+2
+Flange
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Flange</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> connector class below, analogous to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Pin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, is used to describe interfaces for one-dimensional interaction in the mechanical domain by specifying the position s and force f at a point of interaction.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector Flange
   Position  s;
   flow Force f;
 end Flange;        // From Modelica.Mechanical.Translational.Interfaces
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class FlangeInst
   Flange flange;    // An instance of class Flange
 end FlangeInst;  
@@ -74,17 +78,18 @@ end FlangeInst;
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A component with a mechanical flange connector.</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">InPort</span></p>
-</h1>
+<h2>
+3
+InPort
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The connector class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">InPort</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> when instantiated as </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">inPort</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a signal </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">input</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> port that can be connected to receive signals.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 connector InPort
   parameter Integer n = 1;
   input Real signal[n];
 end InPort;            // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class InPortInst
   InPort inPort[n];        // An instance inPort with one signal (n = 1)
 end InPortInst;  
@@ -92,25 +97,26 @@ end InPortInst;
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A component with an inPort connector for signals.</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Connector Classes</span></p>
-</h1>
+<h2>
+4
+Connector Classes
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Connector classes often use special types for standard physical quantities represented by </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Real</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> values, e.g. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Voltage</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. The types </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Voltage, Current, Position, Force</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Distance</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> shown below are just five of the classes available in the Modelica Standard library </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Modelica.SIunits</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. <br/></span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 type Voltage = Real(final quantity = "ElectricPotential",
           final unit = "V");
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 type Current = Real(final quantity = "ElectricCurrent",
           final unit = "A");
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 type Position = Real(final quantity = "Length", final unit = "m");
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 type Force = Real(final quantity = "Force", final unit = "N");
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 type Distance = Position(min = 0);
 </textarea>  <div id=check11div> </div> <br>
 </div></body></html>

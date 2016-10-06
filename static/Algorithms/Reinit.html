@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,18 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Reinit</span></p>
+Reinit
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</span></p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> operator occurs both as a kind of statement and in the form of an equation with the same syntax. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> operator is used to make a discontinuous change in the value of a continuous variable at a specific time event. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> operator can only be applied to variables the have had the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">der</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> operator applied to them. The effect of the operator is to stop simulation time, make a change to the value of one or more continuous variables and then resume the simulation. The first argument to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is the variable whose value should change and the second argument is the value it should change to. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> operator can only be used within a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> clause because it is meant to represent an abrupt change, which is the difference between </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and a statement or equation. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Bouncing Ball</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+2
+Bouncing Ball
+</h2>
+<textarea id=check0textarea>
 model BouncingBall      "The bouncing ball model with an algorithm"
   constant Real g = 9.81;        // Gravitational acceleration
   parameter Real c = 0.9;        // Elasticity constant of ball
@@ -54,13 +58,14 @@ algorithm
   end when;
 end BouncingBall;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Bouncing Ball Simulation</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+3
+Bouncing Ball Simulation
+</h2>
+<textarea id=check1textarea>
 simulate( BouncingBall, stopTime=20 ) 
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot( { height, velocity } )
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -660,11 +665,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Bouncing Ball Error</span></p>
-</h1>
+<h2>
+4
+Bouncing Ball Error
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">If the assignment </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">velocity := -c*velocity</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is used instead of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit(velocity, -c*velocity)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> an overdeterminated system of equations are created.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model BouncingBallError         "The bouncing ball model with an algorithm"
   constant Real g = 9.81;        // Gravitational acceleration
   parameter Real c = 0.9;        // Elasticity constant of ball
@@ -679,18 +685,20 @@ algorithm
   end when;
 end BouncingBallError;
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Bouncing Ball Error </span></p>
-</h1>
+<h2>
+5
+Simulation of Bouncing Ball Error 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When we try to simulate the erroneous Bouncing Ball model we get a complaint for having to many equations.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 simulate( BouncingBallError, stopTime=20 )
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">FilterBlock1</span></p>
-</h1>
+<h2>
+6
+FilterBlock1
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Another example of how to use </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">reinit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is the self initializing block class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FilterBlock1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which when </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">initial()</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> becomes true defines </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to be </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">u</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. This causes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">der(x)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to initially be zero according to its defining equation. </span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 block FilterBlock1          "First order filter block"
   parameter Real T = 1        "Time constant";
   parameter Real k = 1        "Gain";
@@ -705,13 +713,14 @@ initial algorithm
   x := u; // if x is u since der(x) = (u - x)/T
 end FilterBlock1;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">FilterBlock Simulation</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+7
+FilterBlock Simulation
+</h2>
+<textarea id=check6textarea>
 simulate( FilterBlock1, stopTime=10 ) 
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(y)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">

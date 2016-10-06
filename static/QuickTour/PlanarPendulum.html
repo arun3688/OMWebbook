@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">A Differential Algebraic Equation System</span></p>
+A Differential Algebraic Equation System
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Planar Pendulum</span></p>
-</h1>
+<h2>
+1
+Planar Pendulum
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This example is actually a mathematical model of a physical system a planar pendulum,containing five simple equations.The equations are Newton s equations of motion for the pendulum mass under the influence of gravity, together with a geometric constraint, the 5th equation x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:super;">2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">+y</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:super;">2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">=L</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:super;">2 </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">,that specifies that its position (x,y) must be on a circle with radius L. The variables v</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and v</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">y</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> are its velocities in the x and y directions respectively. The interesting property of this model, however, is the fact that the 5th equation is of a different kind: a so-called algebraic equation only involving algebraic formulas of variables but no derivatives. The first four equations of this model are differential equations as in the HelloWorld example. Equation systems that contain both differential and algebraic equations are called differential algebraic equation systems (DAEs)</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A Modelica model of the pendulum appears below.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class Pendulum "Planar Pendulum"
    constant Real PI=3.141592653589793;
    parameter Real m=1, g=9.81, L=0.5;
@@ -52,14 +55,15 @@ equation
    x^2+y^2=L^2;
 end Pendulum;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Pendulum</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+2
+Simulation of Pendulum
+</h2>
+<textarea id=check1textarea>
 simulate(Pendulum, stopTime=4)
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Now let us Plot the results</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot(x)
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">

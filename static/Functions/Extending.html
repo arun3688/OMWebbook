@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,24 +32,26 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Extending Base Functions</span></p>
+Extending Base Functions
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Since a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">function</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a restricted and enhanced kind of class, it is possible to inherit an existing function declaration into the declaration of a new function. In this way you can declare the common structure of a set of functions as a partial base function which you subsequently inherit into the functions you want to define.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Base Function</span></p>
-</h1>
+<h2>
+1
+Base Function
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">OneArgBaseFunction</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a partial base function with one argument and one result.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 partial function OneArgBaseFunction
   input  Real x;
   output Real result;
 end OneArgBaseFunction;  
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Extends Base Class</span></p>
-</h1>
+<h2>
+2
+Extends Base Class
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The functions </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">myTan</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">addTen</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> inherits the base function. By doing so the code becomes harder to read since the formal parameter list is not available in the functions.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 function myTan
   extends OneArgBaseFunction;
 algorithm
@@ -55,23 +59,24 @@ algorithm
 end myTan;  
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Call it</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 myTan(1.0)  
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 function addTen
   extends OneArgBaseFunction;
 algorithm
   result := x + 10;
 end addTen;  
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
  addTen(5.0)
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">myTan Call from a Class</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h2>
+3
+myTan Call from a Class
+</h2>
+<textarea id=check5textarea>
 class myTanCall
   Real t;
 equation
@@ -79,10 +84,10 @@ equation
 end myTanCall;
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Call it</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate( myTanCall ) 
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(t)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -597,13 +602,14 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 val(t,0)
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">addTen Call from a Class</span></p>
-</h1>
-<textarea class="target" id=check9textarea>
+<h2>
+4
+addTen Call from a Class
+</h2>
+<textarea id=check9textarea>
 class addTenCall
    Real sum;
 equation
@@ -611,10 +617,10 @@ equation
 end addTenCall;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Call it:</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 simulate( addTenCall ) 
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 plot(sum)
 </textarea> <br> <div id=check11div> </div> <br>
 <script type="text/javascript">
@@ -1129,7 +1135,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 val(sum,0)
 </textarea>  <div id=check12div> </div> <br>
 </div></body></html>

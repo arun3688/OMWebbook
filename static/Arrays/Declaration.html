@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Array Declarations</span></p>
+Array Declarations
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Declaring Arrays in one way</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Declaring Arrays in one way
+</h2>
+<textarea id=check0textarea>
 type Voltage = Real(unit = "V");
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>An array variable can be declared by appending dimensions within square brackets after a type name or after a variable name.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class ArrayDim
   parameter Integer n = 1, m = 4, k = 5;
   Real[3]     positionvector = {1, 2, 3};   // 3-dimensional position vector
@@ -49,17 +52,18 @@ class ArrayDim
   Voltage[10]   voltvector = fill(10, 10);     // A vector of voltage values
 end ArrayDim;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of ArrayDim</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h3>
+1.1
+Simulation of ArrayDim
+</h3>
+<textarea id=check2textarea>
 simulate( ArrayDim )
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Take a look at the result at time=0:</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 val(voltvector[3],0)  
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot({voltvector[3],positionvector[2]})
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -574,11 +578,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Declaring Arrays in another way</span></p>
-</h1>
+<h2>
+2
+Declaring Arrays in another way
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The same declarations can be expressed as:</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class ArrayDim2
   parameter Integer n = 1, m = 4, k = 5;
   Real      positionvector[3]   = {1, 2, 3};
@@ -588,17 +593,18 @@ class ArrayDim2
   Voltage    voltvector[10] = fill(10, 10);
 end ArrayDim2;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of ArrayDim</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h3>
+2.1
+Simulation of ArrayDim
+</h3>
+<textarea id=check6textarea>
 simulate( ArrayDim2 )
 </textarea>  <div id=check6div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Take a look at the result at time=0:</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 val(voltvector[3],0)  
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot(voltvector[3])
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -1113,28 +1119,30 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Declaring Row Matrices and Column Matrices</span></p>
-</h1>
+<h2>
+3
+Declaring Row Matrices and Column Matrices
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Column matrices and row matrices can be declared as below:</span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class ColRowMatrix
   parameter Integer n = 3;
   Real[n, 1] colmat = fill(1, n, 1);        // Column matrix
   Real[1, n] rowmat = fill(1, 1, n);        // Row matrix
 end ColRowMatrix;
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of ArrayDim</span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h3>
+3.1
+Simulation of ArrayDim
+</h3>
+<textarea id=check10textarea>
 simulate( ColRowMatrix )
 </textarea>  <div id=check10div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Take a look at the result at time=0:</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 val(colmat[3,1],0)  
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 plot(colmat[3,1])
 </textarea> <br> <div id=check12div> </div> <br>
 <script type="text/javascript">
@@ -1649,18 +1657,19 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Declaring Empty Arrays</span></p>
-</h1>
+<h2>
+4
+Declaring Empty Arrays
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">It is also allowed to declare empty arrays. An </span><a href="static/Empty.html
 "><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">Empty Array</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has at least one dimension of size 0 and contains no array elements.</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 class Empty
   Real[0, 3]  M;          // An empty matrix M
   Integer    x[0];        // An empty vector x
 end Empty;
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 simulate(Empty)
 </textarea>  <div id=check14div> </div> <br>
 </div></body></html>

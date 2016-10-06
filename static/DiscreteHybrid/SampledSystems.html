@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Sampled Systems</span></p>
+Sampled Systems
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simple Periodic Sampler</span></p>
-</h1>
+<h2>
+1
+Simple Periodic Sampler
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following model is a </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">simple periodic sampler</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with a sampling period </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">T</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> that is constant and defined as a parameter that can be changed by the model user. This model has only one kind of event, the sampling event. We use the built-in function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-condition </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample(0, T)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to periodically generate the sampling events with a period time </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">T</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. This is a simple model using the state space equations.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model SimplePeriodicSamplerUnclocked
   parameter Real T = 1        "Sample period";
   input Real u                "Input used at sample events";
@@ -52,13 +55,13 @@ equation
   end when;
 end SimplePeriodicSamplerUnclocked;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 loadModel(Modelica)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate(SimplePeriodicSamplerUnclocked,stopTime=1)
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot(y)
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -576,11 +579,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simple Periodic Sampler Clocked</span></p>
-</h1>
+<h2>
+2
+Simple Periodic Sampler Clocked
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A clocked version of the same model appears as follows. A clocked output variable y1 had to be introduced since only equations for clocked variables are allowed inside a clocked when-equation. The equation for the unclocked variable y which is just a hold version of y1, had to be placed outside the clocked when-equation.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model SimplePeriodicSamplerClocked
   parameter Real T=1 "Clock period";
   input Real u "Input used at sample events";
@@ -597,7 +601,7 @@ equation
 end SimplePeriodicSamplerClocked;
 </textarea>  <div id=check4div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simplify even further by replacing the calls to the functions f and h by simple example expressions, removing the protected keyword to make the state variable x accessible for plotting, and setting u=time as an example instead of a real input signal:</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model VerySimplePeriodicSamplerClocked
    parameter Real T=1 "Clock period";
    Real u=time "Use time as input at sample events";
@@ -613,19 +617,20 @@ equation
 end VerySimplePeriodicSamplerClocked;
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 loadModel(Modelica)
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 simulate(VerySimplePeriodicSamplerClocked)
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Unclocked version of VerySimplePeriodicSampler</span></p>
-</h1>
-<textarea class="target" id=check9textarea>
+<h3>
+2.1
+Unclocked version of VerySimplePeriodicSampler
+</h3>
+<textarea id=check9textarea>
 model VerySimplePeriodicSamplerUnclocked
   parameter Real T=1 "Sample period";
   Real u=time "Input used at sample events";
@@ -638,10 +643,10 @@ equation
   end when;
 end VerySimplePeriodicSamplerUnclocked;
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 simulate(VerySimplePeriodicSamplerUnclocked,stopTime=10)
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 plot({x,y,u})
 </textarea> <br> <div id=check11div> </div> <br>
 <script type="text/javascript">
@@ -1682,14 +1687,15 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Base Class for Sampling Models Unclocked</span></p>
-</h1>
+<h2>
+3
+Base Class for Sampling Models Unclocked
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">It is possible to formulate a base class for scalar sampling models using state-space equations.The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">BaseSampler</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below can for example be specialized to either a periodic sampler or an aperiodic sampler.<br/></span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 loadModel(Modelica)
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 partial class BaseSamplerUnclocked
   input Real u;
   discrete output Real y(start=0, fixed=true);
@@ -1706,7 +1712,7 @@ equation
 end BaseSamplerUnclocked;
 </textarea>  <div id=check13div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We use two very simple example functions f2 and h2 for the redeclarations:</span></p><br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 function f2
   input Real u1;
   input Real u2;
@@ -1715,7 +1721,7 @@ algorithm
   y := u1+u2;
 end f2;
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 function h2
   input Real u1;
   input Real u2;
@@ -1725,7 +1731,7 @@ algorithm
 end h2;
 </textarea>  <div id=check15div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Below the base model is extended to a periodic sampling model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PeriodicSampler</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with a fixed period time T.<br/></span></p><br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 model PeriodicSampler
   extends BaseSamplerUnclocked;
   parameter Real T = 1        "sample period";
@@ -1734,7 +1740,7 @@ equation
 end PeriodicSampler;
 </textarea>  <div id=check16div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In order to simulate the model it is instantiated below.</span></p><br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 model TestPeriodicSampler
 protected
   function f1
@@ -1748,10 +1754,10 @@ equation
   ps.u = time;
 end TestPeriodicSampler;
 </textarea>  <div id=check17div> </div> <br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 simulate(TestPeriodicSampler, stopTime=3, simflags="-emit_protected")
 </textarea>  <div id=check18div> </div> <br>
-<textarea class="target" id=check19textarea>
+<textarea id=check19textarea>
 plot({ps.u, ps.x})
 </textarea> <br> <div id=check19div> </div> <br>
 <script type="text/javascript">
@@ -2273,11 +2279,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Base Class for Sampling Models clocked</span></p>
-</h1>
+<h2>
+4
+Base Class for Sampling Models clocked
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The clocked base sample model uses a clock variable doSample of built-in type Clock.</span></p><br>
-<textarea class="target" id=check20textarea>
+<textarea id=check20textarea>
 partial model BaseSamplerClocked
    Real u "Input used at clock events";
    discrete output Real y1 "Output only defined at sample events";
@@ -2294,7 +2301,7 @@ equation
    y = hold(y1); // hold output y also defined between clock events
 end BaseSamplerClocked;
 </textarea>  <div id=check20div> </div> <br>
-<textarea class="target" id=check21textarea>
+<textarea id=check21textarea>
 model PeriodicSamplerClocked
    extends BaseSamplerClocked(u=time,redeclare function f=f2,
    redeclare function h=h2);
@@ -2304,20 +2311,21 @@ equation
 end PeriodicSamplerClocked;
 </textarea>  <div id=check21div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check22textarea>
+<textarea id=check22textarea>
 loadModel(Modelica)
 </textarea>  <div id=check22div> </div> <br>
-<textarea class="target" id=check23textarea>
+<textarea id=check23textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check23div> </div> <br>
-<textarea class="target" id=check24textarea>
+<textarea id=check24textarea>
 simulate(PeriodicSamplerClocked)
 </textarea>  <div id=check24div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Aperiodic Sampler Unclocked</span></p>
-</h1>
+<h2>
+5
+Aperiodic Sampler Unclocked
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Besides the above periodic sampler, an aperiodic sampling model with a time-varying sample period can be obtained by specializing the base class. A variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">nextSampling</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is used for the next sampling time, which is current time </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">+ periodTime</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> when the current time has reached the previous value of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">nextSampling</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. In this example we increase the period time by the logarithm of the current time just to have a time varying period time.<br/></span></p><br>
-<textarea class="target" id=check25textarea>
+<textarea id=check25textarea>
 model APeriodicSamplerUnclocked
   extends BaseSamplerUnclocked(u=time,redeclare function f=f2,
           redeclare function h=h2);
@@ -2331,10 +2339,10 @@ equation
    end when;
 end APeriodicSamplerUnclocked;
 </textarea>  <div id=check25div> </div> <br>
-<textarea class="target" id=check26textarea>
+<textarea id=check26textarea>
 simulate(APeriodicSamplerUnclocked,stopTime=10)
 </textarea>  <div id=check26div> </div> <br>
-<textarea class="target" id=check27textarea>
+<textarea id=check27textarea>
 plot({nextSampling,periodTime,y})
 </textarea> <br> <div id=check27div> </div> <br>
 <script type="text/javascript">
@@ -3363,10 +3371,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Aperiodic Sampler Clocked</span></p>
-</h1>
-<textarea class="target" id=check28textarea>
+<h2>
+6
+Aperiodic Sampler Clocked
+</h2>
+<textarea id=check28textarea>
 model APeriodicSamplerClocked
    extends BaseSamplerClocked(u=time,redeclare function f=f2,
    redeclare function h=h2);
@@ -3381,17 +3390,18 @@ equation
 end APeriodicSamplerClocked;
 </textarea>  <div id=check28div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check29textarea>
+<textarea id=check29textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check29div> </div> <br>
-<textarea class="target" id=check30textarea>
+<textarea id=check30textarea>
 simulate(APeriodicSamplerClocked)
 </textarea>  <div id=check30div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Discrete Scalar State Space Sampling Model</span></p>
-</h1>
+<h2>
+7
+Discrete Scalar State Space Sampling Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A discrete first order scalar state space model with periodic sampling can be formulated as follows, essentially being a special case of the above BaseSampler model even though we do not extend that class in this particular case.</span></p><br>
-<textarea class="target" id=check31textarea>
+<textarea id=check31textarea>
 model DiscreteScalarStateSpaceUnclocked
   parameter Real a, b, c, d;
   parameter Real T = 1;
@@ -3406,10 +3416,10 @@ equation
   end when;
 end DiscreteScalarStateSpaceUnclocked;
 </textarea>  <div id=check31div> </div> <br>
-<textarea class="target" id=check32textarea>
+<textarea id=check32textarea>
 simulate(DiscreteScalarStateSpaceUnclocked,stopTime=5,simflags="-emit_protected")
 </textarea>  <div id=check32div> </div> <br>
-<textarea class="target" id=check33textarea>
+<textarea id=check33textarea>
 plot({x,y,u})
 </textarea> <br> <div id=check33div> </div> <br>
 <script type="text/javascript">
@@ -3932,7 +3942,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Alternatively, the discrete scalar state space model can be expressed by extending the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">BaseSampler</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model for periodic sampling and redeclaring the functions </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">f</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">g</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as below. However, in this case the result is not shorter or more readable since the syntax for expressing the local functions </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">f</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">1 and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">h1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is not very concise. On the other hand, if the functions </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">f</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">1 and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">h1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> instead would be used in several places, the modeling style based on replaceable functions would be preferable.<br/></span></p><br>
-<textarea class="target" id=check34textarea>
+<textarea id=check34textarea>
 model DiscreteScalarStateSpace2Unclocked
   extends BaseSamplerUnclocked(redeclare function f = f2, redeclare function h = h2);
   constant Real a=1, b=1, c=1, d=7;
@@ -3955,10 +3965,10 @@ equation
   doSample = sample(0, T);
 end DiscreteScalarStateSpace2Unclocked;
 </textarea>  <div id=check34div> </div> <br>
-<textarea class="target" id=check35textarea>
+<textarea id=check35textarea>
 simulate(DiscreteScalarStateSpace2Unclocked,stopTime=10,simflags="-emit_protected")
 </textarea>  <div id=check35div> </div> <br>
-<textarea class="target" id=check36textarea>
+<textarea id=check36textarea>
 plot({x,y,u})
 </textarea> <br> <div id=check36div> </div> <br>
 <script type="text/javascript">
@@ -4485,10 +4495,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Discrete Vector State Space Sampling Model Clocked</span></p>
-</h1>
-<textarea class="target" id=check37textarea>
+<h2>
+8
+Discrete Vector State Space Sampling Model Clocked
+</h2>
+<textarea id=check37textarea>
 model DiscreteScalarStateSpaceClocked
    parameter Real a=1, b=1, c=1, d=3;
    parameter Real T=1 "Clock period";
@@ -4505,17 +4516,18 @@ equation
 end DiscreteScalarStateSpaceClocked;
 </textarea>  <div id=check37div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check38textarea>
+<textarea id=check38textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check38div> </div> <br>
-<textarea class="target" id=check39textarea>
+<textarea id=check39textarea>
 simulate(DiscreteScalarStateSpaceClocked)
 </textarea>  <div id=check39div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Discrete Vector State Space Sampling Model</span></p>
-</h1>
+<h2>
+9
+Discrete Vector State Space Sampling Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Usually state space models are expressed using the more general vector form, as in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DiscreteVectorStateSpace</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> periodic sampling model below:</span></p><br>
-<textarea class="target" id=check40textarea>
+<textarea id=check40textarea>
 model DiscreteVectorStateSpace
   parameter Integer n = 5, m = 4, p = 2;
   parameter Real A[n, n] = fill(1, n, n);
@@ -4534,20 +4546,21 @@ equation
   end when;
 end DiscreteVectorStateSpace;
 </textarea>  <div id=check40div> </div> <br>
-<textarea class="target" id=check41textarea>
+<textarea id=check41textarea>
 model DVSSTest
   DiscreteVectorStateSpace dvss;
 equation
   dvss.u= fill(time,dvss.m);
 end DVSSTest;
 </textarea>  <div id=check41div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of DVSSTest</span></p>
-</h1>
-<textarea class="target" id=check42textarea>
+<h3>
+9.1
+Simulation of DVSSTest
+</h3>
+<textarea id=check42textarea>
 simulate( DVSSTest, stopTime=200 ) 
 </textarea>  <div id=check42div> </div> <br>
-<textarea class="target" id=check43textarea>
+<textarea id=check43textarea>
 plot({dvss.m})
 </textarea> <br> <div id=check43div> </div> <br>
 <script type="text/javascript">
@@ -4562,11 +4575,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Two Rate Sampling Model Unclocked</span></p>
-</h1>
+<h2>
+10
+Two Rate Sampling Model Unclocked
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TwoRateSampler</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model below the slow sampler is five times slower than the fast sampler, i.e. the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">slowSample</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> when-equation is evaluated at every 5th activation of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">fastSample when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equation. The two samplers are synchronized via equations involving the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">cyCounter</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> variable. <br/></span></p><br>
-<textarea class="target" id=check44textarea>
+<textarea id=check44textarea>
 model TwoRateSamplerUnclocked
   discrete Real x(fixed=true),y(fixed=true);
   Boolean fastSample;
@@ -4589,13 +4603,14 @@ model TwoRateSamplerUnclocked
   end when;
 end TwoRateSamplerUnclocked;
 </textarea>  <div id=check44div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TwoRateSampler</span></p>
-</h1>
-<textarea class="target" id=check45textarea>
+<h3>
+10.1
+Simulation of TwoRateSampler
+</h3>
+<textarea id=check45textarea>
 simulate( TwoRateSamplerUnclocked, stopTime=100 ) 
 </textarea>  <div id=check45div> </div> <br>
-<textarea class="target" id=check46textarea>
+<textarea id=check46textarea>
 plot( { x, y } ) 
 </textarea> <br> <div id=check46div> </div> <br>
 <script type="text/javascript">
@@ -5212,10 +5227,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Two Rate Sampling Model Clocked</span></p>
-</h1>
-<textarea class="target" id=check47textarea>
+<h2>
+11
+Two Rate Sampling Model Clocked
+</h2>
+<textarea id=check47textarea>
 model TwoRateSamplerClocked "Two clocked synchronized counters"
    Clock slowPulses; // Clock variable of type Clock
    Clock fastPulses; // Clock variable of type Clock
@@ -5236,10 +5252,10 @@ equation
 end TwoRateSamplerClocked;
 </textarea>  <div id=check47div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check48textarea>
+<textarea id=check48textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check48div> </div> <br>
-<textarea class="target" id=check49textarea>
+<textarea id=check49textarea>
 simulate(TwoRateSamplerClocked)
 </textarea>  <div id=check49div> </div> <br>
 </div></body></html>

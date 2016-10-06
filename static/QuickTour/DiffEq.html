@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">A Simple differential algebraic equation system </span></p>
+A Simple differential algebraic equation system 
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">DAE example</span></p>
-</h1>
+<h2>
+1
+DAE example
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This example shows how to write a simple DAE equation systems without any physical significance, with equations</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">containing formulas selected more or less at random, as in the class DAEexample below. The class contains two equations, one differential and one algebraic equation.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class DAEexample
   Real x(start = 0.9,fixed=true);
   Real y(fixed=false);
@@ -46,15 +49,16 @@ equation
   x-y = exp(-0.9*x)*cos(y);
 end DAEexample;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of DAE example</span></p>
-</h1>
+<h2>
+2
+Simulation of DAE example
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Now we simulate the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DAEexample</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the interval from 0 to 1.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate( DAEexample, startTime=0, stopTime=1 )
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Plot the results.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot({x,y})
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">

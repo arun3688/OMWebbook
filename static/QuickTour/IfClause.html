@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,31 +32,34 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">If-Equation</span></p>
+If-Equation
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical units</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Electrical units
+</h2>
+<textarea id=check0textarea>
 type Voltage = Real(unit = "V");
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 type Current = Real(unit = "A");
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical Connectors</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+2
+Electrical Connectors
+</h2>
+<textarea id=check2textarea>
 connector Pin
   Voltage v;
   flow Current i;
 end Pin;  
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical Components</span></p>
-</h1>
+<h2>
+3
+Electrical Components
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">TwoPin is a partial class, which means that it is not possible to make instances of it but it can be extended.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 partial class TwoPin      "Superclass of elements with two electrical pins"
   Pin p, n;
   Voltage v;
@@ -65,11 +70,12 @@ equation
   i = p.i;
 end TwoPin;
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Diode</span></p>
-</h1>
+<h2>
+4
+Diode
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Conditional expressions or equations describe discontinuous and conditional models. When writing conditional expressions no </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">end if</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is needed. If the condition has more than two options then it is not enough with an </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">else</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statement to express this, so we have to add one or more </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">elseif</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-statements. <br/></span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model Diode            "Ideal diode"
   extends TwoPin;
   Real s;
@@ -85,11 +91,11 @@ equation
 end Diode;
 </textarea>  <div id=check4div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Load the Modelica Standard Library in order to be able to import as below.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 loadModel(Modelica)
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>We construct a circuit with a diode.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model Circuit
   import Modelica.Electrical.Analog.Basic.*;
   import Modelica.Electrical.Analog.Sources.*;
@@ -104,13 +110,14 @@ equation
   connect(d.p,src.n);
 end Circuit;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of circuit</span></p>
-</h1>
-<textarea class="target" id=check7textarea>
+<h3>
+4.1
+Simulation of circuit
+</h3>
+<textarea id=check7textarea>
 simulate( Circuit, stopTime=10 ) 
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot(d.off)
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">

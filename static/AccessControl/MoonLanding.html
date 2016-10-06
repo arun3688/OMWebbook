@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Access Control Example with Moon Landing</span></p>
+Access Control Example with Moon Landing
 </h1>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Apollo 13 rocket for landing on the moon.</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Celestial Body</span></p>
-</h1>
+<h2>
+1
+Celestial Body
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This example illustrates a Rocket landing on the moon. The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CelestialBody</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be used to store information about celestial bodies such as the earth and the moon. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class CelestialBody
   constant Real g = 6.672e-11;
   parameter Real radius;
@@ -47,11 +50,12 @@ class CelestialBody
   Real mass;
 end CelestialBody;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Rocket</span></p>
-</h1>
+<h2>
+2
+Rocket
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rocket</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> embodies the equations of vertical motion for a rocket which is influenced by an external gravitational force field </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">gravity</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, and the force </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">thrust</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> from the rocket motor, acting in the opposite direction to the gravitational force.<br/></span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class Rocket
   parameter String name;
   Real mass(start = 1038.358,fixed=true);
@@ -68,11 +72,12 @@ equation
   der(velocity) = acceleration;
 end Rocket; 
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">MoonLanding</span></p>
-</h1>
+<h2>
+3
+MoonLanding
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Apollo is an instance of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rocket</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class, so we have to use dot notation, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">apollo.thrust</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, when refering to its variables. Since no level of visibility is specified for </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">force1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">force2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> they are </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">public</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 class MoonLanding
   parameter Real force1 = 36350; // These variables are by default public
   parameter Real force2 = 1308;
@@ -89,14 +94,15 @@ equation
   apollo.gravity = moon.g*moon.mass/(apollo.altitude + moon.radius) ^2;
 end MoonLanding;  
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of MoonLanding</span></p>
-</h1>
+<h2>
+4
+Simulation of MoonLanding
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the MoonLanding model during the time interval 0 to 230.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate( MoonLanding, stopTime=230 )
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot( apollo.altitude)
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -616,7 +622,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Figure 1:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Altitude</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of the Apollo rocket over the lunar surface. Since the solution for the altitude is a function of time, it can be plotted in a diagram. It starts at an altitude of 59404 at time zero, gradually reducing it until touchdown at the lunar surface when the altitude is zero.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot( apollo.thrust )
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">
@@ -1136,7 +1142,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Figure 2:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Thrust</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> from the rocket motor, with an initial high thrust f1 followed by a lower thrust f2. The thrust force from the Rocket is initially high but is reduced to a low level after 43.2 seconds.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 plot( apollo.mass )
 </textarea> <br> <div id=check6div> </div> <br>
 <script type="text/javascript">
@@ -1656,7 +1662,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Figure 3:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rocket</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> mass decreases when the fuel is consumed.</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( apollo.gravity )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -2177,7 +2183,7 @@ labels:
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Figure 4:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> Gradually increasing </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">gravity</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> when the rocket approaches the lunar surface.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">??plot( apollo.gravity, xrange={0,208} );</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot( apollo.velocity)
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">

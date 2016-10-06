@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Modifiers in Extends Clauses</span></p>
+Modifiers in Extends Clauses
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">LowPassFilter with Extends Clause</span></p>
-</h1>
+<h2>
+1
+LowPassFilter with Extends Clause
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Modifiers may also occur in </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">extends</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> clauses, and are applied to inherited element declarations in a similar way as modifiers in short class definitions. We inherit the contents of the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> into the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter20C</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, and give the same modifiers as in the short class definition of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowPassFilter20</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> above. <br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model LowPassFilter1
   constant  Real ystart = 1;
   parameter Real T      = 1;
@@ -46,18 +49,19 @@ equation
   T*der(y) + y = u;
 end LowPassFilter1;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model LowPassFilter20C
   extends LowPassFilter1(ystart = 0, T = 20);
 end LowPassFilter20C;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of LowPassFilter </span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+2
+Simulation of LowPassFilter 
+</h2>
+<textarea id=check2textarea>
 simulate(LowPassFilter20C, stopTime=20 )
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( y)  
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -572,11 +576,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Voltage</span></p>
-</h1>
+<h2>
+3
+Voltage
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Another example demonstrates that modifiers in extends clauses can be applied to elements that are local classes such as </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Voltage</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> within the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LowVoltage</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class LowVoltage
 
   type Voltage = Real(unit = "V");      // Local class
@@ -585,67 +590,69 @@ class LowVoltage
   Voltage v2;
 end LowVoltage;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class HighVoltage
   extends LowVoltage(Voltage(unit = "kV"));
 end HighVoltage;
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Notice that the variables</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> vhigh.v1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">vhigh.v2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> have the unit "kV".</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class HighVoltageInst
   HighVoltage vhigh;
 end HighVoltageInst;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Nested Extends Clauses</span></p>
-</h1>
+<h2>
+4
+Nested Extends Clauses
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The possibilities to apply modifiers are not limited to declared elements that are variables or local classes. It is actually possible to modify elements that are extends clauses in superclasses, so-called nested extends clauses, even though such clauses dissappear in the expanded subclass.</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 class A
   parameter Real a;
   parameter Real b;
 end A;
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 class B
   extends A(b = 3);
 end B;
 </textarea>  <div id=check8div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">A</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">B</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be combined and expressed as </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Bexpanded</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class Bexpanded
   parameter Real a;
   parameter Real b = 3;
 end Bexpanded;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below modifies the nested extends clause of class B, which can be considered to be nested one level down in the inheritance chain (where </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> inherits B which inherits A). The most recent, i.e. "outermost", modifiers in the inheritance chain have priority over previous modifiers.</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 class C
   extends B(a = 1, b = 2);
 end C;
 </textarea>  <div id=check10div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Expand the class C:</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 instantiateModel(C)
 </textarea>  <div id=check11div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">A, B</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> are equivalent to the single class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Cexpanded</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 class Cexpanded
   parameter Real a = 1;
   parameter Real b = 2;
 end Cexpanded;
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">The Rule of the Most Recent Modification</span></p>
-</h1>
+<h2>
+5
+The Rule of the Most Recent Modification
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below illustrates the rule that the most recently applied modifications like </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">b = 1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> overrides modifications like </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">A(b = 2)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of a nested extends clause, since  </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">b = 1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is further down in the modification chain. The instance bcomp has </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">bcomp.b = 1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which overrides </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">b = 2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> from the nested modifier.<br/> </span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 class C2
   B bcomp(b = 1);
 end C2;
 </textarea>  <div id=check13div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Look at the expanded class:</span></p><br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 instantiateModel(C2)
 </textarea>  <div id=check14div> </div> <br>
 </div></body></html>

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Using the Traditional Approach</span></p>
+Using the Traditional Approach
 </h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Below, we show how to model a tank system using the traditional approach.<br/></span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A tank system with a tank, a source for liquid, and a controller.</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">FlatTank Model</span></p>
-</h1>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Below, we show how to model a tank system using the traditional approach. A tank system with a tank, a source for liquid, and a controller.</span></p><br>
+<h2>
+1
+FlatTank Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FlatTank</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model is a "flat" model of the tank system with no internal hierarchical "system structure" visible, i.e., just a collection of variables and equations that model the system dynamics. The internal system structure consisting of components, interfaces, couplings between the components, etc. is not reflected by this model.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model FlatTank
  // Tank related variables and parameters
   parameter Real flowLevel(unit = "m3/s") = 0.02;
@@ -69,11 +69,12 @@ equation
   outCtr   = K*(error + x);
 end FlatTank;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">The limitValue Function</span></p>
-</h1>
+<h2>
+2
+The limitValue Function
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">limiter function</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is needed in the model to reflect minimum and maximum flows through the output valve:</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 function limitValue
   input  Real pMin;
   input  Real pMax;
@@ -85,32 +86,35 @@ function limitValue
           else p;
 end limitValue;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Examples of Calling limitValue</span></p>
-</h1>
+<h2>
+3
+Examples of Calling limitValue
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Three calls. a) 6 is between 4 and 10;  b) 3 is less than 4 which is returned; c) 12 is greater than 10 which is returned.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 limitValue(4, 10, 6)
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 limitValue(4, 10, 3)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 limitValue(1, 10, 12)
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Take a Look at the Flattened FlatTank Class</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h2>
+4
+Take a Look at the Flattened FlatTank Class
+</h2>
+<textarea id=check5textarea>
 instantiateModel(FlatTank)
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of FlatTank</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+5
+Simulation of FlatTank
+</h2>
+<textarea id=check6textarea>
 simulate( FlatTank, stopTime=250 )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( h )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">

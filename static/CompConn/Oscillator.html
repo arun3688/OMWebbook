@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">An Oscillating Mass Connected to a Spring</span></p>
+An Oscillating Mass Connected to a Spring
 </h1>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 loadModel(Modelica) // If not already loaded, you need to load it
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">NOTE: Before simulating the Oscillator model below, you need to introduce some declarations needed, such as the types Mass, Spring, and Fixed. This is done by evaluating the declarations in the Components section below: select the cell marker to the right and push shift-return as usual.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+1
+Components
+</h2>
+<textarea id=check1textarea>
 partial model Compliant      "Compliant coupling of 2 translational 1D flanges"
   Modelica.Mechanics.Translational.Interfaces.Flange_a flange_a      "Driving flange";
   Modelica.Mechanics.Translational.Interfaces.Flange_b flange_b      "Driven flange";
@@ -51,7 +54,7 @@ equation
   f   = flange_b.f;
 end Compliant;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model Spring     "Linear 1D translational spring"
   extends Compliant;
   parameter Modelica.SIunits.Distance s_rel0 = 0  "Unstretched spring length";
@@ -60,7 +63,7 @@ equation
   f = c*(s_rel - s_rel0);              // Spring equation
 end Spring;   
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model Mass        "Hanging mass object"
   extends Rigid;
   parameter Real m = 1    "Mass of the hanging mass";
@@ -73,7 +76,7 @@ equation
   flange_b.f = m*a - m*g;
 end Mass;  
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 partial model Rigid  "Rigid connection of two translational 1D flanges"
   Real s(fixed=true)     "Absolute position s of center of component"+
              "(s = flange_a.s + L/2 = flange_b.s - L/2)";
@@ -86,7 +89,7 @@ equation
   flange_b.s = s + L/2;
 end Rigid; // From Modelica.Mechanics.Translational.Interfaces
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model Fixed   "Fixed flange at a housing"
   parameter Real s0 = 0    "Fixed offset position of housing";
   Modelica.Mechanics.Translational.Interfaces.Flange_b flange_b;
@@ -94,11 +97,12 @@ equation
   flange_b.s = s0;
 end Fixed;   // From Modelica.Mechanics.Translational
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Oscillator</span></p>
-</h1>
+<h2>
+2
+Oscillator
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following model gives rise to some dynamic movement when simulated. A mass is connected to a spring which is connected to a fixed housing. The mass </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">mass1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is subject to the gravitational force </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">-mg</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and the force from the spring. It is given an initial position </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">s</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">=</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">-0.5</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> which is offset from the equilibrium position and therefore starts an oscillating movement up-and-down.<br/></span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model Oscillator
   Mass     mass1(L = 1, s(start = -0.5));
   Spring   spring1(s_rel0 = 2, c = 10000);
@@ -108,13 +112,14 @@ equation
   connect(mass1.flange_b, spring1.flange_a);
 end Oscillator;   
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Oscillator</span></p>
-</h1>
-<textarea class="target" id=check7textarea>
+<h2>
+3
+Simulation of Oscillator
+</h2>
+<textarea id=check7textarea>
 simulate( Oscillator,stopTime=0.5 )
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot( mass1.s) //plot( mass1.s, xrange={0,0.5} ) ??Error xrange not yet implemented
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -630,7 +635,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;"> Diagram 1:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> Plot of the absolute position mass1.s(t) of the center of the haning mass.<br/><br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot( mass1.v ) //plot( mass1.v, xrange={0,0.5} ) ??Error xrange not yet implemented
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">

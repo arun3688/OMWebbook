@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Using Event Priority to Avoid Erroneous Multiple Definitions</span></p>
+Using Event Priority to Avoid Erroneous Multiple Definitions
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Priority in When-Statements</span></p>
-</h1>
+<h2>
+1
+Priority in When-Statements
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Two separate </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when-</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">equations or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when-</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">statements in different algorithm sections may not define the same variable. Without this rule a conflict between the equations will occur if both conditions would become true at the same time instant. This would happen for the erroneous model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">WhenConflictX</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below if we would have the same condition, e.g. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time &gt;= 1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, in both </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-equations since there are two equations:  x = pre(x) + 1.5 and x = pre(x) + 1 that define the same variable x.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model WhenConflictX     // Erroneous model: two equations define x
    discrete Real x;
 equation
@@ -49,14 +52,15 @@ equation
 end WhenConflictX;
 
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate(WhenConflictX)
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Eliminating the double definition</span></p>
-</h1>
+<h3>
+1.1
+Eliminating the double definition
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The multiple assignment conflict in the above example can be avoided by giving a higher priority to one of the defining equations through the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">elsewhen</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> construct, as in the same example in converted form below. We have put both equations within the same </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when-</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">equation and ordered the conditions in </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">decreasing</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> priority.<br/></span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model WhenPriorityX
    discrete Real x(fixed=true);
 equation
@@ -68,10 +72,10 @@ equation
 end WhenPriorityX;
 
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate(WhenPriorityX, stopTime=10)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot(x)
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -595,7 +599,7 @@ labels:
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"><br/>Eliminating the double definition conflict between equations in different when-equations in the WhenPriority model by giving the event at time = 2 higher priority than the event at <br/>time = 1 through the use of elsewhen in the WhenPriorityX model.</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">However, note that multiple assignments to the same variable within an algorithm section are allowed since only </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">the last assignment to the same variable in an algorithm section is counted</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class MultipleWhen
   discrete Real x(fixed=true);
 algorithm
@@ -608,10 +612,10 @@ algorithm
 end MultipleWhen;
 
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate(MultipleWhen,stopTime=10)
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(x)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">

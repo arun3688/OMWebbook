@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,10 +32,10 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Iteration Using while-Statements</span></p>
+Iteration Using while-Statements
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>When using the for-loop for iteration you must be able to express the range of values over which the iteration variable should iterate in a </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">closed</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> form such as an iteration expression. For cases where this is not feasible there is also a while-loop iteration construct in Modelica where the termination condition is just a Boolean expression and the range of iteration values need not be expressed in closed form as an expression. You need to declare the iteration variable separately, as well as handling the increment or decrement of this variable yourself. <br/><br/>The example class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">SumSeries</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> shows the while-loop construct used for summing a serries of exponential terms until the loop condition is violated (the terms become smaller than eps). In this case it would be quite impractical to use a for-loop. <br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class SumSeries
   parameter Real eps = 1.E-6;
   Integer i;
@@ -49,17 +51,18 @@ algorithm
   end while;
 end SumSeries;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of SumSeries</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+1
+Simulation of SumSeries
+</h2>
+<textarea id=check1textarea>
 simulate( SumSeries )   
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 {val(sum,0), val(delta,0)}  
 
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot({delta, sum, i})
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">

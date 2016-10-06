@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,18 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Using the Object Oriented Component-Based Approach</span></p>
+Using the Object Oriented Component-Based Approach
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank System with a Continuous PI Controller</span></p>
-</h1>
+<h2>
+1
+Tank System with a Continuous PI Controller
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Now we show the tank model using the object oriented component-based approach. The structure of the tank system model using this approach is clearly visible in Figure 1 below.<br/></span></p><br>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> A tank system with a continuous PI controller and a source for liquid.</span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The three components of the tank system: the tank, the PI controller and the source of liquid are explicit in Figure 1 and in the declaration of the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankPI</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below. Tank instances of t</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ank</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">source</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">piContinuous</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> are connected to controllers and liquid sources through their connectors.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model TankPI
   LiquidSource           source(flowLevel=0.02);
   PIcontinuousController piContinuous(ref=0.25);
@@ -51,11 +54,12 @@ equation
   connect(tank.tSensor, piContinuous.cIn);
 end TankPI;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank</span></p>
-</h1>
+<h2>
+2
+Tank
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The tank has four connectors: </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">qIn</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for input flow, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">qOut</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for output flow, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">tSensor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for providing fluid level measurements, and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">tActuator</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for setting the position of the valve at the outlet of the tank.<br/><br/>The central equation regulating the behavior of the tank is the mass balance equation, which in the current simple form assumes constant pressure. The output flow is related to the valve position by a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">flowGain</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> parameter, and by a limiter that guarantees that the flow does not exceed what corresponds to the open/closed positions of the valve.<br/></span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model Tank
   ReadSignal     tSensor     "Connector, sensor reading tank level (m)";
   ActSignal      tActuator   "Connector, actuator controlling input flow";
@@ -72,11 +76,12 @@ model Tank
   tSensor.val = h;
 end Tank;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">limitValue</span></p>
-</h1>
+<h3>
+2.1
+limitValue
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A limiter function is needed in the model to reflect minimum and maximum flows through the output valve:</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 function limitValue
   input  Real pMin;
   input  Real pMax;
@@ -88,30 +93,32 @@ function limitValue
           else p;
 end limitValue;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Connectors</span></p>
-</h1>
+<h3>
+2.2
+Connectors
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">As already stated, the tank has four connectors. These are instances of the following three connector classes:</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector ReadSignal     "Reading fluid level"
   Real val(unit = "m");
 end ReadSignal;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector ActSignal     "Signal to actuator for setting valve position"
   Real act;
 end ActSignal;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 connector LiquidFlow    "Liquid flow at inlets or outlets"
   Real lflow(unit = "m3/s");
 end LiquidFlow;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">LiquidSource</span></p>
-</h1>
+<h3>
+2.3
+LiquidSource
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The fluid entering the tank must come from somewhere. Therefore we have a liquid source component in the tank system. The flow increases sharply at time = 150 to factor of three of the previous flow level, which creates an interesting control problem that the controller of the tank has to handle.<br/></span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model LiquidSource
   LiquidFlow qOut;
   parameter Real flowLevel = 0.02;
@@ -119,11 +126,12 @@ equation
   qOut.lflow = if time > 150 then 3*flowLevel else flowLevel;
 end LiquidSource;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">PIcontinuousController</span></p>
-</h1>
+<h3>
+2.4
+PIcontinuousController
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The controller needs to be specified. We will initially choose a PI controller but later replace this by other kinds of controllers. </span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 model PIcontinuousController
   extends BaseController(K = 2, T = 10);
   Real  x (fixed=true) "State variable of continuous PI controller";
@@ -132,11 +140,12 @@ equation
   outCtr = K*(error + x);
 end PIcontinuousController;
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">BaseController</span></p>
-</h1>
+<h3>
+2.5
+BaseController
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Both the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PI controller</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PID controller</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to be defined later inherit the partial controller class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">BaseController</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, containing common parameters, state variables, and two connectors: one to read the sensor and one to control the valve actuator.<br/></span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 partial model BaseController
   parameter Real Ts(unit = "s") = 0.1  "Time period between discrete samples";
   parameter Real K = 2          "Gain";
@@ -151,14 +160,15 @@ equation
   cOut.act = outCtr;
 end BaseController;
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of TankPI</span></p>
-</h1>
+<h2>
+3
+Simulation of TankPI
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankPI</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model and obtain the same response as for the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FlatTank</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model, which is not surprising given that both models have the same basic equations. <br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 simulate( TankPI, stopTime=250 )
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 plot( tank.h )
 </textarea> <br> <div id=check10div> </div> <br>
 <script type="text/javascript">
@@ -675,15 +685,16 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank with PID Continuous Controller</span></p>
-</h1>
+<h2>
+4
+Tank with PID Continuous Controller
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We define a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankPID</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> system which is the same as the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankPI</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> system except that the PI controller has been the replaced by a PID controller. Here we see a clear advantage of the object oriented component-based approach over the traditional modeling approach, since system components can easily be replaced and changed in a plug-and-play manner.<br/></span></p><br>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The tank system with the PI controller replaced by a PID controller.</span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The Modelica class declaration for the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankPID</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> system appears as follows:</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model TankPID
   LiquidSource            source(flowLevel  = 0.02);
   PIDcontinuousController pidContinuous(ref = 0.25);
@@ -695,7 +706,7 @@ equation
 end TankPID;
 </textarea>  <div id=check11div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>We create a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PIDcontinuousController</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class in Modelica containing the three defining equations:</span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 model PIDcontinuousController
   extends BaseController(K = 2, T = 10);
   Real  x(fixed=true);       // State variable of continuous PID controller
@@ -706,14 +717,15 @@ equation
   outCtr = K*(error + x + y);
 end PIDcontinuousController;
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of TankPID</span></p>
-</h1>
+<h2>
+5
+Simulation of TankPID
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the tank model once more but now including the PID controller:</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 simulate( TankPID, stopTime=250 )
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 plot( tank.h )
 </textarea> <br> <div id=check14div> </div> <br>
 <script type="text/javascript">
@@ -1230,14 +1242,15 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Two Tanks Connected Together</span></p>
-</h1>
+<h2>
+6
+Two Tanks Connected Together
+</h2>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Two connected tanks with PI controllers and a source for liquid connected to the first tank. </span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The Modelica model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TanksConnectedPI</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> corresponding to Figure 3 appears as follows:</span></p><br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 model TanksConnectedPI
   LiquidSource  source(flowLevel = 0.02);
   Tank          tank1(area = 1);
@@ -1254,13 +1267,14 @@ model TanksConnectedPI
 end TanksConnectedPI;
 </textarea>  <div id=check15div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>We simulate the connected tank system. We clearly see the tank level responses of the first and second tank to the changes in fluid flow from the source, where the response from the first tank of course appears earlier in time than the response of the second tank.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of TanksConnectedPI</span></p>
-</h1>
-<textarea class="target" id=check16textarea>
+<h2>
+7
+Simulation of TanksConnectedPI
+</h2>
+<textarea id=check16textarea>
 simulate( TanksConnectedPI, stopTime=400 )
 </textarea>  <div id=check16div> </div> <br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 plot( {tank1.h,tank2.h} )
 </textarea> <br> <div id=check17div> </div> <br>
 <script type="text/javascript">

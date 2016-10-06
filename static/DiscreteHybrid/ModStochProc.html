@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Models for Event Based Stochastic Processes</span></p>
+Models for Event Based Stochastic Processes
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">If we generalize a finite state automaton by letting the time between two events be stochastic, and possibly also letting the choice of the next state be stochastic, we obtain a model for event based stochastic processes. Such models have many applications, of which one is queuing systems.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">The Random Package</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+The Random Package
+</h2>
+<textarea id=check0textarea>
 loadModel(Modelica)
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 package Random
 import Modelica.Math;
 constant Real NV_MAGICCONST=4*exp(-0.5)/sqrt(2.0);
@@ -97,21 +100,23 @@ end discreteConnector;
 
 end Random;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Examples</span></p>
-</h1>
+<h2>
+2
+Examples
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">As a simple example of discrete-time stochastic process simulation we can consider a simple server model with a queue. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">CustomerGeneration Model</span></p>
-</h1>
+<h3>
+2.1
+CustomerGeneration Model
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CustomerGenerator</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model contains an output connector </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">outCustomer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> that transmits the customer arrival events to the rest of the system. We first start by defining a model which generates customers at random points in time. The time delay until the next customer arrival is assumed to be a normally distributed stochastic variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">T</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, here computed by calling the random number function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">normalvariate</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, see above, where the negative part is folded back on the positive side using </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">abs(T)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to avoid unrealistic negative service times. Since this function is side-effect free as all Modelica functions, it returns a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">randomSeed</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> value to be used at the next call to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">normalvariate</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, see the help functions above. <br/></span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector EventPortInput =input Boolean;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector EventPortOutput =output Boolean;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model CustomerGeneration
    import Random; // See Math.Random package in Appendix D
    EventPortOutput outCustomer;
@@ -135,7 +140,7 @@ equation
 // pre(nextCustomerArrivalTime) ); -- wrong, wsignal always false
 end CustomerGeneration;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model BoolView "Increase width of Boolean event signal for plotting"
    Boolean inv,outv;
    parameter Real width=0.0001;
@@ -147,20 +152,21 @@ equation
    outv =(time>=T0) and (time<T0+width);
 end BoolView;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of CustomerGeneration</span></p>
-</h1>
+<h4>
+2.1.1
+Simulation of CustomerGeneration
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CustomerGeneration</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model for a while to observe the customer arrival times.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 loadModel(Modelica)
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 setCommandLineOptions("std=3.3")
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 simulate( CustomerGeneration, stopTime=10) 
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot({nextCustomerArrivalTime,Tdiff,bv.outv})
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">
@@ -1289,11 +1295,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">ServerWithQueue Model</span></p>
-</h1>
+<h3>
+2.2
+ServerWithQueue Model
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We can now design a server model </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ServerWithQueue</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> which through its </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">inCustomer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> port will accept the arriving customers from the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CustomerGeneration</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">nrOfCustomersInQueue</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> represents the current number of customers in the queue. Other state variables of interest are </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">nrOfArrivedCustomers</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, the number of customers that have so far arrived and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">nrOfServedCustomers</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, the number of customers that have so far been served. The first </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when-</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">equation services the arrival of a new customer, whereas the second </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">when-</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">equation handles the event when a customer is serviced and is ready to leave the queue.<br/> <br/>The event when </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">readyCustomer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> becomes true represents completed service for the current customer. The time needed to serve a customer is </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">custServeTime</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which is constant in this model but could be varying according to some formula or be randomly distributed. The variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">lastServeStart</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> represents the starting time for servicing the most recent serviced customer.<br/></span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model ServerWithQueue
    EventPortInput inCustomer;
    parameter Real custServeTime=0.1 "Time needed to service a customer";
@@ -1319,11 +1326,12 @@ equation
    end when;
 end ServerWithQueue;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Test Model 1</span></p>
-</h1>
+<h4>
+2.2.1
+Test Model 1
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The simulation of the whole system can be done by defining a test model which connects the CustomerGeneration model with the ServerWithQueue model.  </span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model testServer1
   CustomerGeneration customerGen;
   ServerWithQueue server(custServeTime=0.4);
@@ -1331,20 +1339,21 @@ equation
   connect(customerGen.outCustomer, server.inCustomer);
 end testServer1;
 </textarea>  <div id=check11div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of testServer1</span></p>
-</h1>
+<h3>
+2.3
+Simulation of testServer1
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Using the MathModelica simulation environment we simulate the model for 10 seconds with the customer service time custServeTime = 0.4 seconds.</span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 loadModel(Modelica)
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 setCommandLineOptions("std=3.3")
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 simulate(testServer1,stopTime=10)
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 plot({server.nrOfArrivedCustomers,server.nrOfServedCustomers, server.nrOfCustomersInQueue})
 </textarea> <br> <div id=check15div> </div> <br>
 <script type="text/javascript">
@@ -2532,10 +2541,11 @@ labels:
 <h1>
 <p align="right" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Number of arrived customers, number of served customers, and number of customers waiting in the queue or being serviced. Customer service time is 0.4 seconds.</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Test Model 2</span></p>
-</h1>
-<textarea class="target" id=check16textarea>
+<h4>
+2.3.1
+Test Model 2
+</h4>
+<textarea id=check16textarea>
 model testServer2
    CustomerGeneration customerGen;
    ServerWithQueue server(custServeTime = 1);
@@ -2543,14 +2553,15 @@ equation
   connect(customerGen.outCustomer, server.inCustomer);
 end testServer2;
 </textarea>  <div id=check16div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of testServer2</span></p>
-</h1>
+<h3>
+2.4
+Simulation of testServer2
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We now simulate the model for 10 seconds with the customer service time custServeTime = 1 second.</span></p><br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 simulate( testServer2, stopTime=10 )
 </textarea>  <div id=check17div> </div> <br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 plot({ server.nrOfArrivedCustomers, server.nrOfServedCustomers, server.nrOfCustomersInQueue })
 </textarea> <br> <div id=check18div> </div> <br>
 <script type="text/javascript">

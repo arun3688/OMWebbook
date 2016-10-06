@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,19 +32,21 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Parameterized Generic Classes</span></p>
+Parameterized Generic Classes
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Class Parameters using Replaceable and Redeclare</span></p>
-</h1>
+<h2>
+1
+Class Parameters using Replaceable and Redeclare
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Modelica classes and packages can be parameterized in a general way, corresponding to generic classes or packages. Both classes and variables which are members of some class can be used as a kind of formal class parameter by attaching the prefix replaceable in front of their declarations. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">ResistorCircuit</span></p>
-</h1>
+<h3>
+1.1
+ResistorCircuit
+</h3>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">ResistorCircuit, which is a class consisting of three Resistors connected at one node.</span></p>
 </h1>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model ResistorCircuit   // Circuit of three Resistors connected at one node
   Resistor R1(R = 100);
   Resistor R2(R = 200);
@@ -52,11 +56,12 @@ equation
   connect(R1.p, R3.p);
 end ResistorCircuit;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Class Parameters Being Components</span></p>
-</h1>
+<h2>
+2
+Class Parameters Being Components
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has been converted into a parameterized generic class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">GenericResistorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the example below. In </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">GenericResistorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class parameters are components (instances or objects).</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model GenericResistorCircuit        // The ResistorCircuit made generic
   replaceable Resistor R1(R = 100);      // Formal class parameter
   replaceable Resistor R2(R = 200);      // Formal class parameter
@@ -68,14 +73,14 @@ end GenericResistorCircuit;
 
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>A more specialized class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TemperatureDependentResistorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is created by changing the types of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">R1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">R2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TemperatureResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which is a subtype of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model TemperatureDependentResistorCircuit =
     GenericResistorCircuit(
         redeclare TempResistor R1,   // Actual argument
         redeclare TempResistor R2);  // Actual argument
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Now we add a temperature variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Temp.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model TemperatureDependentResistorCircuit
   Real Temp;
   extends GenericResistorCircuit(
@@ -84,7 +89,7 @@ model TemperatureDependentResistorCircuit
 end TemperatureDependentResistorCircuit;
 </textarea>  <div id=check3div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TemperatureDependentResistorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is equivalent to the class below. The prefix replaceable has been lost for  </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">R2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">R3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, since we did not use </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">redeclare</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">replaceable</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model TempDepResistorCircuitInherited
   Real Temp;
   replaceable Resistor R1(R = 100);
@@ -95,26 +100,28 @@ equation
   connect(R1.p, R3.p);
 end TempDepResistorCircuitInherited;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Generalizing Constraining Types of Class Parameters</span></p>
-</h1>
+<h2>
+3
+Generalizing Constraining Types of Class Parameters
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Sometimes it can be useful to allow a more general constraining type of a class parameter, e.g. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TwoPin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> instead of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for the formal class parameters and components </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">comp1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">comp2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below. This allows replacement by another kind of electrical component than a resistor in the circuit.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Connectors</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h3>
+3.1
+Connectors
+</h3>
+<div id=answer0 class=collapse><textarea id=check5textarea>
 type Voltage = Real(Unit = "V");
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 type Current = Real(Unit = "A");
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 connector Pin
   Voltage v;
   flow Current i;
 end Pin;  
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 partial class TwoPin
   "Superclass of elements with two electrical pins"
   Pin p, n;
@@ -126,10 +133,11 @@ equation
   i = p.i;
 end TwoPin;
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">GeneralSimpleCircuit</span></p>
-</h1>
-<textarea class="target" id=check9textarea>
+</div><h3>
+3.2
+GeneralSimpleCircuit
+</h3>
+<textarea id=check9textarea>
 model GeneralSimpleCircuit
   replaceable Resistor comp1(R = 100) extends TwoPin;
   replaceable Resistor comp2(R = 200) extends TwoPin;
@@ -140,18 +148,19 @@ equation
 end GeneralSimpleCircuit;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The generalized parameterization properties of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">GeneralSimpleCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> are used below when replacing the circuit components </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">comp1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">comp2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with components of the types </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Capacitor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Inductor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> that are subtypes of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TwoPin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model RefinedSimpleCircuit
   extends GeneralSimpleCircuit(
     redeclare Capacitor comp1(C = 0.003),
     redeclare Inductor comp2(L = 0.0002));
 end RefinedSimpleCircuit;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Class Parameters Being Types</span></p>
-</h1>
+<h2>
+4
+Class Parameters Being Types
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A formal class parameter, can also be a type, which is useful for changing the type of many objects. For example, by providing a type parameter </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorModel</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in the class below it is easy to change the resistor type of all objects of type </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorModel</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, e.g. from the default type </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to the temperature dependent type </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model GenericResistorCircuit2
   replaceable model ResistorModel = Resistor;
   replaceable Resistor R1(R = 100);
@@ -163,12 +172,12 @@ equation
 end GenericResistorCircuit2;
 </textarea>  <div id=check11div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>A more specialized temperature dependent circuit </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">RefinedSimpleCircuit2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be created where the resistor type </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is supplied as an actual argument to the formal class parameter </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorModel</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">: <br/></span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 model RefinedSimpleCircuit2 =
   ResistorCircuit(redeclare model ResistorModel = TempResistor);
 </textarea>  <div id=check12div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">RefinedSimpleCircuit2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is equivalent to the "expanded" class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">RefinedSimpleCircuit2expanded</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 model RefinedSimpleCircuit2expanded
   model ResistorModel = TempResistor;
   replaceable Resistor R1(R = 100);

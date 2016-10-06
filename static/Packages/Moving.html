@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,10 +32,10 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Moving Packages</span></p>
+Moving Packages
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Copying or moving a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">nonencapsulated</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> subpackage might be a bit problematic since used declarations may not be available in the new location for that subclass. When copying or moving an encapsulated package or class at most the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">import</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> statements inside this package or class, including subpackages and local classes, need to be updated.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 encapsulated package Modelica
 
   encapsulated package Blocks
@@ -56,7 +58,7 @@ encapsulated package Modelica
 end Modelica;
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>If you move the package </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rotational</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> inside </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">YourModelica</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as below, it will continue to work without changes since its </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">import</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> statements still refers to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">YourModelica.Blocks.Interfaces</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Maybe if you instead would like to refer the package </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">YourModelica.Blocks.Interfaces</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, just update the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">import</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> statement as we have done below.<br/></span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 encapsulated package YourModelica
 
   encapsulated package Blocks

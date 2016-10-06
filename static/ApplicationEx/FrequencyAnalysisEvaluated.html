@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,15 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Frequency Analysis of Simulation Data</span></p>
+Frequency Analysis of Simulation Data
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Fourier Analysis</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">ModelDiagramCode</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Fourier Analysis
+</h2>
+<h3>
+1.1
+ModelDiagramCode
+</h3>
+<div id=answer0 class=collapse><textarea id=check0textarea>
 Model[WeakAxis,
   Modelica.Mechanics.Rotational.Torque Torque1;
   Modelica.Mechanics.Rotational.Inertia Inertia1;
@@ -57,16 +61,17 @@ Model[WeakAxis,
     ]
   ]
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">The Model</span></p>
-</h1>
+</div><h3>
+1.2
+The Model
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Consider a weak axis excited by a torque pulse train. The axis is modeled by three segments joined by two torsion springs. The following diagram is imported from the </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">MathModelica</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">Model Editor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> where the model was defined.</span></p><br>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Diagram: WeakAxis</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The corresponding Modelica code ...</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 loadModel(Modelica);
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model WeakAxis
    Modelica.Mechanics.Rotational.Sources.Torque Torque1;
    Modelica.Mechanics.Rotational.Components.Inertia Inertia1;
@@ -85,10 +90,10 @@ equation
 end WeakAxis;
 
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate(WeakAxis, stopTime=200)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot({Inertia3.w, Torque1.tau})
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -607,60 +612,61 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the model in 100 seconds ...</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 Simulation[WeakAxis,{t,0,200}];
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">... and plot the angular velocity of the rightmost axis-segment.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 PlotSimulation[{Inertia3.w[t],Torque1.[Tau][t]},{t,0,200}];
 </textarea>  <div id=check6div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Now, lets sample Inertia3.w using a sample frequency 4Hz ...</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 data1=Table[Inertia3.w[t],{t,0,200,.25}];
 </textarea>  <div id=check7div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">... remove the mean ...</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 mean=Apply[Plus, data1]/Length[data1];
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 data2=data1-mean;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Compute the absolute values of the discrete Fourier transform ...</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 fdata1=Abs[Fourier[data2]];
 </textarea>  <div id=check10div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">... and plot the 80 first points of data.</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 ListPlot[fdata1[[Range[80]]],PlotRange->All,PlotStyle->{Red,PointSize[0.015]}];
 </textarea>  <div id=check11div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The peaks</span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 {fdata1[[30]],fdata1[[52]]}
 </textarea>  <div id=check12div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">It is easy to write a function that repeat the above operations. FourierPlot also scales the axes such that amplitude of trigonometric components are plotted against frequency (Hz).</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 FourierPlot[Inertia3.w[t],{t,0,200},0.5,PlotRange->All,PlotJoined->True,PlotStyle->Red]
 </textarea>  <div id=check13div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">It can be shown that the frequencies of the eigenmodes of the system is given by the imaginary parts of the eigenvalues of the following matrix (c</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">and c</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">are the spring constants) ...</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">... which fits very well with the peaks in the diagram above.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Initialization</span></p>
-</h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Load MathModelica</span></p><br>
-<textarea class="target" id=check14textarea>
+<h2>
+2
+Initialization
+</h2>
+<div id=answer1 class=collapse><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Load MathModelica</span></p><br>
+<textarea id=check14textarea>
 Needs["MathModelica`"]
 
 </textarea>  <div id=check14div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Load color and graphics package</span></p><br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 Needs["Graphics`Colors`"]
 
 </textarea>  <div id=check15div> </div> <br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 Needs["Graphics`Graphics`"]
 
 </textarea>  <div id=check16div> </div> <br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 FourierPlot[signal_,{t_,tmin_,tmax_
 }
 ,T_,options___
@@ -717,7 +723,7 @@ FourierPlot[signal_,{t_,tmin_,tmax_
 
 
 </textarea>  <div id=check17div> </div> <br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 FourierPlot[Sin[2[Pi] t
 ]
 +5Sin[2 [Pi] 1.55t
@@ -732,4 +738,4 @@ FourierPlot[Sin[2[Pi] t
 ]
 
 </textarea>  <div id=check18div> </div> <br>
-</div></body></html>
+</div></div></body></html>

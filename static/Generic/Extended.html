@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,28 +32,30 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Designing a Class to be Extended</span></p>
+Designing a Class to be Extended
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>When designing a class to be extended two major design goals are to reuse data, i.e. variable declarations and to reuse behavior, i.e. equations.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Type and Connector Classes</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Type and Connector Classes
+</h2>
+<textarea id=check0textarea>
 type Voltage = Real(unit = "V");
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 type Current = Real(unit = "A");
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector Pin
   Voltage     v;
   flow Current   i;
 end Pin;        
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+2
+Components
+</h2>
+<textarea id=check3textarea>
 partial model TwoPin
      // Same as OnePort in Modelica.Electrical.Analog.Interfaces
  "For Component with two electrical pins p and n and current i from p to n"
@@ -65,10 +69,11 @@ equation
   i = p.i;
 end TwoPin;          
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Resistor</span></p>
-</h1>
-<textarea class="target" id=check4textarea>
+<h2>
+3
+Resistor
+</h2>
+<textarea id=check4textarea>
 model Resistor     "Electrical resistor"
   Pin p,n;
   Voltage v;
@@ -78,7 +83,7 @@ equation
   v = i*R;
 end Resistor;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model TempResistor     "Temperature dependent electrical resistor"
   Pin p,n;
   Voltage v;
@@ -91,11 +96,12 @@ equation
   v = i*(R + RT*(Temp - Tref));
 end TempResistor;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Reuse of Variable Declarations from Partial Base Classes </span></p>
-</h1>
+<h2>
+4
+Reuse of Variable Declarations from Partial Base Classes 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">One way of getting around the problems of inheriting and specializing behavior, exemplified with the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class, is to create incomplete, i.e. partial base classes that only contain the data declarations that can be reused.</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 partial model BaseResistor "Electrical resistor"
   Pin p, n;
   Voltage v;
@@ -104,14 +110,14 @@ partial model BaseResistor "Electrical resistor"
 end BaseResistor;
 </textarea>  <div id=check6div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The class is partial because it does not contain enough equations to completely specify its physical behavior. Using </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">BaseResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, to classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> (equivalent to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">) can be defined to reuse all the common data in the base class.</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 model Resistor2   "Electrical resistor"
   extends BaseResistor;
 equation
 v = R*i;
 end Resistor2;
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 model TempResistor2  "Temperature dependent electrical resistor"
   extends BaseResistor;
   parameter Real RT(unit = "Ohm/degC") = 0  "Temp. dependent Resistance.";
@@ -122,11 +128,12 @@ equation
 end TempResistor2;
 </textarea>  <div id=check8div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The drawback of this approach is that we have given up on reuse and inheritance of behavior when part of the behavior needs to be redefined. In the next section we examine a way to get around the problem.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Extending and Redefining Behavior</span></p>
-</h1>
+<h2>
+5
+Extending and Redefining Behavior
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">There are two ways to indirectly associate a name with equations(s), a declaration equation named by its variable or a group of equations in a named replaceable local class.<br/><br/>The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorEquation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class within the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below is an example of this technique. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the same data fields and behavior as</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, but allows redeclaration of its equations since they are defined in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">replaceable</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorEquation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 model Resistor3  "Electrical Resistor"
   Pin p, n;
   Voltage v;
@@ -143,7 +150,7 @@ model Resistor3  "Electrical Resistor"
 end Resistor3;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The temperature dependent resistor class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TempResistor3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can inherit </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor3</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, by declaring its temperature dependent equation in a redeclaration class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorEquation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> that replaces the original local class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ResistorEquation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model TempResistor3 "Temperature dependent electrical resistor"
   extends Resistor3(
     redeclare class ResistorEquation

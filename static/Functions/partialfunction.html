@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Partial function</span></p>
+Partial function
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A function partial application has the form of a function call with certain formal parameters bound to expressions. A function partial application returns a partially evaluated function that is also a function, with the remaining not bound formal parameters still present in the same order as in the original function declaration. A function partial application is specified by the function keyword followed by a function call to func_name giving named formal parameter associations for the formal parameters to be bound:</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">function func_name(..., formal_parameter_name = expr, ...)</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Note that the keyword function in a function partial application differentiates the syntax from a normal function call where some parameters have been left out and instead are supplied via default values.</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The function created by the function partial application acts as the original function but with the bound formal input parameters(s) removed, i.e., they cannot be supplied arguments at function call. The binding occurs when the partially evaluated function is created. A partially evaluated function is type compatible (see section 6.5) to the same function with all bound arguments removed.</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following examples show a function partial application function Sine(A=2,w=3) with the two extra arguments A and w bound and thus eliminated, i.e., the resulting function is type compatible to Integrand with only formal parameters x and y left. The first example below, QuadratureSine1, has a call with a named input argument.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 function quadrature "Integrate function y=integrand(x) from x1 to x2"
    input Real x1;
    input Real x2;
@@ -48,7 +50,7 @@ algorithm
    integral :=(x2-x1)*(integrand(x1) + integrand(x2))/2; // Approximate
 end quadrature;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 function Sine "y = Sine(A,w,x)"
   input Real A;
   input Real w;
@@ -58,17 +60,17 @@ algorithm
   y:=A*Modelica.Math.sin(w*x);
 end Sine;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 partial function Integrand "Function type of Integrand functions"
    input Real x;
    output Real y;
 end Integrand;
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Instead of repeating the declaration of input formal parameter x and output formal parameter y, they can be inherited from Integrand, which is fine despite A and w now being at the end of the parameter list:</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 loadModel(Modelica)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 function Sine "y = Sine(x,A,w)"
    extends Integrand;
    input Real A;
@@ -77,17 +79,17 @@ algorithm
    y:=A*Modelica.Math.sin(w*x);
 end Sine;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model QuadratureSine1 "Coarse approximation with one quadrature call"
    Real area;
 equation
    area = quadrature(0, 1, integrand = function Sine(A=2, w=3));
 end QuadratureSine1;
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate(QuadratureSine1)
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(area)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -603,7 +605,7 @@ labels:
 )
 </script>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The second example, QuadratureSine2, shows a function partial application being passed as a positional argument. The numeric approximation of the integral will be better since a number of calls to quadrature on many short intervals are summed. The quadrature approximation that the integrated function is a straight line is typically more true over a short interval.</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 model QuadratureSine2 "Finer approximation, N quadrature calls"
    parameter Integer N;
    Real area;
@@ -614,10 +616,10 @@ algorithm
    end for;
 end QuadratureSine2;
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 simulate(QuadratureSine2)
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 plot(area)
 </textarea> <br> <div id=check10div> </div> <br>
 <script type="text/javascript">
@@ -1133,14 +1135,14 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Below is an example of a function partial application of the function SurfaceIntegrand which is an instance called in the function surfaceQuadrature</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 partial function SurfaceIntegrand
    input Real x;
    input Real y;
    output Real z;
 end SurfaceIntegrand;
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 function quadratureOnce
    input Real x;
    input Real y1;
@@ -1151,7 +1153,7 @@ algorithm
    z := quadrature(y1, y2, function integrand(y=x));
 end quadratureOnce;
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 function surfaceQuadrature
    input Real x1;
    input Real x2;

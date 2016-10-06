@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Finite State Automata</span></p>
+Finite State Automata
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Sample Signal Generator</span></p>
-</h1>
+<h2>
+1
+Sample Signal Generator
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following is an example of a simple generator model that produces periodic sampling signals. The state transitions of the finite state automaton are hidden inside the implementation of the built-in function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">sample</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model SampleSignalGenerator
   parameter Real  startTime = 0;
   parameter Real  period = 1;
@@ -45,10 +48,10 @@ model SampleSignalGenerator
   outSignal = sample(startTime, period);
 end SampleSignalGenerator;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate(SampleSignalGenerator)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot(period)
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -63,9 +66,10 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Clocked-State Machines</span></p>
-</h1>
+<h2>
+2
+Clocked-State Machines
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Starting with the Modelica language version 3.3, constructs for directly creating state machines to model finite state automata applications are available in the Modelica language. This section gives a short introduction to the use of such clocked state machines.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">There are many similarities between finite state automata and clocked state machines, but also some differences:</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">    1) Self-transitions are not needed in Modelica clocked state machines. The reason is that a clocked state machine stays in its current state if the transition conditions to other states are not fulfilled.</span></p><br>
@@ -73,13 +77,13 @@ labels:
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We first define a simple state machine model called CountingStateMachine1. It has two states, the initial state state1 and a second state state2. The default clock with interval 1 applies since there is no explicit clock declaration.</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">It has a counting variable cn, initially zero, which is declared inner at the model level, and outer in each state so that it can be referred to locally within each state. In state1, cn is increased by 1 at each clock tick, whereas in state2, cn is decreased by 3 at each clock tick. When the transition condition for the first transition fulfills previous(cn&gt;7)=true (since immediate=false) there is a transition to state2 according to the transition( ) equation.</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In state2, when the condition previous(cn&lt;3)=true is fulfilled, there is a transition back to state1.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 loadModel(Modelica)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model CountingStateMachine1
    inner Integer cn(start=0);
    block State1 "The initial state"
@@ -100,10 +104,10 @@ equation
   transition(state2, state1, cn < 3, immediate=false); //transfer to state1
 end CountingStateMachine1;
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate(CountingStateMachine1,stopTime=18)
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(cn)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -652,11 +656,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simple Server</span></p>
-</h1>
+<h2>
+3
+Simple Server
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">One of the simplest possible examples of an input/output process modeled as a finite state automaton is the simple server.The simple server finite automaton has two states, denoted Active and Passive, and a set of values {Start, Done} which is an alphabet of two symbols. The system becomes active and provides some service after receiving a Start event. After finishing the service item, the system emits a Done event and returns to the Passive state.</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 model SimpleServer
     function doService "Dummy function to perform service"
        protected
@@ -699,14 +704,15 @@ equation
   initialState(passive);
 end SimpleServer;
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 simulate(SimpleServer)
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Assignment Recognizer</span></p>
-</h1>
+<h2>
+4
+Assignment Recognizer
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The assignment regocnizer is an example of a common application, a string acceptor in lexical analysis of text, typically in compiler frontends. Input events are the arrival of characters in an input stream.</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model AssignmentRecognizer
     type Chartypes = enumeration(colon, equals, space);
     constant Chartypes chars[:] = {Chartypes.colon, Chartypes.equals,
@@ -740,10 +746,10 @@ equation
     immediate=false); // transfer back to initial state0
 end AssignmentRecognizer;
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 simulate(AssignmentRecognizer,stopTime=6)
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 plot(i)
 </textarea> <br> <div id=check12div> </div> <br>
 <script type="text/javascript">

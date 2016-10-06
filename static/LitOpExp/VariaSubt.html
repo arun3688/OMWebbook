@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,47 +32,52 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Variability and Subtyping</span></p>
+Variability and Subtyping
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The variability of an expression governs the degree of freedom with which the expression may vary during simulation. Variability is a specific property but has clear connections with the notion of data type. The example classes below illustrates the subtyping and variability rules for declaration equations and normal equations.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Constants</span></p>
-</h1>
+<h2>
+1
+Constants
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This is not allowed, since p1 + 2 is not a constant expression</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model Constants
   parameter Real p1 = 1;
   constant  Real c1 = p1 + 2;  // Not allowed - p1 has constant variability
 end Constants;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Constants</span></p>
-</h1>
+<h2>
+2
+Simulation of Constants
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Below the error message is shown, after trying to simulate the Constants model. </span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate( Constants )  //?? Error - should have emitted variability error
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">ConstantsCorrect</span></p>
-</h1>
+<h2>
+3
+ConstantsCorrect
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This is correct, since p1 + 2 has the same variability as p1.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model ConstantsCorrect
   parameter Real p1 = 1;
   parameter Real p2 = p1 + 2;      // Fine! - p1 + 2 has same variability
 end ConstantsCorrect;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of ConstantsCorrect</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+4
+Simulation of ConstantsCorrect
+</h2>
+<textarea id=check3textarea>
 simulate( ConstantsCorrect )
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">TestEquations</span></p>
-</h1>
+<h2>
+5
+TestEquations
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The equation in </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TestEquations</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is not correct, since b is a discrete time and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">noEvent(x &gt; 1)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">  is a continuous time expression.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model TestEquations
   Constants c1(p1 = 3);
   Constants c2(p2 = 7);   // Fine, declaration equation can be modified.
@@ -80,11 +87,12 @@ equation
   b = noEvent(x > 1);
 end TestEquations;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of TestEquations</span></p>
-</h1>
+<h2>
+6
+Simulation of TestEquations
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Below the error message is shown, after trying to simulate the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TestEquations</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model. </span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 simulate( TestEquations ) 
 </textarea>  <div id=check5div> </div> <br>
 </div></body></html>

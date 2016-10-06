@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,12 +32,12 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Built-in Variable Time</span></p>
+Built-in Variable Time
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The built-in variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> represents the current simulation time point, and is implictly defined as:</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#aa0000;">input</span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Real </span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#aa0000;">time</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">(</span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#aa0000;">final</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> quantity = </span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#808080;">"Time"</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#aa0000;">final</span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">unit = </span><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#808080;">"s"</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">);</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is only available in models and blocks, and not e.g. in functions. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can for example be used to trigger an event at a specific point in time. In the following example we have a variable x with an initial value of 1.0. At the time point 0.5s the </span><a href="static/../Equations/WhenEq.html"><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">when-equation</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is triggered, and the equation x = 2.0 becomes active. Note that the event happens at the time point 0.5s, not after 0.5s of simulation (unless the simulation started at 0s).</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model TimeEventTest
   Real x(start = 1.0, fixed = true);
 equation
@@ -44,10 +46,10 @@ equation
   end when;
 end TimeEventTest;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate(TimeEventTest, startTime = 0.2, stopTime = 0.6)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot({x, time})
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -565,7 +567,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is not available in functions since Modelica functions are mathematical functions, i.e. the same input should always give the same output. This means that </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">time</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is not allowed to be accessed inside a function, but it can still be passed as a function argument:</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 function MySin
   input Real x;
   output Real y;
@@ -577,10 +579,10 @@ model SinTest
   Real z = MySin(time);
 end SinTest;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 simulate(SinTest, stopTime = 2)
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot(z)
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,29 +32,30 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Redeclaration of Elements not Declared Replaceable</span></p>
+Redeclaration of Elements not Declared Replaceable
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>There are only two kinds of redeclarations that do not require the modified element to be declared replaceable: restricting the variability of a declared variable, e.g. from parameter to constant or restricting array dimension sizes, e.g. from (:) to a specified size. The following examples demonstrates these kinds of redeclarations.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class C3
   Real x1;
   parameter Real vec[:];
 end C3;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class C4 = C3(redeclare parameter Real x1, redeclare parameter Real vec[20]);
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C4</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is equivalent to </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">C4expanded</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> below.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 class C4Expanded
   parameter Real x1;
   parameter Real vec[20];
 end C4Expanded;  
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of C4</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+1
+Simulation of C4
+</h2>
+<textarea id=check3textarea>
 instantiateModel ( C4 ) // 2015-09-08: OMC Bug - modification is not performed
 </textarea>  <div id=check3div> </div> <br>
 </div></body></html>

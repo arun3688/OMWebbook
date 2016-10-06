@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Hierarchically Structured Components with Inside and Outside Connectors</span></p>
+Hierarchically Structured Components with Inside and Outside Connectors
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">NOTE: In order to simulate the PartialDCMotor. model below, you first need to evaluate the declarations in sections 1-5 below. This is easily done by selecting these cells (to the right) and pushing shift-return as usual.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Types from Modelica.SIunits</span></p>
-</h1>
+<h2>
+1
+Types from Modelica.SIunits
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following are different types from the library </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Modelica.SIunits</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> used by the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PartDCMotorCircuit</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical units</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h3>
+1.1
+Electrical units
+</h3>
+<textarea id=check0textarea>
 type ElectricPotential     = Real;
 type ElectricCurrent     = Real(quantity = "ElectricCurrent", unit = "A");
 type Resistance       = Real(quantity = "Resistance", unit = "Ohm", min = 0);
@@ -48,10 +52,11 @@ type Inductance       = Real(quantity = "Inductance", unit = "H", min = 0);
 type Voltage         = ElectricPotential;
 type Current         = ElectricCurrent;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Mechanical units</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h3>
+1.2
+Mechanical units
+</h3>
+<textarea id=check1textarea>
 type Force           = Real(quantity = "Force", unit = "N");
 type Angle           = Real(quantity = "Angle", unit = "rad", displayUnit = "deg");
 type Torque         = Real(quantity = "Torque", unit = "N.m");
@@ -59,73 +64,79 @@ type AngularVelocity     = Real(quantity = "AngularVelocity", unit = "rad/s", di
 type AngularAcceleration   = Real(quantity = "AngularAcceleration", unit = "rad/s2");
 type MomentOfInertia     = Real(quantity = "MomentOfInertia", unit = "kg.m2");
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Other units</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h3>
+1.3
+Other units
+</h3>
+<textarea id=check2textarea>
 type Length         = Real(quantity = "Length", unit = "m");
 type Time            = Real(quantity = "Time", unit = "s");
 type Distance        = Length(min = 0);
 type Position         = Length;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical Connectors</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+2
+Electrical Connectors
+</h2>
+<textarea id=check3textarea>
 connector Pin         "Pin of an electrical component"
    Voltage v         "Potential at the pin";
    flow Current i       "Current flowing into the pin";
 end Pin;            //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector PositivePin     "Positive pin of an electrical component"
    Voltage v         "Potential at the pin";
    flow Current i       "Current flowing into the pin";
 end PositivePin;        //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 connector NegativePin     "Negative pin of an electrical component"
    Voltage v         "Potential at the pin";
    flow Current i       "Current flowing into the pin";
 end NegativePin;        //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Mechanical Connectors</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+3
+Mechanical Connectors
+</h2>
+<textarea id=check6textarea>
 connector RotFlange_a     "1D rotational flange (filled square)"
    Angle phi        "Absolute rotational angle of flange";
    flow Torque tau       "Torque in the flange";
 end RotFlange_a;      //From Modelica.Mechanics.Rotational.Interfaces
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 connector RotFlange_b     "1D rotational flange (filled square)"
    Angle phi            "Absolute rotational angle of flange";
    flow Torque tau       "Torque in the flange";
 end RotFlange_b;      //From Modelica.Mechanics.Rotational.Interfaces
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Block Signal Connectors</span></p>
-</h1>
-<textarea class="target" id=check8textarea>
+<h2>
+4
+Block Signal Connectors
+</h2>
+<textarea id=check8textarea>
 connector InPort        "Connector with input signals of type Real"
   parameter Integer n = 1    "Dimension of signal vector";
   input Real     signal[n]  "Real input signals";
 end InPort;            // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 connector OutPort        "Connector with output signals of type Real"
   parameter Integer n = 1    "Dimension of signal vector";
   output Real     signal[n]  "Real output signals";
 end OutPort;          // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Components</span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h2>
+5
+Components
+</h2>
+<h3>
+5.1
+Electrical Components
+</h3>
+<textarea id=check10textarea>
 partial model TwoPin          // Same as OnePort in Modelica.Electrical.Analog.Interfaces
                     "Component with two electrical pins p and n and current i from p to n"
   Voltage v                "Voltage drop between the two pins (= p.v - n.v)";
@@ -138,7 +149,7 @@ equation
   i = p.i;
 end TwoPin;          
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 class Resistor               "Ideal linear electrical Resistor"
   extends TwoPin;            // Same as OnePort
   parameter Real R(unit = "Ohm")     "Resistance";
@@ -146,7 +157,7 @@ equation
   R*i = v;
 end Resistor;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 class Inductor               "Ideal linear electrical Inductor"
   extends TwoPin;            // Same as OnePort
   parameter Real L(unit = "H")       "Inductance";
@@ -154,14 +165,14 @@ equation
   v = L*der(i);
 end Inductor;              // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 class Ground               "Ground node"
   Pin p;
 equation
   p.v = 0;
 end Ground;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 model SignalVoltage            "Generic Voltage source using the input signal as source Voltage"
   extends TwoPin;            // Same as OnePort
   InPort inPort(n=1);
@@ -169,10 +180,11 @@ equation
   inPort.signal[1] = v;
 end SignalVoltage;            // From Modelica.Electrical.Analog.Sources
 </textarea>  <div id=check14div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Mechanical Components</span></p>
-</h1>
-<textarea class="target" id=check15textarea>
+<h3>
+5.2
+Mechanical Components
+</h3>
+<textarea id=check15textarea>
 partial model Rigid           // Rotational class Rigid
                     "Base class for the rigid connection of two rotational 1D flanges"
   Angle phi(fixed=true)           "Absolute rotation angle of component";
@@ -184,7 +196,7 @@ equation
 end Rigid;                // From Modelica.Mechanics.Rotational.Interfaces
 
 </textarea>  <div id=check15div> </div> <br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 model Inertia              "1D rotational component with inertia"
   extends Rigid;
   parameter MomentOfInertia J = 1    "Moment of inertia";
@@ -196,10 +208,11 @@ equation
   J*a = rotFlange_a.tau + rotFlange_b.tau;
 end Inertia;              //From Modelica.Mechanics.Rotational
 </textarea>  <div id=check16div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electromechanical Components</span></p>
-</h1>
-<textarea class="target" id=check17textarea>
+<h3>
+5.3
+Electromechanical Components
+</h3>
+<textarea id=check17textarea>
 model EMF                 "Electromotoric force (electric/mechanic transformer)"
   extends TwoPin;
   parameter Real   k(unit = "N.m/A") = 1  "Transformation coefficient";
@@ -211,10 +224,11 @@ equation
   rotFlange_b.tau = - k*i;
 end EMF;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check17div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Signal Block Components</span></p>
-</h1>
-<textarea class="target" id=check18textarea>
+<h3>
+5.4
+Signal Block Components
+</h3>
+<textarea id=check18textarea>
 partial block MO             "Multiple Output continuous control block"
   parameter Integer nout = 1      "Number of outputs";
   OutPort       outPort(n = nout)  "Connector of Real output signals";
@@ -222,7 +236,7 @@ protected
   Real n[nout] = outPort.signal;
 end MO;                  // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check18div> </div> <br>
-<textarea class="target" id=check19textarea>
+<textarea id=check19textarea>
 block Step                "Generate step signals of type Real"
   extends MO(nout = 1);
   parameter Real height = 1        "Height of steps";
@@ -232,11 +246,12 @@ equation
   outPort.signal[1] = offset + (if time < startTime then 0 else height);
 end Step;                // Version simplified from Step in Modelica.Blocks.Sources
 </textarea>  <div id=check19div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Partial DC Motor</span></p>
-</h1>
+<h2>
+6
+Partial DC Motor
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Complex systems are naturally described as hierachical structures often many levels deep. We would like to create a structured library component class that captures most of the essentials of DC motor circuit. This is done in the incomplete </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PartialDCMotor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check20textarea>
+<textarea id=check20textarea>
 model PartialDCMotor
   InPort     inPort;            // Outside signal connector
   RotFlange_b   rotFlange_b;        // Outside rotational flange connector
@@ -255,7 +270,7 @@ equation
   connect(emf1.rotFlange_b, rotFlange_b);
 end PartialDCMotor;
 </textarea>  <div id=check20div> </div> <br>
-<textarea class="target" id=check21textarea>
+<textarea id=check21textarea>
 model PartDCMotorCircuit
   Step         step1;
   PartialDCMotor   partialDCMotor1;
@@ -265,13 +280,14 @@ equation
   connect(partialDCMotor1.rotFlange_b, inertia1.rotFlange_a);
 end PartDCMotorCircuit;    
 </textarea>  <div id=check21div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of PartDCMotorCircuit </span></p>
-</h1>
-<textarea class="target" id=check22textarea>
+<h2>
+7
+Simulation of PartDCMotorCircuit 
+</h2>
+<textarea id=check22textarea>
 simulate( PartDCMotorCircuit, stopTime=100 ) 
 </textarea>  <div id=check22div> </div> <br>
-<textarea class="target" id=check23textarea>
+<textarea id=check23textarea>
 plot( inertia1.w )
 </textarea> <br> <div id=check23div> </div> <br>
 <script type="text/javascript">

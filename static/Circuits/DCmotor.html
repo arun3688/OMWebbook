@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,13 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">DC Motor</span></p>
+DC Motor
 </h1>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Diagram 1:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> DC Motor</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 loadModel(Modelica)  // Load if not already loaded
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model DCMotor
    Modelica.Electrical.Analog.Basic.Resistor Resistor1;
    Modelica.Electrical.Analog.Basic.Inductor Inductor1;
@@ -54,13 +56,13 @@ equation
    connect(ConstantVoltage1.p, Resistor1.p);
 end DCMotor;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 instantiateModel(DCMotor)  // Take a look at the flattened model - not needed
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 simulate(DCMotor, startTime=0, stopTime=25)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot(Inertia1.flange_a.tau)
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -575,7 +577,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot(Inertia1.flange_a.phi)
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,31 +32,34 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 2</span></p>
+Exercise 2
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Functions</span></p>
-</h1>
+<h2>
+1
+Functions
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We want to search through an array of names and find the position of a particular name. The function should have two arguments, an array of names and the name we are looking for. The output will be the index where the name where found or an error will occur if the name was not found. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Write a class that tests the previous function.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Hint</span></p>
-</h1>
+<h3>
+1.1
+Hint
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Assert</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be used to check wether the result has been found or not and if it has not been found, the message in the second argument will be shown otherwise.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
-</h1>
-<div id="answer1" class="collapse">
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">findName</span></p>
-</h1>
-<textarea rows=17 class="target" id=check2textarea>
+<h3>
+1.2
+<button type= button class="btn btn-info" data-toggle="collapse" data-target= #answer0 > Answer</button>
+</h3>
+<div id=answer0 class=collapse><h4>
+1.2.1
+findName
+</h4>
+<textarea id=check2textarea>
 function findName
   input String nameArray[:];
   input String name;
@@ -73,13 +78,14 @@ algorithm
   assert(index<>-1, "findName: Failed");
 end findName;
 </textarea>  <div id=check2div> </div> <br>
-<textarea rows=1 class="target" id=check3textarea>
-findName({"C++", "Lisp", "Java", "Ada", "Modelica"},"Lisp")  
+<textarea id=check3textarea>
+findName({"C++", "Lisp", "Java", "Ada", "Modelica"},"Lisp")
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">testFindName</span></p>
-</h1>
-<textarea rows=7 class="target" id=check4textarea>
+<h4>
+1.2.2
+testFindName
+</h4>
+<textarea id=check4textarea>
 class testFindName
   Integer findLisp;
   String nameArray[:] = {"C++", "Lisp", "Java", "Ada", "Modelica"};
@@ -88,17 +94,19 @@ equation
   findLisp = findName(nameArray, lisp);
 end testFindName;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of testFindName</span></p>
-</h1>
+<h4>
+1.2.3
+Simulation of testFindName
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We see that the name "Lisp" exist in the array and is on position 2.</span></p><br>
-<textarea rows=1 class="target" id=check5textarea>
+<textarea id=check5textarea>
 simulate( testFindName ) 
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">testFindName2</span></p>
-</h1>
-<textarea rows=7 class="target" id=check6textarea>
+<h4>
+1.2.4
+testFindName2
+</h4>
+<textarea id=check6textarea>
 class testFindName2
   Integer findPascal;
   String nameArray[:] = {"C++", "Lisp", "Java", "Ada", "Modelica"};
@@ -107,12 +115,12 @@ equation
   findPascal = findName(nameArray, pascal);
 end testFindName2;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of testFindName2</span></p>
-</h1>
+<h4>
+1.2.5
+Simulation of testFindName2
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When searching for a name that is not in the array, the simulation is aborted. We see in the dslog.txt that the assertion fails.</span></p><br>
-<textarea rows=1 class="target" id=check7textarea>
+<textarea id=check7textarea>
 simulate( testFindName2 ) 
 </textarea>  <div id=check7div> </div> <br>
-</div>
-</div></body></html>
+</div></div></body></html>

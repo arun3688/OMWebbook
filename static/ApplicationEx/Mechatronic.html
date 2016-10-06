@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,18 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Mechatronic Systems - A DC Motor</span></p>
+Mechatronic Systems - A DC Motor
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The term </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">mechatronic</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is commonly used for systems consisting of both mechanical and electrical parts, i.e. a special kind of multi-domain system. An electric motor is a common example of such a system, and a DC-motor (DC = Direct Current) is the simplest kind of electrical motor. <br/>Modeling a DC-motor illustrates the ease of constructing multi-domain models in Modelica simply by connecting components from different domains. This particular model contains components from three domains: mechanical components such as </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">inertia1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, the electrical components </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">resistor1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">inductor1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">signalVoltage1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ground1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as well as pure signal components such as </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">step1.<br/></span></p><br>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A multi-domain  DCMotorCircuit model with mechanical, electrical andsignal-block components.</span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">IMPORTANT: To simulate the DCMotorCircuit model, you first need to select all group cells containing all needed models below, and push shift-return.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">DCMotorCircuit Model</span></p>
-</h1>
+<h2>
+1
+DCMotorCircuit Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DCMotorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class is declared below. What is different from previous examples is that certain connections couple components from different domains, e.g. the signal block </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">step1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is connected to the electrical component </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">signalVoltage1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and the electrical component </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">emf1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is connected to the mechanical component </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">inertia1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model DCMotorCircuit
   Resistor     resistor1(R = 10);
   Inductor     inductor1(L = 0.2, i(fixed = true));
@@ -61,15 +64,17 @@ equation
 end DCMotorCircuit;
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>To avoid confusion with the translational </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Flange_a</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> connector class we have renamed the rotational flange connector class to be called </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">RotFlange_a</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in this example, even though it is called </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Flange_a</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> in </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Mechanics.Rotational.Interfaces</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> library. Connectors have the same names as their classes apart from the first letter being lower-case, and a number being appended at the end.<br/><br/>In the following we present the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DCMotorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model including its parts and used classes in roughly a top-down manner, with the most interesting parts first. This gives the best overview and is also fine from a Modelica language point of view since classes can be used before they are defined.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">DC MotorCircuit Component Classes</span></p>
-</h1>
+<h2>
+2
+DC MotorCircuit Component Classes
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DCMotorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model contains instances of mechanical, electrical and signal classes, which are declared below.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Mechanical Component Classes: Inertia, Rigid</span></p>
-</h1>
+<h3>
+2.1
+Mechanical Component Classes: Inertia, Rigid
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Inertia</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class models the behavior of rotating masses. It inherits some properties from the base class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rigid</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model Inertia    "1D rotational component with inertia"
   extends Rigid;
   parameter MomentOfInertia J = 1    "Moment of inertia";
@@ -81,7 +86,7 @@ equation
   J*a = rotFlange_a.tau + rotFlange_b.tau;
 end Inertia;              //From Modelica.Mechanics.Rotational
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 partial model Rigid           // Rotational class Rigid
            "Base class for the rigid connection of two rotational 1D flanges"
   Angle phi               "Absolute rotation angle of component";
@@ -92,11 +97,12 @@ equation
   rotFlange_b.phi = phi;
 end Rigid;                // From Modelica.Mechanics.Rotational.Interfaces
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Component Classes</span></p>
-</h1>
+<h3>
+2.2
+Electrical Component Classes
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">EMF</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class below converts electrical energy to rotational mechanical energy. The instance </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">emf1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">EMF</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> (Electro Magnetic Force) is probably the most interesting component in the circuit since it converts electrical energy to mechanical rotational energy. This class is an idealized model of the most important properties of a voltage-to-rotation converter excluding resistance, inductance and inertia.<br/><br/>The rest of the declared classes are the usual simple electrical components which are presented once more for completeness.<br/></span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model EMF                 "Electromotoric force (electric/mechanic transformer)"
   extends TwoPin;
   parameter Real   k(unit = "N.m/A") = 1  "Transformation coefficient";
@@ -108,7 +114,7 @@ equation
   rotFlange_b.tau = - k*i;
 end EMF;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 partial model TwoPin          // Same as OnePort in Modelica.Electrical.Analog.Interfaces
                     "Component with two electrical pins p and n and current i from p to n"
   Voltage v                "Voltage drop between the two pins (= p.v - n.v)";
@@ -121,7 +127,7 @@ equation
   i = p.i;
 end TwoPin;          
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class Resistor               "Ideal linear electrical Resistor"
   extends TwoPin;            // Same as OnePort
   parameter Real R(unit = "Ohm")     "Resistance";
@@ -129,7 +135,7 @@ equation
   R*i = v;
 end Resistor;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 class Inductor               "Ideal linear electrical Inductor"
   extends TwoPin;            // Same as OnePort
   parameter Real L(unit = "H")       "Inductance";
@@ -137,18 +143,19 @@ equation
   v = L*der(i);
 end Inductor;              // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 class Ground               "Ground node"
   Pin p;
 equation
   p.v = 0;
 end Ground;                // From Modelica.Electrical.Analog.Basic 
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Signal and Signal Voltage Classes: SignalVoltage, MO, Step</span></p>
-</h1>
+<h3>
+2.3
+Signal and Signal Voltage Classes: SignalVoltage, MO, Step
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">signalVoltage</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class converts an input signal to a voltage. This is used in the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DCMotorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> to convert a step signal generated by the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">step1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> instance of the simplified </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Step</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class below to a step voltage. The full version of the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Step</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> class that can handle any number of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">input</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">output</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> signals. The combination of the s</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">tep1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">signalVoltage1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> components is a voltage generator that feeds a step voltage into the rest of the circuit. The partial class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">MO</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is simply a base class inherited by </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Step</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 model SignalVoltage            "Generic Voltage source using the input signal as source Voltage"
   extends TwoPin;            // Same as OnePort
   InPort inPort(n=1);
@@ -156,7 +163,7 @@ equation
   inPort.signal[1] = v;
 end SignalVoltage;            // From Modelica.Electrical.Analog.Sources
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 partial block MO             "Multiple Output continuous control block"
   parameter Integer nout = 1      "Number of outputs";
   OutPort       outPort(n = nout)  "Connector of Real output signals";
@@ -164,7 +171,7 @@ protected
   Real n[nout] = outPort.signal;
 end MO;                  // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 block Step                "Generate step signals of type Real"
   extends MO(nout = 1);
   parameter Real height = 1        "Height of steps";
@@ -174,105 +181,114 @@ equation
   outPort.signal[1] = offset + (if time < startTime then 0 else height);
 end Step;                // Version simplified from Step in Modelica.Blocks.Sources
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">DCMotorCircuit Connector Classes</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Mechanical Connector Classes: RotFlange_a, RotFlange_b </span></p>
-</h1>
-<textarea class="target" id=check11textarea>
+<h2>
+3
+DCMotorCircuit Connector Classes
+</h2>
+<h3>
+3.1
+Mechanical Connector Classes: RotFlange_a, RotFlange_b 
+</h3>
+<textarea id=check11textarea>
 connector RotFlange_a       "1D rotational flange (filled square)"
    Angle phi           "Absolute rotational angle of flange";
    flow Torque tau         "Torque in the flange";
 end RotFlange_a;        //From Modelica.Mechanical.Rotational.Interfaces
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 connector RotFlange_b       "1D rotational flange (filled square)"
    Angle phi           "Absolute rotational angle of flange";
    flow Torque tau         "Torque in the flange";
 end RotFlange_b;        //From Modelica.Mechanical.Rotational.Interfaces
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Electrical Connectors</span></p>
-</h1>
-<textarea class="target" id=check13textarea>
+<h3>
+3.2
+Electrical Connectors
+</h3>
+<textarea id=check13textarea>
 connector Pin           "Pin of an electrical component"
    Voltage v           "Potential at the pin";
    flow Current i         "Current flowing into the pin";
 end Pin;              //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 connector PositivePin       "Positive pin of an electrical component"
    Voltage v           "Potential at the pin";
    flow Current i         "Current flowing into the pin";
 end PositivePin;          //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 connector NegativePin       "Negative pin of an electrical component"
    Voltage v           "Potential at the pin";
    flow Current i         "Current flowing into the pin";
 end NegativePin;          //From Modelica.Electrical.Analog.Interfaces
 </textarea>  <div id=check15div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Block Signal Connectors</span></p>
-</h1>
-<textarea class="target" id=check16textarea>
+<h3>
+3.3
+Block Signal Connectors
+</h3>
+<textarea id=check16textarea>
 connector InPort        "Connector with input signals of type Real"
   parameter Integer n = 1    "Dimension of signal vector";
   input Real     signal[n]  "Real input signals";
 end InPort;            // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check16div> </div> <br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 connector OutPort        "Connector with output signals of type Real"
   parameter Integer n = 1    "Dimension of signal vector";
   output Real     signal[n]  "Real output signals";
 end OutPort;          // From Modelica.Blocks.Interfaces
 </textarea>  <div id=check17div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Types from Modelica.SIunits</span></p>
-</h1>
+<h3>
+3.4
+Types from Modelica.SIunits
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following are different types from the library </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Modelica.SIunits</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> used by the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">DCMotorCircuit</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Electrical units</span></p>
-</h1>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
+type Time = Real (final quantity="Time", final unit="s");
+</textarea>  <div id=check18div> </div> <br>
+<h4>
+3.4.1
+Electrical units
+</h4>
+<textarea id=check19textarea>
 type ElectricPotential     = Real;
 type ElectricCurrent     = Real(quantity = "ElectricCurrent", unit = "A");
 type Resistance       = Real(quantity = "Resistance", unit = "Ohm", min = 0);
 type Inductance       = Real(quantity = "Inductance", unit = "H", min = 0);
 type Voltage         = ElectricPotential;
 type Current         = ElectricCurrent;
-</textarea>  <div id=check18div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Mechanical units</span></p>
-</h1>
-<textarea class="target" id=check19textarea>
+</textarea>  <div id=check19div> </div> <br>
+<h4>
+3.4.2
+Mechanical units
+</h4>
+<textarea id=check20textarea>
 type Force           = Real(quantity = "Force", unit = "N");
 type Angle           = Real(quantity = "Angle", unit = "rad", displayUnit = "deg");
 type Torque         = Real(quantity = "Torque", unit = "N.m");
 type AngularVelocity     = Real(quantity = "AngularVelocity", unit = "rad/s", displayUnit = "rev/min");
 type AngularAcceleration   = Real(quantity = "AngularAcceleration", unit = "rad/s2");
 type MomentOfInertia     = Real(quantity = "MomentOfInertia", unit = "kg.m2");
-</textarea>  <div id=check19div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Other units</span></p>
-</h1>
-<textarea class="target" id=check20textarea>
+</textarea>  <div id=check20div> </div> <br>
+<h4>
+3.4.3
+Other units
+</h4>
+<textarea id=check21textarea>
 type Length         = Real(quantity = "Length", unit = "m");
 type Time            = Real(quantity = "Time", unit = "s");
 type Distance        = Length(min = 0);
 type Position         = Length;
-</textarea>  <div id=check20div> </div> <br>
-<textarea class="target" id=check21textarea>
-type Time = Real (final quantity="Time", final unit="s");
 </textarea>  <div id=check21div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of DCMotorCircuit</span></p>
-</h1>
-<textarea class="target" id=check22textarea>
+<h2>
+4
+Simulation of DCMotorCircuit
+</h2>
+<textarea id=check22textarea>
 simulate( DCMotorCircuit, stopTime=150 )
 </textarea>  <div id=check22div> </div> <br>
-<textarea class="target" id=check23textarea>
+<textarea id=check23textarea>
 plot(signalVoltage1.i)
 </textarea> <br> <div id=check23div> </div> <br>
 <script type="text/javascript">

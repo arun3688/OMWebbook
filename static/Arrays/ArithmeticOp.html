@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Arithmetic Array Operators</span></p>
+Arithmetic Array Operators
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Arithmetic operators on arrays and certain combinations of arrays and scalars are available through the standard arithmetic operators, addition (+), subtraction (-), division (/), multiplication as well as through the exponentiation (^) operator. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Addition and Subtraction</span></p>
-</h1>
+<h2>
+1
+Addition and Subtraction
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Strangely enough, elementwise operations for the combination of an array and a scalar operand are defined for multiplication and division but not for addition and subtraction.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class AddSub
   Real Add1 = {1, 2, 3} + 1;          // Not allowed!
   Real Add2 = {1, 2, 3} + {1, 2};     // Not allowed, different array sizes!
@@ -46,7 +49,7 @@ class AddSub
   Real Sub1[3] = {1, 2, 3} - {1, 2, 0};    // Result: {0, 0, 3}
 end AddSub;  
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class AddSub2
   Real Add3[2, 2] = {{1, 1}, {2, 2}} + {{1, 2}, {3, 4}};
                                       // Result: {{2, 3}, {5, 6}}
@@ -54,33 +57,34 @@ class AddSub2
 end AddSub2;  
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Try interactive:</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 {{1, 1}, {2, 2}}  // Works
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 [1, 1; 2, 2]   //Works
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 2.0*{{1, 1}, {2, 2}}  // Works
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 {{1, 1}, {2, 2}} + {{1, 2}, {3, 4}}   // Works
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of AddSub and AddSub2</span></p>
-</h1>
+<h3>
+1.1
+Simulation of AddSub and AddSub2
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When we try to simulate AddSub, it does not work since different array sizes are not allowed in Addition operand </span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate( AddSub )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 simulate( AddSub2 )
 </textarea>  <div id=check7div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Look at results:</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 val(Sub1[1],1.)  
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot({Sub1[1], Sub1[3],Add3[1,1]})
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">
@@ -1097,10 +1101,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Division</span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h2>
+2
+Division
+</h2>
+<textarea id=check10textarea>
 class Div
   Real[3] Div1, Div2, Div3;
 equation
@@ -1109,26 +1114,27 @@ equation
   Div3 = {1, 2, 3} / {1, 2, 2};          // Not allowed!
 end Div;
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 class Div2
   Real Div1[3];
 equation
   Div1 = {2, 4, 6} / 2;                  // Result: {1, 2, 3}
 end Div2;
 </textarea>  <div id=check11div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of Div and Div2</span></p>
-</h1>
-<textarea class="target" id=check12textarea>
+<h3>
+2.1
+Simulation of Div and Div2
+</h3>
+<textarea id=check12textarea>
 simulate( Div )  //Error in model
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 simulate( Div2 )
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 val(Div1[2],0.)
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 plot({Div1[1],Div1[2],Div1[3]})
 </textarea> <br> <div id=check15div> </div> <br>
 <script type="text/javascript">
@@ -2145,11 +2151,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Multiplication</span></p>
-</h1>
+<h2>
+3
+Multiplication
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The array multiplication operator is only defined for vectors and matrices and has several different definitions depending on the type of its arguments. If both operands are vectors then array multiplication means scalar product, otherwise, if the operands are vectors or matrices then it means matrix multiplication. If one of the operands is a scalar, then the multiplication operation is defined as elementwise multiplication, which however is not available when both operands are arrays despite the fact that analogous elementwise operations are defined for addition and subtraction. The reason is that we have already used the multiplication notation (*) for the more common operation of matrix multiplication.<br/></span></p><br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 class Multiplication
   Real m1[3] = {1, 2, 3} * 2;       // Elementwise mult: {2, 4, 6};
   Real m2[3] = 3 * {1, 2, 3};       // Elementwise mult: {3, 6, 9};
@@ -2161,25 +2168,26 @@ class Multiplication
   Real m8[2, 2] = [1, 2; 3, 4] * [1, 2; 2, 1];   // Matrix mult: {{5, 4}, {11, 10}};
 end Multiplication;  
 </textarea>  <div id=check16div> </div> <br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 {{1, 2}, {3, 4}} * {1, 2} 
 </textarea>  <div id=check17div> </div> <br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 {1, 2, 3} * [1; 2; 10]
 </textarea>  <div id=check18div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of Multiplication</span></p>
-</h1>
-<textarea class="target" id=check19textarea>
+<h3>
+3.1
+Simulation of Multiplication
+</h3>
+<textarea id=check19textarea>
 simulate( Multiplication )
 </textarea>  <div id=check19div> </div> <br>
-<textarea class="target" id=check20textarea>
+<textarea id=check20textarea>
 val(m1[2],0.)
 </textarea>  <div id=check20div> </div> <br>
-<textarea class="target" id=check21textarea>
+<textarea id=check21textarea>
 val(m3,0.)
 </textarea>  <div id=check21div> </div> <br>
-<textarea class="target" id=check22textarea>
+<textarea id=check22textarea>
 plot({m1[2],m3})
 </textarea> <br> <div id=check22div> </div> <br>
 <script type="text/javascript">
@@ -2694,11 +2702,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Exponentiation</span></p>
-</h1>
+<h2>
+4
+Exponentiation
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Array exponentiation is the same as repeated matrix multiplication and is therefore only defined when the first operand is a square matrix and the second operand is a non-negative integer.</span></p><br>
-<textarea class="target" id=check23textarea>
+<textarea id=check23textarea>
 class Exp
   Real e1[2, 2];
   Real e2[2, 2];
@@ -2707,16 +2716,17 @@ equation
   e2 = [1, 2; 1, 2]  ^ 2;            // Result: {{3, 6}, {3, 6}}
 end Exp;
 </textarea>  <div id=check23div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of Exponentiation</span></p>
-</h1>
-<textarea class="target" id=check24textarea>
+<h3>
+4.1
+Simulation of Exponentiation
+</h3>
+<textarea id=check24textarea>
 simulate( Exp )  
 </textarea>  <div id=check24div> </div> <br>
-<textarea class="target" id=check25textarea>
+<textarea id=check25textarea>
 val(e1[1,1],0)
 </textarea>  <div id=check25div> </div> <br>
-<textarea class="target" id=check26textarea>
+<textarea id=check26textarea>
 plot({e1[1,1],e2[1,2]})
 </textarea> <br> <div id=check26div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,15 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Biological and Ecological Systems</span></p>
+Biological and Ecological Systems
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In this section we will present a few examples of models of biological and ecological systems. Normally little exact knowledge is available about such systems, which would be needed for detailed physical modeling. This forces researchers to use inductive models based on experimental observations rather than physical intuition of system dynamics, which has the disadvantage that the models are difficult to validate for predictions outside the observed range.A combined approach is possible, where some approximate physical knowledge is combined with adapting model coefficients based on experimental observations. Such an approach will be explored in the subsequent models where we will investigate a continuous-time model for population dynamics and a discrete-time cyclic growth model for the energy forest.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Population Dynamics</span></p>
-</h1>
+<h2>
+1
+Population Dynamics
+</h2>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In this example we will study the dynamics of populations of animals in an idealized ecological system.We assume that a population contains P individuals. In general, the change rate of the number of animals in a population is the difference between the population growth rate or birth rate and its death rate.The modelica class is presentend below</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class PopulationGrowth
    parameter Real g = 0.04 "Growth factor of population";
    parameter Real d = 0.0005 "Death factor of population";
@@ -46,10 +49,10 @@ equation
    der(P) = (g-d)*P;
 end PopulationGrowth;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate(PopulationGrowth, stopTime=100)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot(P)
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">
@@ -565,11 +568,12 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">As expected, the plot shows an exponentially increasing population. We should, however, remember that exponential growth can never persist indefinitely in a closed system with a limited food supply</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;"> A Predator-Prey Model with Foxes and Rabbits</span></p>
-</h1>
+<h2>
+2
+ A Predator-Prey Model with Foxes and Rabbits
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Now we would like to study a more interesting system consisting of two interacting populations of predators and prey animals. The simplest model of this kind is the so-called Lotka-Volterra model. In this case, the predators are foxes and the prey animals are rabbits. The rabbit population of size R is assumed to have an unlimited food supply. On the other hand, the fox population of size F feeds on the rabbits. The rate of rabbit deaths can be assumed to be proportional to the number of foxes due to increased hunting pressure, and to the number of rabbits due to the higher probability of success in hunting. The modelica class is presented below</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 class LotkaVolterra
    parameter Real g_r =0.04 "Natural growth rate for rabbits";
    parameter Real d_rf=0.0005 "Death rate of rabbits due to foxes";
@@ -582,10 +586,10 @@ equation
    der(foxes) = g_fr*d_rf*rabbits*foxes - d_f*foxes;
 end LotkaVolterra;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 simulate(LotkaVolterra, stopTime=1000)
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot({rabbits, foxes})
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">
@@ -1101,20 +1105,22 @@ labels:
 )
 </script>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The Lotka-Volterra model has a rather special property: the solution variables, i.e., the rabbit and fox population sizes, do not approach steady-state values as time goes by. Instead, they approach periodic steady-state values- the solution oscillates. The shape of the oscillation is very characteristic for Lotka-Volterra models and corresponds rather well to several experimental population studies of predators and prey animals. However, this does not prove our partly inductive model equations to be correct, only that they seem to have certain approximate physical significance.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">A Simplified Human-Nature Dynamics Model with Rich and Poor</span></p>
-</h1>
+<h2>
+3
+A Simplified Human-Nature Dynamics Model with Rich and Poor
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Simplified approaches to World models can describe an interesting set of behaviors while keeping model complexity at a minimum. One such very simplified model is the Handy model, an acronym for Human and Nature Dynamical model.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Handy Model Equations, Description, and Modeled Societies</span></p>
-</h1>
+<h3>
+3.1
+Handy Model Equations, Description, and Modeled Societies
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the Handy model, the total population is divided between two groups: Commoners and Elite, of population sizes commoners and elite respectively. The population grows through birth rates birthRComm and birthRElite, which are constants. The population shrinks through death rates deathRComm and deathRElite which are in turn defined as functions of wealth. The main dynamics part of the model is defined by the following four differential equations:</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">der(commoners) = birthRComm*commoners - deathRComm*commoners;</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">der(elite) = birthRElite*elite   deathRElite*elite;</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">der(nature) = natureRegen*nature*(natureCap-nature)   depletFactor*nature;</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">der(wealth) = depletFactor*commoners*nature   consRComm - consRElite;</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The modelica model of handybase is presented below</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 partial model HandyBase
     // All parameters, Egalitarian values
     parameter Real birthRComm = 0.03 "Birth Rate of Commoners. Number of people/year";
@@ -1163,18 +1169,20 @@ equation
     wealth = 0;
 end HandyBase;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Types of Societies, Simulation Methodology and Scenarios</span></p>
-</h1>
+<h3>
+3.2
+Types of Societies, Simulation Methodology and Scenarios
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The Handy model can be used to define three types of societies:</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Egalitarian society</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> no elite, i.e., the elite population elite = 0. Scenario models HandyEgal1 to ModelEgal4.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Equitable society</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> commoners and elite, both groups earn the same per person, i.e., ineqFactor=1. Scenario models HandyEquit1 to HandyEquit5.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Unequal society</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> commoners and elite, an elite person earns more than a commoner; ineqFactor&gt;=1. Scenario models HandyUnEq1 to HandyUnEq4.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation Scenarios of an Egalitarian Society</span></p>
-</h1>
+<h4>
+3.2.1
+Simulation Scenarios of an Egalitarian Society
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">For this type of society, the optimal value for the depletion factor that maximizes the carrying capacity (carryingCap) is depletFactorEq=6.67E-6, which has been derived analytically (Motesharrei, Rivas, and Kalnay 2013). Below is the HandyEgalitarianBase model which is inherited by all Egal models</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 partial model HandyEgalitarianBase "Egal - Scenarios with Egalitarian Society (No-Elites)"
     extends HandyBase;
     // Scenario Egal_1: Soft Landing to Equilibrium
@@ -1195,7 +1203,7 @@ equation
 end HandyEgalitarianBase;
 </textarea>  <div id=check7div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Scenario Model HandyEgal1:  Soft landing to Equilibrium </span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 model HandyEgal1 "Scenario Egal1: Soft Landing to Equilibrium"
     extends HandyEgalitarianBase;
 equation
@@ -1205,10 +1213,10 @@ equation
    wealth_ = wealth * 80000 / 400;
 end HandyEgal1;
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 simulate(HandyEgal1, stopTime=1000)
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 plot({commoners_, elites_, nature_, wealth_, carryingCap_, carryingCapMax_})
 </textarea> <br> <div id=check10div> </div> <br>
 <script type="text/javascript">
@@ -2728,7 +2736,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Scenario Model HandyEgal3:  Cycles of Prosperity and Collapse . In this scenario we increase the depletion intensity by selecting depletFactor = 4 * depletFactorEq.</span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model HandyEgal3 "Scenario Egal_3: Cycles of Prosperity and Collapse"
   extends HandyEgalitarianBase;
 equation
@@ -2738,10 +2746,10 @@ equation
     wealth_ = wealth * 100000 / 2000;
 end HandyEgal3;
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 simulate(HandyEgal3, stopTime=400)
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 plot({commoners_, elites_, nature_, wealth_, carryingCap_, carryingCapMax_})
 </textarea> <br> <div id=check13div> </div> <br>
 <script type="text/javascript">
@@ -4260,10 +4268,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation Scenarios of an Equitable Society Elite and Commoners with equal Wealth</span></p>
-</h1>
-<textarea class="target" id=check14textarea>
+<h3>
+3.3
+Simulation Scenarios of an Equitable Society Elite and Commoners with equal Wealth
+</h3>
+<textarea id=check14textarea>
 partial model HandyEquitableBase "Equit Scenarios: Equitable society (with Workers and Non-Workers)"
     extends HandyBase(ineqFactor = 1, depletFactorEq = 8.33e-006);
   initial equation
@@ -4277,7 +4286,7 @@ equation
 end HandyEquitableBase;  
 </textarea>  <div id=check14div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Scenario HandyEquit1:  Soft Landing to Optimal Equilibrium </span></p><br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 model HandyEquit1
 "Equitable society Scenario Equit1: Soft Landing to Optimal Equilibrium"
    extends HandyEquitableBase;
@@ -4290,10 +4299,10 @@ equation
    wealth_ = wealth * 80000 / 400;
 end HandyEquit1;
 </textarea>  <div id=check15div> </div> <br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 simulate(HandyEquit1, stopTime=1000)
 </textarea>  <div id=check16div> </div> <br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 plot({commoners_, elites_, nature_, wealth_, carryingCap_, carryingCapMax_})
 </textarea> <br> <div id=check17div> </div> <br>
 <script type="text/javascript">
@@ -5813,7 +5822,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Scenario HandyEquit2:  Oscillatory Approach to Equilibrium  . If the depletion factor is further incremented by making depletFactor = 2.64 * depletFactorEq we obtain an oscillatory behavior.</span></p><br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 model HandyEquit2 "Equitable society Scenario Equit2: Oscillatory Approach to Equilibrium"
     extends HandyEquitableBase;
   initial equation
@@ -5825,10 +5834,10 @@ model HandyEquit2 "Equitable society Scenario Equit2: Oscillatory Approach to Eq
     wealth_ = wealth * 80000 / 2000;
 end HandyEquit2;
 </textarea>  <div id=check18div> </div> <br>
-<textarea class="target" id=check19textarea>
+<textarea id=check19textarea>
 simulate(HandyEquit2, stopTime=1000)
 </textarea>  <div id=check19div> </div> <br>
-<textarea class="target" id=check20textarea>
+<textarea id=check20textarea>
 plot({commoners_, elites_, nature_, wealth_, carryingCap_, carryingCapMax_})
 </textarea> <br> <div id=check20div> </div> <br>
 <script type="text/javascript">
@@ -7347,11 +7356,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation Scenarios of an Unequal Society Elite and Commoners with Different Income</span></p>
-</h1>
+<h3>
+3.4
+Simulation Scenarios of an Unequal Society Elite and Commoners with Different Income
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The unequal society appears to be closer to the status of our current world. The inequality factor ineqFactor is made to range from 10 to 100 in the unequal scenarios.We will reproduce a pair of experiments intended to show the effect of birth control as a means for moving from an unsustainable into a sustainable mode of behavior.</span></p><br>
-<textarea class="target" id=check21textarea>
+<textarea id=check21textarea>
 partial model HandyUnEquitableBase
 "Uneq Scenarios: Unequal Society (with Elite and Commoners)"
   extends HandyBase(ineqFactor = 100, depletFactorEq = 0.00000667,
@@ -7365,7 +7375,7 @@ equation
 end HandyUnEquitableBase;
 </textarea>  <div id=check21div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Scenario HandyUneq2:  Full Collapse . In this scenario the inequality factor is set very high: ineqFactor = 100. Also an initial seed for the population of the Elite is set to elite = 0.2 and a large depletion factor (including pollution effects) depletFactor = 1E-4 are selected</span></p><br>
-<textarea class="target" id=check22textarea>
+<textarea id=check22textarea>
 model HandyUnEq2
 "UnEquitable society Scenario UnEq2: Type-II Collapse (Full Collapse)"
    extends HandyUnEquitableBase(ineqFactor = 100,
@@ -7381,10 +7391,10 @@ equation
    elites_ = elites * 100;
 end HandyUnEq2;
 </textarea>  <div id=check22div> </div> <br>
-<textarea class="target" id=check23textarea>
+<textarea id=check23textarea>
 simulate(HandyUnEq2, stopTime=400)
 </textarea>  <div id=check23div> </div> <br>
-<textarea class="target" id=check24textarea>
+<textarea id=check24textarea>
 plot({commoners_, elites_, nature_, wealth_, carryingCap_, carryingCapMax_})
 </textarea> <br> <div id=check24div> </div> <br>
 <script type="text/javascript">
@@ -8908,7 +8918,7 @@ labels:
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">   The depletion factor is set to its equilibrium value, derived analytically: depletFactor = depletFactorEq = 6.35E-6, much lower than the previous scenario.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">   The initial values for the population are set as commoners=10 000 and elite=3000.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">   The birth rates are assumed to be controllable and selected as birthRComm=0.065 and birthRElite=0.02</span></p><br>
-<textarea class="target" id=check25textarea>
+<textarea id=check25textarea>
 model HandyUnEq3
   "UnEquitable society UnEquit3: Soft Landing to Optimal Equilibrium"
   extends HandyUnEquitableBase(ineqFactor = 10, depletFactorEq = 0.00000635,
@@ -8925,10 +8935,10 @@ equation
   commoners_ = commoners;
 end HandyUnEq3;
 </textarea>  <div id=check25div> </div> <br>
-<textarea class="target" id=check26textarea>
+<textarea id=check26textarea>
 simulate(HandyUnEq3, stopTime=400)
 </textarea>  <div id=check26div> </div> <br>
-<textarea class="target" id=check27textarea>
+<textarea id=check27textarea>
 plot({commoners_, elites_, nature_, wealth_, carryingCap_, carryingCapMax_})
 </textarea> <br> <div id=check27div> </div> <br>
 <script type="text/javascript">

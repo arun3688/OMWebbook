@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,10 +32,10 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Annotations</span></p>
+Annotations
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>An annotation can be understood as an attribute or property containing information associated with some element of a Modelica model. Examples are model documentation and graphical layout information concerning icons and connections associated with models. The graphical view usually makes models easier to understand. <br/><br/></span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is an example of an annotation containing information about the graphical layout of an icon representing a resistor model, the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">annotation</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the name </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Icon</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and contains instances of the graphical annotation elements </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rectangle</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Text</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Line</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, etc. <br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model Resistor1
   annotation(Icon(
     Rectangle(extent = [-70, -30, 70, 30], style(fillPattern = 1)),
@@ -44,7 +46,7 @@ model Resistor1
 end Resistor1;
 
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate(Resistor1)
 </textarea>  <div id=check1div> </div> <br>
 </div></body></html>

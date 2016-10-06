@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,12 +32,13 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">DC Motor with Backlash</span></p>
+DC Motor with Backlash
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Standard Modelica Library Components</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Standard Modelica Library Components
+</h2>
+<textarea id=check0textarea>
 model DCMotorCircuit
   Modelica.Mechanics.Rotational.Components.Inertia inertia1(J = 1.0, w(fixed = true), phi(fixed = true));
   Modelica.Electrical.Analog.Basic.Inductor        inductor1(L = 1.0, i(fixed = true));
@@ -54,16 +57,17 @@ equation
   connect(emf1.flange, inertia1.flange_a);
 end DCMotorCircuit;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of DCMotorCircuit</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h3>
+1.1
+Simulation of DCMotorCircuit
+</h3>
+<textarea id=check1textarea>
 loadModel(Modelica)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate( DCMotorCircuit, stopTime=10 )
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( inertia1.w )
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -578,22 +582,25 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Modelica.Mechanics.Rotational.ElastoBacklash</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Description</span></p>
-</h1>
+<h2>
+2
+Modelica.Mechanics.Rotational.ElastoBacklash
+</h2>
+<h3>
+2.1
+Description
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This element consists of a backlash element connected in series to a spring and damper element which are connected in parallel. The spring constant shall be non-zero, otherwise the component cannot be used. <br/>In combination with components IdealGear, the ElastoBacklash model can be used to model a gear box with backlash, elasticity and damping.<br/>The parameters are: </span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Name Default Description</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">b 0 Total backlash [rad]</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">c 1.e5S pring constant (c &gt; 0 required) [N.m/rad]</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">phi_rel0 0 Unstretched spring angle [rad]</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">d 0 Damping constant [N.m.s/rad]</span><span style=" font-family:'Times New Roman'; font-size:14pt; color:#000000;"><br/></span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Source Code</span></p>
-</h1>
-<textarea class="target" id=check4textarea>
+<h3>
+2.2
+Source Code
+</h3>
+<textarea id=check4textarea>
 model DCMotorCircuitBacklash
   Modelica.Mechanics.Rotational.Components.Inertia inertia1(J=1),       
                                                    inertia2(J=6, w(fixed = true), phi(fixed = true));
@@ -622,16 +629,17 @@ equation
 
 end DCMotorCircuitBacklash;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of DCMotorCircuitBackClash</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h3>
+2.3
+Simulation of DCMotorCircuitBackClash
+</h3>
+<textarea id=check5textarea>
 loadModel(Modelica)
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate( DCMotorCircuitBacklash, stopTime=25 )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(elastoBacklash.w_rel)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -1160,7 +1168,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot( elastoBacklash.phi_rel )
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -1689,7 +1697,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot( { inertia1.w, inertia2.w } )
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">
@@ -2220,14 +2228,14 @@ labels:
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">For comparison we define a model with less mass in inertia2 (J=1), no damping d, and weaker string</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">constant c, to show more even more dramatic backlash phenomena</span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 model DCMotorCircuitBacklash2 =
   DCMotorCircuitBacklash( inertia1(J=1), inertia2(J=1), elastoBacklash( b=1, c=1e5, d=0 ) );
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 simulate( DCMotorCircuitBacklash2, stopTime=25 )
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 plot( { inertia1.w, inertia2.w } )
 </textarea> <br> <div id=check12div> </div> <br>
 <script type="text/javascript">
@@ -2758,11 +2766,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">SimpleElastoBacklash</span></p>
-</h1>
+<h3>
+2.4
+SimpleElastoBacklash
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Most properties of the elastic transmission with backlash, both continuous and discrete, are represented in the partial model SimpleElastoBacklash below. This is a typical hybrid mode switching model, with the finite state automaton represented by the equations for the Boolean variables backward, forward and slack and the conditional equation for the torque tau having different right hand side expressions in the three operationg modes.</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 partial model SimpleElastoBacklash
   Boolean backward, slack, forward;      // Mode variables
   parameter Real  b                "Size of backlash region";
@@ -2788,7 +2797,7 @@ equation
 end SimpleElastoBacklash;
 </textarea>  <div id=check13div> </div> <br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The ElastoBacklash model consists of a backlash element connected in series to a spring and damper element, which are connected in parallel (Figure 13-90). This is a slight extension compared to the previous SimpleElastoBacklash model since we have introduced a damping element with a damping constant d. The damping element contributes to the torque tau equation by the expression d*w_rel that is nonzero provided d is nonzero. The spring constant must be nonzero, otherwise the model cannot be used. Another extension compared to the simple model is that a constant bEps for minimum backlash has been introduced. The backlash behavior of the model is available only if abs(b) &gt; bEps, since if b is too small or zero, numeric problems with too many generated state events will occur. The following ElastoBacklash model is from the Modelica standard library version MSL3.2.1, Mechanics.Rotational.Components package, but slightly reformatted to increase readability.</span></p><br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 model ElastoBacklash
 "Backlash connected in series to linear spring and damper
 (backlash is modeled with elasticity)"

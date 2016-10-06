@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,11 +32,11 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Variability Prefixes</span></p>
+Variability Prefixes
 </h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The prefixes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">constant, parameter, discrete</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of a variable declaration are called variability prefixes and define in which situations the value of a variable may change and when it is kept constant.  A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">constant</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the least variability. A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">parameter</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has some more variability since it can be changed between simulations. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Discrete</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> variables are variables that change value only at </span><a href="../DiscreteHybrid/SampleClock.html
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The prefixes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">constant, parameter, discrete</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of a variable declaration are called variability prefixes and define in which situations the value of a variable may change and when it is kept constant.  A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">constant</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has the least variability. A </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">parameter</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> has some more variability since it can be changed between simulations. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Discrete</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> variables are variables that change value only at </span><a href="static/DiscreteHybrid/SampleClock.html
 "><span style=" font-family:'Times New Roman'; font-size:12pt; text-decoration: underline; color:#0000ff;">event instants</span></a><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Boolean</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Integer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">String</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> variables are discrete-time by default. <br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class VariabilityPref
   constant   Real     PI  = 3.14159;
   parameter  Real     p   = 36.7;

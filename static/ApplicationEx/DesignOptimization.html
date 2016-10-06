@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,19 +32,20 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Design Optimization</span></p>
+Design Optimization
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>An important use for modeling and simulation is to improve a system design, usually before it is physically realized and manufactured. In this process it is customary to perform a number of simulations for different values of the design parameters, until a design has been obtained that best fulfills a given set of design criteria. To automate this process it is very useful if the simulation environment has programmable scripting facilities that provide the glue between optimization algorithms, executing simulations and various computational functions.<br/><br/>The following example demonstrates the solution of a small but non-trivial design optimization problem containing dynamic system simulations. First we define a Modelica model of a </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">linear actuator</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> with a spring damped stopping, as well as a first order system that will be used to generate a kind of "reference" response. The goal is to find a damping for the translational spring-damper that minimizes the deviation between the step response of the linear actuator system and the step response from our "reference" first order system. </span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">See Section 15.7 in the Modelica Book</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">LinearActuator Model</span></p>
-</h1>
+<h2>
+1
+LinearActuator Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In this example we use the MathModelica environment with Mathematica as the scripting language providing the built-in optimization function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">FindMinimum</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. //??Change to OpenModelica</span></p><br>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A LinearActuator model containing a spring damped connection to an anchoring point.</span></p>
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Consider the following model of a linear actuator, depicted in Figure 1, with a spring-damped connection to an anchoring point:</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model LinearActuator
   import Modelica.Mechanics.Translational;
   import Modelica.Mechanics.Rotational;
@@ -68,16 +71,17 @@ equation
 end LinearActuator;
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>We first make a simulation of the step response for the above linear actuator with damping </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">d=2</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and store the result in the scripting language variable called </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">resLinActFirst</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Then we plot the simulated position of the sliding mass as a function of time to take a closer look at the response.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of LinearActuator</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+2
+Simulation of LinearActuator
+</h2>
+<textarea id=check1textarea>
 loadModel(Modelica)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 simulate( LinearActuator, stopTime=5 )
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( mass1.s )
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">

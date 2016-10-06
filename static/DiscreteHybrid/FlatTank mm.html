@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,12 +32,13 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Tank Model Simulation</span></p>
+Tank Model Simulation
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Flat Tank Model (without any components)</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Flat Tank Model (without any components)
+</h2>
+<textarea id=check0textarea>
 function LimitValue
   input Real pMin;
   input Real pMax;
@@ -47,7 +50,7 @@ algorithm
           else p;
 end LimitValue;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model FlatTank
   //tank related variables and parameters
   Real  act;  // Connector, actuator controlling input flow
@@ -79,13 +82,14 @@ equation
 
 end FlatTank;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of FlatTank</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h3>
+1.1
+Simulation of FlatTank
+</h3>
+<textarea id=check2textarea>
 simulate( FlatTank, stopTime=250 )
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot( h )
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -602,10 +606,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Flat Tank Model second approach(without any components)</span></p>
-</h1>
-<textarea class="target" id=check4textarea>
+<h2>
+2
+Flat Tank Model second approach(without any components)
+</h2>
+<textarea id=check4textarea>
 function LimitValue
   input Real pMin;
   input Real pMax;
@@ -617,7 +622,7 @@ algorithm
           else p;
 end LimitValue;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model FlatTank
   //tank related variables and parameters
   parameter Real flowVin =0.02; //[m3/s]
@@ -647,10 +652,10 @@ equation
 
 end FlatTank;
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 simulate( FlatTank, stopTime=250 )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( h )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -1167,31 +1172,34 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank Model Componets</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Connectors</span></p>
-</h1>
-<textarea class="target" id=check8textarea>
+<h2>
+3
+Tank Model Componets
+</h2>
+<h3>
+3.1
+Connectors
+</h3>
+<textarea id=check8textarea>
 connector ReadSignal
   Real val;
 end ReadSignal;
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 connector ActSignal
   Real act;
 end ActSignal;
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 connector LiquidFlow
   Real lflow;
 end LiquidFlow;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Functions</span></p>
-</h1>
-<textarea class="target" id=check11textarea>
+<h3>
+3.2
+Functions
+</h3>
+<textarea id=check11textarea>
 function LimitValue
   input Real pMin;
   input Real pMax;
@@ -1203,13 +1211,15 @@ algorithm
           else p;
 end LimitValue;
 </textarea>  <div id=check11div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">PI Controllers</span></p>
-</h1>
-<textarea class="target" id=check12textarea>
+<h3>
+3.3
+Components
+</h3>
+<h4>
+3.3.1
+PI Controllers
+</h4>
+<textarea id=check12textarea>
 partial model PIcontroller
   parameter Real Ts=0.1;//sampling time[s]
   parameter Real K=2;//gain
@@ -1223,7 +1233,7 @@ equation
   cOut.act = LimitValue(minV,maxV,outCtr);
 end PIcontroller;
 </textarea>  <div id=check12div> </div> <br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 model PIcontinuousController
   extends PIcontroller(K=2,T=10,maxV=0.02);
   Real  x; //state variable of continuous controller
@@ -1233,7 +1243,7 @@ equation
 end PIcontinuousController;
 
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 model PIdiscreteController
   extends PIcontroller(K=2,T=10,maxV=0.02);
   discrete Real x; //state variable of discrete controller
@@ -1245,10 +1255,11 @@ equation
 end PIdiscreteController;
 
 </textarea>  <div id=check14div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">PID Controlers</span></p>
-</h1>
-<textarea class="target" id=check15textarea>
+<h4>
+3.3.2
+PID Controlers
+</h4>
+<textarea id=check15textarea>
 partial model PIDcontroller
   parameter Real Ts=0.1;//sampling time[s]
   parameter Real K=2;//gain
@@ -1262,7 +1273,7 @@ equation
   cOut.act = LimitValue(minV,maxV,outCtr);
 end PIDcontroller;
 </textarea>  <div id=check15div> </div> <br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 model PIDcontinuousController
   extends PIDcontroller(K=2,T=10,maxV=0.02);
   Real  x; //state variable of continuous controller
@@ -1273,10 +1284,11 @@ equation
   outCtr = K*(x+error+y);
 end PIDcontinuousController;
 </textarea>  <div id=check16div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Tank</span></p>
-</h1>
-<textarea class="target" id=check17textarea>
+<h4>
+3.3.3
+Tank
+</h4>
+<textarea id=check17textarea>
 model Tank
   ReadSignal tOut;  // Connector, reading tank level
   ActSignal  tInp;  // Connector, actuator controlling input flow
@@ -1294,7 +1306,7 @@ equation
   tOut.val = h;
 end Tank;
 </textarea>  <div id=check17div> </div> <br>
-<textarea class="target" id=check18textarea>
+<textarea id=check18textarea>
 model TankL
   ReadSignal tOut;  // Connector, reading tank level
   ActSignal  tInp;  // Connector, actuator controlling input flow
@@ -1313,7 +1325,7 @@ equation
   tOut.val = h;
 end TankL;
 </textarea>  <div id=check18div> </div> <br>
-<textarea class="target" id=check19textarea>
+<textarea id=check19textarea>
 model FlowOut
   LiquidFlow qOut;
   parameter Real flowVOut = 0.01;
@@ -1321,13 +1333,15 @@ equation
   qOut.lflow=if time>100 then flowVOut else 0;
 end FlowOut;
 </textarea>  <div id=check19div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank Model with PI discrete controler</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Old Tank Model</span></p>
-</h1>
-<textarea class="target" id=check20textarea>
+<h2>
+4
+Tank Model with PI discrete controler
+</h2>
+<h3>
+4.1
+Old Tank Model
+</h3>
+<textarea id=check20textarea>
 model TankApplicationDiscretePI
   PIdiscreteController piDiscrete;
   Tank  tank(area=1,flowVout=0.02);
@@ -1337,10 +1351,10 @@ equation
   piDiscrete.ref=0.5;
 end TankApplicationDiscretePI;
 </textarea>  <div id=check20div> </div> <br>
-<textarea class="target" id=check21textarea>
+<textarea id=check21textarea>
 simulate( TankApplicationDiscretePI, stopTime=200 ) //??warning in Simulation
 </textarea>  <div id=check21div> </div> <br>
-<textarea class="target" id=check22textarea>
+<textarea id=check22textarea>
 plot( tank.h )
 </textarea> <br> <div id=check22div> </div> <br>
 <script type="text/javascript">
@@ -7358,10 +7372,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">New Tank Model</span></p>
-</h1>
-<textarea class="target" id=check23textarea>
+<h3>
+4.2
+New Tank Model
+</h3>
+<textarea id=check23textarea>
 model TankApplicationDiscretePInew
   PIdiscreteController piDiscrete;
   TankL  tankn(area=1,flowVout=0.02);
@@ -7373,10 +7388,10 @@ equation
   piDiscrete.ref=0.5;
 end TankApplicationDiscretePInew;
 </textarea>  <div id=check23div> </div> <br>
-<textarea class="target" id=check24textarea>
+<textarea id=check24textarea>
 simulate( TankApplicationDiscretePInew, stopTime=200 ) //??warning in Simulation
 </textarea>  <div id=check24div> </div> <br>
-<textarea class="target" id=check25textarea>
+<textarea id=check25textarea>
 plot( tankn.h )
 </textarea> <br> <div id=check25div> </div> <br>
 <script type="text/javascript">
@@ -13394,13 +13409,15 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank Model with PI continuous controler</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Old Tank Model</span></p>
-</h1>
-<textarea class="target" id=check26textarea>
+<h2>
+5
+Tank Model with PI continuous controler
+</h2>
+<h3>
+5.1
+Old Tank Model
+</h3>
+<textarea id=check26textarea>
 model TankApplicationContinuousPI
   PIcontinuousController piContinuous;
   Tank  tank(area=1,flowVout=0.02);
@@ -13410,10 +13427,10 @@ equation
   piContinuous.ref=0.5;
 end TankApplicationContinuousPI;
 </textarea>  <div id=check26div> </div> <br>
-<textarea class="target" id=check27textarea>
+<textarea id=check27textarea>
 simulate( TankApplicationContinuousPI, stopTime=200 )
 </textarea>  <div id=check27div> </div> <br>
-<textarea class="target" id=check28textarea>
+<textarea id=check28textarea>
 plot( tank.h )
 </textarea> <br> <div id=check28div> </div> <br>
 <script type="text/javascript">
@@ -13930,7 +13947,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check29textarea>
+<textarea id=check29textarea>
 plot( tank.qIn )
 </textarea> <br> <div id=check29div> </div> <br>
 <script type="text/javascript">
@@ -14447,10 +14464,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">New Tank Model</span></p>
-</h1>
-<textarea class="target" id=check30textarea>
+<h3>
+5.2
+New Tank Model
+</h3>
+<textarea id=check30textarea>
 model TankApplicationContinuousPInew
   PIdiscreteController piDiscrete;
   TankL  tankn(area=1,flowVout=0.02);
@@ -14462,10 +14480,10 @@ equation
   piDiscrete.ref=0.5;
 end TankApplicationContinuousPInew;
 </textarea>  <div id=check30div> </div> <br>
-<textarea class="target" id=check31textarea>
+<textarea id=check31textarea>
 simulate( TankApplicationContinuousPInew, stopTime=200 ) 
 </textarea>  <div id=check31div> </div> <br>
-<textarea class="target" id=check32textarea>
+<textarea id=check32textarea>
 plot( tankn.h )
 </textarea> <br> <div id=check32div> </div> <br>
 <script type="text/javascript">
@@ -20483,14 +20501,16 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank Model with PID continuous controler</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Renewed Tank Model</span></p>
-</h1>
+<h2>
+6
+Tank Model with PID continuous controler
+</h2>
+<h2>
+7
+Renewed Tank Model
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The imput flow in that case is constant and the output flow is regulated by the PI controller</span></p><br>
-<textarea class="target" id=check33textarea>
+<textarea id=check33textarea>
 partial model PIcontroller
   parameter Real Ts=0.1;//sampling time[s]
   parameter Real K=2;//gain
@@ -20504,7 +20524,7 @@ equation
   cOut.act = LimitValue(minV,maxV,outCtr);
 end PIcontroller;
 </textarea>  <div id=check33div> </div> <br>
-<textarea class="target" id=check34textarea>
+<textarea id=check34textarea>
 model PIcontinuousController
   extends PIcontroller(K=2,T=10);
   Real  x; //state variable of continuous controller
@@ -20513,7 +20533,7 @@ equation
   outCtr = K*(x+error);
 end PIcontinuousController;
 </textarea>  <div id=check34div> </div> <br>
-<textarea class="target" id=check35textarea>
+<textarea id=check35textarea>
 model TankModified
   ReadSignal tOut;  // Connector, reading tank level
   ActSignal  tInp;  // Connector, actuator controlling input flow
@@ -20532,7 +20552,7 @@ equation
   tOut.val = h;
 end TankModified;
 </textarea>  <div id=check35div> </div> <br>
-<textarea class="target" id=check36textarea>
+<textarea id=check36textarea>
 model TankApplicationModified
   PIcontinuousController piContinuous;
   TankModified  tankm(area=1,flowVin=0.02);
@@ -20542,13 +20562,14 @@ equation
   piContinuous.ref=0.25;
 end TankApplicationModified;
 </textarea>  <div id=check36div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TankApplicationModified</span></p>
-</h1>
-<textarea class="target" id=check37textarea>
+<h3>
+7.1
+Simulation of TankApplicationModified
+</h3>
+<textarea id=check37textarea>
 simulate( TankApplicationModified, stopTime=250 ) //??warning in Simulation
 </textarea>  <div id=check37div> </div> <br>
-<textarea class="target" id=check38textarea>
+<textarea id=check38textarea>
 plot( tankm.h )
 </textarea> <br> <div id=check38div> </div> <br>
 <script type="text/javascript">
@@ -21065,32 +21086,35 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Renewed Tank Model with connector for input and output flow</span></p>
-</h1>
+<h2>
+8
+Renewed Tank Model with connector for input and output flow
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The imput flow in that case is constant and the output flow is regulated by the PI controller</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Connectors</span></p>
-</h1>
-<textarea class="target" id=check39textarea>
+<h3>
+8.1
+Connectors
+</h3>
+<textarea id=check39textarea>
 connector ReadSignal
   Real val;
 end ReadSignal;
 </textarea>  <div id=check39div> </div> <br>
-<textarea class="target" id=check40textarea>
+<textarea id=check40textarea>
 connector ActSignal
   Real act;
 end ActSignal;
 </textarea>  <div id=check40div> </div> <br>
-<textarea class="target" id=check41textarea>
+<textarea id=check41textarea>
 connector LiquidFlow
   Real lflow;
 end LiquidFlow;
 </textarea>  <div id=check41div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Functions</span></p>
-</h1>
-<textarea class="target" id=check42textarea>
+<h3>
+8.2
+Functions
+</h3>
+<textarea id=check42textarea>
 function LimitValue
   input Real pMin;
   input Real pMax;
@@ -21102,10 +21126,11 @@ algorithm
           else p;
 end LimitValue;
 </textarea>  <div id=check42div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<textarea class="target" id=check43textarea>
+<h3>
+8.3
+Components
+</h3>
+<textarea id=check43textarea>
 partial model Controller
   parameter Real Ts=0.1;//sampling time[s]
   parameter Real K=2;//gain
@@ -21119,7 +21144,7 @@ equation
   cOut.act = LimitValue(minV,maxV,outCtr);
 end Controller;
 </textarea>  <div id=check43div> </div> <br>
-<textarea class="target" id=check44textarea>
+<textarea id=check44textarea>
 model PIcontinuousController
   extends Controller(K=2,T=10);
   Real  x; //state variable of continuous controller
@@ -21129,7 +21154,7 @@ equation
 end PIcontinuousController;
 
 </textarea>  <div id=check44div> </div> <br>
-<textarea class="target" id=check45textarea>
+<textarea id=check45textarea>
 model PIDcontinuousController
   extends Controller(K=2,T=10,maxV=0.02);
   Real  x; //state variable of continuous controller
@@ -21141,7 +21166,7 @@ equation
 end PIDcontinuousController;
 
 </textarea>  <div id=check45div> </div> <br>
-<textarea class="target" id=check46textarea>
+<textarea id=check46textarea>
 model TankModified2
   ReadSignal tOut;  // Connector, reading tank level
   ActSignal  tInp;  // Connector, actuator controlling input flow
@@ -21158,7 +21183,7 @@ equation
   tOut.val = h;
 end TankModified2;
 </textarea>  <div id=check46div> </div> <br>
-<textarea class="target" id=check47textarea>
+<textarea id=check47textarea>
 model TankApplicationModifiedPIController
   PIcontinuousController piContinuous;
   TankModified2  tankm(area=1);
@@ -21169,13 +21194,14 @@ equation
   tankm.qIn.lflow=0.02;
 end TankApplicationModifiedPIController;
 </textarea>  <div id=check47div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TankApplicationModifiedPIController</span></p>
-</h1>
-<textarea class="target" id=check48textarea>
+<h3>
+8.4
+Simulation of TankApplicationModifiedPIController
+</h3>
+<textarea id=check48textarea>
 simulate( TankApplicationModifiedPIController, stopTime=250 )
 </textarea>  <div id=check48div> </div> <br>
-<textarea class="target" id=check49textarea>
+<textarea id=check49textarea>
 plot( tankm.h )
 </textarea> <br> <div id=check49div> </div> <br>
 <script type="text/javascript">
@@ -21692,7 +21718,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check50textarea>
+<textarea id=check50textarea>
 model TankApplicationModifiedPIDController
   PIDcontinuousController pidContinuous;
   TankModified2  tankm(area=1);
@@ -21703,13 +21729,14 @@ equation
   tankm.qIn.lflow=0.02;
 end TankApplicationModifiedPIDController;
 </textarea>  <div id=check50div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TankApplicationModifiedPIDController</span></p>
-</h1>
-<textarea class="target" id=check51textarea>
+<h3>
+8.5
+Simulation of TankApplicationModifiedPIDController
+</h3>
+<textarea id=check51textarea>
 simulate( TankApplicationModifiedPIDController, stopTime=250 )
 </textarea>  <div id=check51div> </div> <br>
-<textarea class="target" id=check52textarea>
+<textarea id=check52textarea>
 plot( tankm.h )
 </textarea> <br> <div id=check52div> </div> <br>
 <script type="text/javascript">
@@ -22226,11 +22253,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Connecting Two Tanks Together</span></p>
-</h1>
+<h2>
+9
+Connecting Two Tanks Together
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">remove the dicontinuity from the tank model<br/>q=if time&gt;150 then 3*qIn.lflow else qIn.lflow;</span></p><br>
-<textarea class="target" id=check53textarea>
+<textarea id=check53textarea>
 model TanksConnected
   PIcontinuousController piContinuous1,piContinuous2;
   TankModified2 tank1(area=1),tank2(area=1.3);
@@ -22247,13 +22275,14 @@ equation
   connect(tank1.qOut,tank2.qIn);
 end TanksConnected;
 </textarea>  <div id=check53div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TanksConnected</span></p>
-</h1>
-<textarea class="target" id=check54textarea>
+<h3>
+9.1
+Simulation of TanksConnected
+</h3>
+<textarea id=check54textarea>
 simulate( TanksConnected, stopTime=250 )
 </textarea>  <div id=check54div> </div> <br>
-<textarea class="target" id=check55textarea>
+<textarea id=check55textarea>
 plot( { tank1.h, tank2.h } )
 </textarea> <br> <div id=check55div> </div> <br>
 <script type="text/javascript">
@@ -22770,7 +22799,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check56textarea>
+<textarea id=check56textarea>
 plot( { tank1.qOut.lflow, tank2.qOut.lflow } )
 </textarea> <br> <div id=check56div> </div> <br>
 <script type="text/javascript">

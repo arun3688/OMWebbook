@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Reuse of Modified Classes</span></p>
+Reuse of Modified Classes
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">LowPassFilter</span></p>
-</h1>
+<h2>
+1
+LowPassFilter
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The class concept is the key to reusing modeling knowledge in Modelica. Assume that we would like to connect two filter models in series. Instead of creating two separate filter classes it is better to define a common filter class and create two instances of this class, which are connected. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model LowPassFilter
   parameter Real T = 1;
   Real u, y(start=1);
@@ -44,11 +47,12 @@ equation
   T*der(y) + y = u;
 end LowPassFilter;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">LowPass FiltersInSeries</span></p>
-</h1>
+<h2>
+2
+LowPass FiltersInSeries
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The LowPassFilter class can be used to create two separate instances of the filter and connect them by using the equation </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">F2.u = F1.y</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model FiltersInSeries
   LowPassFilter F1(T=2),  F2(T=3);
 equation
@@ -56,13 +60,14 @@ equation
   F2.u = F1.y;
 end FiltersInSeries;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of FiltersInSeries </span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+3
+Simulation of FiltersInSeries 
+</h2>
+<textarea id=check2textarea>
 simulate( FiltersInSeries )
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 plot({F1.u, F2.u})
 </textarea> <br> <div id=check3div> </div> <br>
 <script type="text/javascript">
@@ -577,22 +582,24 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">ModifiedFiltersInSeries</span></p>
-</h1>
+<h2>
+4
+ModifiedFiltersInSeries
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">FiltersInSeries can be used to declare variables at a higher hierarchical level.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 model ModifiedFiltersInSeries
   FiltersInSeries F12(F1(T=6), F2.T=11);
 end ModifiedFiltersInSeries;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of ModifiedFiltersInSeries</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h2>
+5
+Simulation of ModifiedFiltersInSeries
+</h2>
+<textarea id=check5textarea>
 simulate( ModifiedFiltersInSeries )
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 plot({F12.F1.T, F12.F2.T})
 </textarea> <br> <div id=check6div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,19 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Packages as Abstract Data Types</p>
+Packages as Abstract Data Types
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">The notion of a package is related to the notion of abstract data types. A data type, e.g. <span style=" font-family:'Courier New';">Real</span>,  is a data structure together with operations on that data structure. An abstract data type is just like an ordinary data type with definitions of data and operations. That together with a method for collecting the implementations of the operations in one place and hiding the details of those implementations. </p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Complex Example</p>
-</h1>
+<h2>
+2
+Complex Example
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">As an example, consider the package <span style=" font-family:'Courier New';">ComplexNumbers</span> below which contains a data structure declaration, the record <span style=" font-family:'Courier New';">Complex</span>, and associated operations such as<span style=" font-family:'Courier New';"> Add, Multiply, MakeComplex</span>, etc. Adding the word <span style=" font-family:'Courier New';">encapsulated</span> to the package keeps the package well structured as well as being easier to understand and maintain.<br/></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 encapsulated package ComplexNumbers
 
   record Complex
@@ -79,7 +83,7 @@ end ComplexNumbers;
 
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>In the <span style=" font-family:'Courier New';">ComplexUser</span> class below, both the type <span style=" font-family:'Courier New';">Complex</span> as well as the operations <span style=" font-family:'Courier New';">Multiply</span> and <span style=" font-family:'Courier New';">Add</span> are referenced by prefexing them with the package name <span style=" font-family:'Courier New';">ComplexNumbers</span>.</p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class ComplexUser
   ComplexNumbers.Complex  a(x = 1.0, y = 2.0);
   ComplexNumbers.Complex  b(x = 1.0, y = 2.0);
@@ -89,11 +93,12 @@ equation
   z = ComplexNumbers.Add(a, b);
 end ComplexUser;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">What about information hiding in the package? </p>
-</h1>
+<h2>
+3
+What about information hiding in the package? 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;">The type <span style=" font-family:'Courier New';">Complex</span> must be made available for allocation and initialization of variables of that type, e.g the variables <span style=" font-family:'Courier New';">a, b, z </span>and <span style=" font-family:'Courier New';">w</span> in <span style=" font-family:'Courier New';">ComplexUser</span>. It would not work if you declared x and y <span style=" font-family:'Courier New';">protected</span> in the variables <span style=" font-family:'Courier New';">Complex</span> since then these fields would not be available for the implementation of <span style=" font-family:'Courier New';">Add</span> and <span style=" font-family:'Courier New';">Multiply</span>, etc. However, by declaring the operations on <span style=" font-family:'Courier New';">Complex</span> inside the class <span style=" font-family:'Courier New';">Complex</span> itself, as in the package <span style=" font-family:'Courier New';">ComplexNumbersA</span> further below, these fields can be accessed even if they are protected. <br/><br/>We can increase the degree of data abstaction by using the function <span style=" font-family:'Courier New';">MakeComplex</span> for initialization instead of modifiers, e.g. as in <span style=" font-family:'Courier New';">ComplexUser2</span> below, thus avoiding exposing the fields x and y.</p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 class ComplexUser2
   ComplexNumbers.Complex  a = MakeComplex(1.0, 2.0);
   ComplexNumbers.Complex  b = MakeComplex(1.0, 2.0);
@@ -105,7 +110,7 @@ end ComplexUser2;
 
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>In <span style=" font-family:'Courier New';">ComplexNumbersA</span> the implementation details of the <span style=" font-family:'Courier New';">Complex</span> data structure are hidden since its data fields are protected.</p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 encapsulated package ComplexNumbersA
 
   function Add = Complex.Add;

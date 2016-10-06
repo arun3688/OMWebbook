@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 1</span></p>
+Exercise 1
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Using replaceable and redeclare on class Point</span></p>
-</h1>
+<h2>
+1
+Using replaceable and redeclare on class Point
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Point</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a built-in type in Modelica.</span></p><br>
-<textarea rows=5 class="target" id=check0textarea>
+<textarea id=check0textarea>
 class Point
   parameter Real x;
   parameter Real y;
@@ -44,89 +47,94 @@ class Point
 end Point;
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>Create a class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Redeclaration</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, containing a Point </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">P</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as a variable. You should set the values of x, y and z as well.</span></p><br>
-<textarea rows=3 class="target" id=check1textarea>
+<textarea id=check1textarea>
 class Redeclaration
   //...
 end Redeclaration;
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>In the class below you should redeclare </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">P</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> as the type </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">myPoint</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which is a subtype of </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Point</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> (you can write </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">myPoint</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> further below).</span></p><br>
-<textarea rows=3 class="target" id=check2textarea>
+<textarea id=check2textarea>
 class PointRed
 
 end PointRed;
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/><br/>You can declare the class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">myPoint</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> here, below.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Hint</span></p>
-</h1>
+<h3>
+1.1
+Hint
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The variable </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">P</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> must be declared replaceable in class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Redeclaration</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
-</h1>
-<div id="answer1" class="collapse">
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">class Point</span></p>
-</h1>
-<textarea rows=5 class="target" id=check4textarea>
+<h3>
+1.2
+<button type= button class="btn btn-info" data-toggle="collapse" data-target= #answer0 > Answer</button>
+</h3>
+<div id=answer0 class=collapse><h4>
+1.2.1
+class Point
+</h4>
+<textarea id=check4textarea>
 class Point
   parameter Real x;
   parameter Real y;
   parameter Real z;
 end Point;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">class Redeclaration</span></p>
-</h1>
-<textarea rows=3 class="target" id=check5textarea>
+<h4>
+1.2.2
+class Redeclaration
+</h4>
+<textarea id=check5textarea>
 class Redeclaration
   replaceable Point P(x = 1, y = 2, z = 3);
 end Redeclaration;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">class MyPoint</span></p>
-</h1>
-<textarea rows=3 class="target" id=check6textarea>
+<h4>
+1.2.3
+class MyPoint
+</h4>
+<textarea id=check6textarea>
 class MyPoint
   extends Point(z = 4);
 end MyPoint;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">class PointRed</span></p>
-</h1>
+<h4>
+1.2.4
+class PointRed
+</h4>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">myPoint</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is a subtype of Point, it changes type and prefix of P</span></p><br>
-<textarea rows=3 class="target" id=check7textarea>
+<textarea id=check7textarea>
 class PointRed
   Redeclaration myPoint(redeclare MyPoint P);
 end PointRed;
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of Redeclaration and PointRed</span></p>
-</h1>
-<textarea rows=1 class="target" id=check8textarea>
+<h4>
+1.2.5
+Simulation of Redeclaration and PointRed
+</h4>
+<textarea id=check8textarea>
 simulate( Redeclaration )
 </textarea>  <div id=check8div> </div> <br>
-<textarea rows=1 class="target" id=check9textarea>
+<textarea id=check9textarea>
 simulate( PointRed )
 </textarea>  <div id=check9div> </div> <br>
-</div>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Question</span></p>
-</h1>
+</div><h2>
+2
+Question
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">If you instead had a class MyPoint with z as an Integer. Would that work?</span></p><br>
-<textarea rows=5 class="target" id=check10textarea>
+<textarea id=check10textarea>
 class MyPoint
   parameter Real x;
   parameter Real y;
   parameter Integer z = 4;
 end MyPoint;
 </textarea>  <div id=check10div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer2">Answer</button></span></p>
-</h1>
-<div id="answer2" class="collapse">
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">No, because then MyPoint would not be a subclass of Point.</span></p><br>
-</div>
-</div></body></html>
+<h3>
+2.1
+<button type= button class="btn btn-info" data-toggle="collapse" data-target= #answer1 > Answer</button>
+</h3>
+<div id=answer1 class=collapse><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">No, because then MyPoint would not be a subclass of Point.</span></p><br>
+</div></div></body></html>

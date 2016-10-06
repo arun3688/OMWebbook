@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,12 +32,13 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Game of Life</span></p>
+Game of Life
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Introduction</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Introduction
+</h2>
+<textarea id=check0textarea>
 function firstGeneration
   input Integer M[:,:];
   input Integer I[:,2];
@@ -46,7 +49,7 @@ algorithm
  end for;
 end firstGeneration;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 function nextGeneration
   input Integer M[:,:];
   output Integer G[size(M,1), size(M,1)];
@@ -71,10 +74,11 @@ algorithm
   end for;
 end nextGeneration;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Game of Life</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+2
+Game of Life
+</h2>
+<textarea id=check2textarea>
 model GameOfLife
   parameter Integer n = 10;
   parameter Integer initialAlive[:,2] = {{2,2},{2,1},{1,2},{3,3},{3,2}};
@@ -90,16 +94,18 @@ equation
  end when;
 end GameOfLife;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Animation of GameOfLife (to be done)</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of GameOfLife</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h3>
+2.1
+Animation of GameOfLife (to be done)
+</h3>
+<h3>
+2.2
+Simulation of GameOfLife
+</h3>
+<textarea id=check3textarea>
 simulate( GameOfLife )
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot(lifeHistory[1,1])
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -625,22 +631,24 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Test of GameOfLife</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h3>
+2.3
+Test of GameOfLife
+</h3>
+<textarea id=check5textarea>
 model test1
   GameOfLife g(initialAlive = {{1,1},{2,2},{3,3},{4,4},{5,5},{6,6},{7,7},{8,8},{9,9},{10,10},
   {1,10},{2,9},{3,8},{4,7},{5,6},{6,5},{7,4},{8,3},{9,2},{10,1}});
 end test1;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of test1</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h3>
+2.4
+Simulation of test1
+</h3>
+<textarea id=check6textarea>
 simulate( test1 )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot({g.lifeHistory[1,1],g.initialAlive[5,1]})
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">

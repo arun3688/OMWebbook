@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,31 +32,33 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Exercise 1</span></p>
+Exercise 1
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Using Algorithm Sections</span></p>
-</h1>
+<h2>
+1
+Using Algorithm Sections
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Write a function, myS</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">um</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which calculates the sum of numbers, in an array of arbitrary size. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Write a function, a</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">verage</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which calculates the average of numbers, in an array of arbitrary size. The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">average</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> function should use make a function call to myS</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">um</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 
 </textarea>  <div id=check1div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Write a class, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">LargestAverage</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, that has two arrays and calculates the average of each of them. Then it compares the averages and sets a variable to true if the first array is larger than the second and otherwise false.<br/></span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;"><button type="button" class="btn btn-info" data-toggle="collapse" data-target="#answer1">Answer</button></span></p>
-</h1>
-<div id="answer1" class="collapse">
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">mySum</span></p>
-</h1>
-<textarea rows=8 class="target" id=check3textarea>
+<h3>
+1.1
+<button type= button class="btn btn-info" data-toggle="collapse" data-target= #answer0 > Answer</button>
+</h3>
+<div id=answer0 class=collapse><h4>
+1.1.1
+mySum
+</h4>
+<textarea id=check3textarea>
 function mySum
   input Real[:] x;
   output Real sum;
@@ -64,13 +68,14 @@ algorithm
   end for;
 end mySum;
 </textarea>  <div id=check3div> </div> <br>
-<textarea rows=1 class="target" id=check4textarea>
+<textarea id=check4textarea>
 mySum({2.0,3.0,4.0})
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">average</span></p>
-</h1>
-<textarea rows=6 class="target" id=check5textarea>
+<h4>
+1.1.2
+average
+</h4>
+<textarea id=check5textarea>
 function average
   input Real[:] x;
   output Real average;
@@ -78,13 +83,14 @@ algorithm
   average := mySum(x) / size(x,1);
 end average;
 </textarea>  <div id=check5div> </div> <br>
-<textarea rows=1 class="target" id=check6textarea>
-average({2.0,3.0,4.0})
+<textarea id=check6textarea>
+average({2.0,3.0,4.0}) 
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">LargestAverage</span></p>
-</h1>
-<textarea rows=14 class="target" id=check7textarea>
+<h4>
+1.1.3
+LargestAverage
+</h4>
+<textarea id=check7textarea>
 class LargestAverage
   parameter Integer[:] A1 = {1, 2, 3, 4, 5};
   parameter Integer[:] A2 = {7, 8, 9};
@@ -100,11 +106,11 @@ algorithm
   end if;
 end LargestAverage; 
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Simulation of LargestAverage</span></p>
-</h1>
-<textarea rows=1 class="target" id=check8textarea>
+<h4>
+1.1.4
+Simulation of LargestAverage
+</h4>
+<textarea id=check8textarea>
 simulate( LargestAverage )
 </textarea>  <div id=check8div> </div> <br>
-</div>
-</div></body></html>
+</div></div></body></html>

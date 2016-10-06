@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,50 +32,53 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">A Hybrid Tank Model with a Discrete Controller</span></p>
+A Hybrid Tank Model with a Discrete Controller
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Now let us consider a hybrid Tank containing a Proportional-Integral (PI) controller.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Figure 1:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">  A tank system with a tank, a source for liquid, and a controller. </span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Tank Model Componets</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Connectors</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Tank Model Componets
+</h2>
+<h3>
+1.1
+Connectors
+</h3>
+<textarea id=check0textarea>
 connector ReadSignal
   Real val;
 end ReadSignal;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 connector ActSignal
   Real act;
 end ActSignal;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector LiquidFlow
   Real lflow;
 end LiquidFlow;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector ActSignal     "Signal to actuator for setting valve position"
   Real act;
 end ActSignal;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector ReadSignal     "Reading fluid level"
   Real val(unit = "m");
 end ReadSignal;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 connector LiquidFlow    "Liquid flow at inlets or outlets"
   Real lflow(unit = "m3/s");
 end LiquidFlow;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Functions</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h3>
+1.2
+Functions
+</h3>
+<textarea id=check6textarea>
 function LimitValue
   input Real pMin;
   input Real pMax;
@@ -85,7 +90,7 @@ algorithm
           else p;
 end LimitValue;
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 function limitValue
   input  Real pMin;
   input  Real pMax;
@@ -97,13 +102,15 @@ function limitValue
           else p;
 end limitValue;
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">PI Controllers</span></p>
-</h1>
-<textarea class="target" id=check8textarea>
+<h3>
+1.3
+Components
+</h3>
+<h4>
+1.3.1
+PI Controllers
+</h4>
+<textarea id=check8textarea>
 partial model PIcontroller
   parameter Real Ts = 0.1;            // sampling time[s]
   parameter Real K = 2;               // gain
@@ -117,7 +124,7 @@ equation
   cOut.act = LimitValue(minV, maxV, outCtr);
 end PIcontroller;
 </textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 partial model BaseController
   parameter Real Ts(unit = "s") = 0.1  "Time period between discrete samples";
   parameter Real K = 2          "Gain";
@@ -133,7 +140,7 @@ equation
 end BaseController;
 </textarea>  <div id=check9div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">BaseControllerClocked </span></p><br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 partial model BaseControllerClocked "Controller with clocked states"
    parameter Real Ts(unit="s")=0.1 "Time between samples";
    parameter Real K=2 "Gain";
@@ -150,7 +157,7 @@ equation
    cOut.act = hold(outCtr); // hold clocked output control signal
 end BaseControllerClocked;
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model PIcontinuousController
   extends BaseController(K = 2, T = 10);
   Real  x(fixed=true)  "State variable of continuous PI controller";
@@ -159,7 +166,7 @@ equation
   outCtr = K*(error + x);
 end PIcontinuousController;
 </textarea>  <div id=check11div> </div> <br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 model PIdiscreteControllerUnclocked
   extends BaseController(K = 2, T = 10);
   discrete Real x(fixed=true);                 // State variable of discrete controller
@@ -171,7 +178,7 @@ equation
 end PIdiscreteControllerUnclocked;
 </textarea>  <div id=check12div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">PIdiscreteControllerClocked</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 model PIdiscreteControllerClocked "Pure clocked version of PI controller"
    extends BaseControllerClocked(K=2,T=10);
    discrete Real x; // State variable of discrete controller
@@ -182,10 +189,11 @@ equation
    outCtr = K*(x+error);
 end PIdiscreteControllerClocked;
 </textarea>  <div id=check13div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">PID Controlers</span></p>
-</h1>
-<textarea class="target" id=check14textarea>
+<h4>
+1.3.2
+PID Controlers
+</h4>
+<textarea id=check14textarea>
 partial model PIDcontroller
   parameter Real Ts = 0.1;            // sampling time[s]
   parameter Real K = 2;               // gain
@@ -199,7 +207,7 @@ equation
   cOut.act = LimitValue(minV, maxV, outCtr);
 end PIDcontroller;
 </textarea>  <div id=check14div> </div> <br>
-<textarea class="target" id=check15textarea>
+<textarea id=check15textarea>
 model PIDcontinuousController
   extends PIDcontroller(K = 2, T = 10, maxV = 0.02);
   Real  x(fixed=true);                     //state variable of continuous controller
@@ -210,7 +218,7 @@ equation
   outCtr = K * (x+error+y);
 end PIDcontinuousController;
 </textarea>  <div id=check15div> </div> <br>
-<textarea class="target" id=check16textarea>
+<textarea id=check16textarea>
 model PIDdiscreteControllerUnclocked
   extends BaseController(K = 2, T = 10);
   discrete Real x(fixed=true);        // State variable of discrete controller
@@ -224,7 +232,7 @@ equation
 end PIDdiscreteControllerUnclocked;
 </textarea>  <div id=check16div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">PIDdiscreteControllerClocked Version</span></p><br>
-<textarea class="target" id=check17textarea>
+<textarea id=check17textarea>
 model PIDdiscreteControllerClocked "Clocked PID controller"
    extends BaseControllerClocked(K=2,T=10);
    discrete Real x; // Clocked state variable of discrete controller
@@ -237,10 +245,11 @@ equation
    outCtr = K*(x+error+y);
 end PIDdiscreteControllerClocked;
 </textarea>  <div id=check17div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:12pt; font-weight:600; color:#000000;">Tank</span></p>
-</h1>
-<textarea class="target" id=check18textarea>
+<h4>
+1.3.3
+Tank
+</h4>
+<textarea id=check18textarea>
 model Tank
   ReadSignal     tSensor    "Connector, sensor reading tank level (m)";
   ActSignal      tActuator  "Connector, actuator controlling input flow";
@@ -257,7 +266,7 @@ model Tank
   tSensor.val = h;
 end Tank;
 </textarea>  <div id=check18div> </div> <br>
-<textarea class="target" id=check19textarea>
+<textarea id=check19textarea>
 model LiquidSource
   LiquidFlow qOut;
   parameter Real flowLevel = 0.02;
@@ -265,13 +274,14 @@ equation
   qOut.lflow = if time > 150 then 3*flowLevel else flowLevel;
 end LiquidSource;
 </textarea>  <div id=check19div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">TankHybridPI Model UnClocked</span></p>
-</h1>
+<h2>
+2
+TankHybridPI Model UnClocked
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Finally we put together the hybrid tank system by simply replacing the continuous PI controller by the discrete one, called piDiscrete, as depicted in Figure 2.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Figure 2:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> A Hybrid Tank system consisting of a continuous tank model connected to a source for liquid and a discrete PI controller.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TankHybridPI</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model connects a discrete PI controller to a liquid source and a tank, both defined by the models above.<br/></span></p><br>
-<textarea class="target" id=check20textarea>
+<textarea id=check20textarea>
 model TankHybridPIUnclocked
   LiquidSource         source(flowLevel=0.02);
   PIdiscreteControllerUnclocked piDiscrete(ref=0.25);
@@ -283,13 +293,14 @@ equation
 end TankHybridPIUnclocked;
 </textarea>  <div id=check20div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The hybrid tank system with a discrete PI controller is simulated, see Figure ??, obtaining essentially the same result as when using the continuous PI controller (compare to Figure ?? on page ??). The response shown in the curve is the reaction of the controller to an instantaneous increase in the input flow from the source at time t=150. The only difference compared to the continuous controller case is a few small squiggles in the curve probably caused by the discrete approximation.</span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TankHybridPIUnclocked</span></p>
-</h1>
-<textarea class="target" id=check21textarea>
+<h3>
+2.1
+Simulation of TankHybridPIUnclocked
+</h3>
+<textarea id=check21textarea>
 simulate( TankHybridPIUnclocked, stopTime=250 )
 </textarea>  <div id=check21div> </div> <br>
-<textarea class="target" id=check22textarea>
+<textarea id=check22textarea>
 plot( tank.h )
 </textarea> <br> <div id=check22div> </div> <br>
 <script type="text/javascript">
@@ -5796,10 +5807,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">TankHybridPI Model Clocked</span></p>
-</h1>
-<textarea class="target" id=check23textarea>
+<h2>
+3
+TankHybridPI Model Clocked
+</h2>
+<textarea id=check23textarea>
 model TankHybridPIClocked
   LiquidSource source(flowLevel=0.02);
   PIdiscreteControllerClocked piDiscrete(ref=0.25);
@@ -5811,13 +5823,13 @@ equation
 end TankHybridPIClocked;
 </textarea>  <div id=check23div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet fully supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check24textarea>
+<textarea id=check24textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check24div> </div> <br>
-<textarea class="target" id=check25textarea>
+<textarea id=check25textarea>
 simulate(TankHybridPIClocked,stopTime=250)
 </textarea>  <div id=check25div> </div> <br>
-<textarea class="target" id=check26textarea>
+<textarea id=check26textarea>
 plot( tank.h )
 </textarea> <br> <div id=check26div> </div> <br>
 <script type="text/javascript">
@@ -15223,10 +15235,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">TankHybridPID Model Unclocked</span></p>
-</h1>
-<textarea class="target" id=check27textarea>
+<h2>
+4
+TankHybridPID Model Unclocked
+</h2>
+<textarea id=check27textarea>
 model TankHybridPIDUnclocked
   LiquidSource        source(flowLevel=0.02);
   PIDdiscreteControllerUnclocked    pidDiscrete(ref=0.25);
@@ -15237,13 +15250,14 @@ equation
   connect(tank.tSensor, pidDiscrete.cIn );
 end TankHybridPIDUnclocked;
 </textarea>  <div id=check27div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of TankHybridPI</span></p>
-</h1>
-<textarea class="target" id=check28textarea>
+<h3>
+4.1
+Simulation of TankHybridPI
+</h3>
+<textarea id=check28textarea>
 simulate( TankHybridPIDUnclocked, stopTime=250 )
 </textarea>  <div id=check28div> </div> <br>
-<textarea class="target" id=check29textarea>
+<textarea id=check29textarea>
 plot( tank.h ) 
 </textarea> <br> <div id=check29div> </div> <br>
 <script type="text/javascript">
@@ -20750,10 +20764,11 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">TankHybridPID Model Clocked</span></p>
-</h1>
-<textarea class="target" id=check30textarea>
+<h3>
+4.2
+TankHybridPID Model Clocked
+</h3>
+<textarea id=check30textarea>
 model TankHybridPIDClocked
   LiquidSource source(flowLevel=0.02);
   PIDdiscreteControllerClocked pidDiscrete(ref=0.25);
@@ -20765,13 +20780,13 @@ equation
 end TankHybridPIDClocked;
 </textarea>  <div id=check30div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">This model contains clocked synchronous constructs that are not yet supported by OpenModelica as of October 2015, but may start working within the near future.Hence the Simulation of this models does not work</span></p><br>
-<textarea class="target" id=check31textarea>
+<textarea id=check31textarea>
 setCommandLineOptions("+std=3.3")
 </textarea>  <div id=check31div> </div> <br>
-<textarea class="target" id=check32textarea>
+<textarea id=check32textarea>
 simulate(TankHybridPIDClocked,stopTime=250)
 </textarea>  <div id=check32div> </div> <br>
-<textarea class="target" id=check33textarea>
+<textarea id=check33textarea>
 plot( tank.h ) 
 </textarea> <br> <div id=check33div> </div> <br>
 <script type="text/javascript">

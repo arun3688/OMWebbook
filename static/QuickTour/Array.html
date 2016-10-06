@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Arrays</span></p>
+Arrays
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Declaring Arrays</span></p>
-</h1>
+<h2>
+1
+Declaring Arrays
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">An array is a collection of variables, which are all of the same type. An array variable can be declared by appending dimensions within square brackets after a class name or after a variable name.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class ArrayDim
   Real n = 1, m = 4, k = 5;
   Real Voltage;
@@ -58,7 +61,7 @@ class ArrayDim
 end ArrayDim;
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>Using the alternative syntax of attaching dimensions after the variable name, the same declarations can be expressed as:</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class ArrayDim
   Real n = 1, m = 4, k = 5;
   Real    Voltage;
@@ -69,11 +72,12 @@ class ArrayDim
   Voltage voltagevector[10];
 end ArrayDim;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Multiplication Operator</span></p>
-</h1>
+<h2>
+2
+Multiplication Operator
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The multiplication operator * is scalar product when used between vectors, matrix multiplication when used between matrices and element-wise multiplication when used between an array and a scalar. In the function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ElementWiseMultiplication</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">positionvector</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is multiplied by the scalar 2.</span></p><br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 function ElementWiseMultiplication
    input  Real[3] positionvector;
    output Real[3] result;
@@ -81,18 +85,20 @@ function ElementWiseMultiplication
    result := positionvector*2;
 end ElementWiseMultiplication;  
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Calling ElementWiseMultiplication</span></p>
-</h1>
+<h2>
+3
+Calling ElementWiseMultiplication
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We see that when applying the function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ElementWiseMultiplication</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> on </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">positionvector</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, we get the result </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">{2, 4, 6}</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 ElementWiseMultiplication({1, 2, 3})  
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Matrix Declaration</span></p>
-</h1>
+<h2>
+4
+Matrix Declaration
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The common special cases of concatenation along the first and second dimensions are supported through the special syntax forms [A;B;C;...] and [A,B,C,...] respectively. Both of these forms can be mixed. Scalar and vector arguments to these special operators are promoted to become matrices before performing the concatenation. This gives the effect that a matrix can be constructed from scalar expressions by separating rows by semicolon and columns by comma. <br/></span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class Matrix
   Real matrix[2, 2] = [1, 2; 3, 4];
 end Matrix;

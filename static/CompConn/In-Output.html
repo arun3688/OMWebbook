@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,11 +32,12 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Connection Restrictions on Input and Output Connectors</span></p>
+Connection Restrictions on Input and Output Connectors
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">General Description</span></p>
-</h1>
+<h2>
+1
+General Description
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The introduction of structured components with inside and outside connectors introduces some additional complexity in the rules for connecting connectors with input or output causality, i.e. connectors declared with the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">input</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">output</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> type prefix. Examples are instances of the connector classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">InPort</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">OutPort</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. Normally the following rules apply:<br/>* Two acausal connectors can be connected to each other.<br/>* An input connector can be connected to an output connector or vice versa.<br/>* An input or output connector can be connected to an acausal connector, i.e. a connector without input/output prefixes.<br/></span></p><br>
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Two essentially equivalent example circuits of four connected components with connectors of input or output causality. Within</span></p>
@@ -42,17 +45,18 @@
 <h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> the lower circuit two components have been embeded in the structured component M1. </span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Inside Connectors</span></p>
-</h1>
+<h2>
+2
+Inside Connectors
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">There are certain rules for how to connect connectors with input or output causality. It is not possible to connect two inputs or two outputs, unless outside connectors are involved. The following example illustrates the upper circuit above.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class C
   SInPort inPort;            // Input connector
   SOutPort outPort;            // Output connector
 end C;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class CInst
   C C1, C2, C3, C4;            // Instances of C
 equation
@@ -61,21 +65,22 @@ equation
   connect(C3.outPort, C4.inPort);
 end CInst;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector SInPort             "Simplified InPort connector"
   input Real signal;
 end SInPort;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector SOutPort             "Simplified OutPort connector"
   output Real signal;
 end SOutPort;
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Outside Connectors</span></p>
-</h1>
+<h2>
+3
+Outside Connectors
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The following example illustrates the lower circuit above.</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 class M                  "Structured class M"
   SInPort inport;            // Outside input connector
   SOutPort outport;            // Outside output connector
@@ -84,7 +89,7 @@ class M                  "Structured class M"
 end M;
 </textarea>  <div id=check4div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>The classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CInst</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">MInst</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is equivalent.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class MInst
   M M1;                  // Instance of M
 equation

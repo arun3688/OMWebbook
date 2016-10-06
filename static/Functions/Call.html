@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,13 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Function Call</span></p>
+Function Call
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Polynomial Evaluator</span></p>
-</h1>
+<h2>
+1
+Polynomial Evaluator
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">There are two basic forms a of function call in Modelica: </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">positional</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> or </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">named</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> association to formal parameters. We will as an example use the function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PolynomiaEvaluator</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which computes the value of a polynomial given two arguments: a coefficient vector A and a value of x.<br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 function PolynomialEvaluator
   input Real A[:];          // Array, size defined at function call time
   input Real x := 1.0;        // Default value 1.0 for x
@@ -52,28 +55,30 @@ algorithm
   end for;
 end PolynomialEvaluator;
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Positional Call </span></p>
-</h1>
+<h2>
+2
+Positional Call 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Function calls with </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">positional association</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of actual arguments to formal parameters is the most common form of function call. The actual arguments are associated with the formal parameters according to their position in the argument list. <br/><br/>Using positional association {1, 2, 3, 4} becomes the value of the coefficient vector </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">A</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and 21 becomes the value of the formal parameter </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class PositionalCall
   Real p;
 equation
   p = PolynomialEvaluator({1, 2, 3, 4}, 21);
 end PositionalCall;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of PositionalCall </span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+3
+Simulation of PositionalCall 
+</h2>
+<textarea id=check2textarea>
 simulate( PositionalCall)
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 //p[0] is replaced by the following line.
 val (p, 0)
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot(p)
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -589,24 +594,26 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Named Call </span></p>
-</h1>
+<h2>
+4
+Named Call 
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The same call to the function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PolynomialEvaluator</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can instead be made using </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">named association</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> of actual arguments to formal parameters. Here the actual argument is associated with the formal parameter through an equation in the argument list.</span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class NamedCall
   Real p;
 equation
   p = PolynomialEvaluator(A = {1, 2, 3, 4}, x = 21);
 end NamedCall;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of NamedCall </span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h2>
+5
+Simulation of NamedCall 
+</h2>
+<textarea id=check6textarea>
 simulate( NamedCall )
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot(p)
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -1122,7 +1129,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Direct positionalcall:</span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 PolynomialEvaluator({1, 2, 3, 4},  21)
 </textarea>  <div id=check8div> </div> <br>
 </div></body></html>

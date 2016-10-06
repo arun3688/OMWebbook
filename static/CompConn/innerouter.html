@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,12 +32,12 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Nested Hierarchical Subsystems with Simultaneous inner/outer</span></p>
+Nested Hierarchical Subsystems with Simultaneous inner/outer
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The previous sections show how inner definition declarations, e.g. in the Environment model, are implicitly connected to and propagated to outer reference declarations, e.g. in components of the environment. What happens if we have a more complex system structure, with possibly several levels of nested subsystems? Can we propagate across the subsystem boundaries? The answer is yes, but a bit clumsy. We would need to have different inner and outer declarations for the same entity in each subsystem, introduce a new name for each additional declaration, and couple these through additional equations. This is complicated and makes model re-use harder. To avoid these drawbacks when modeling with nested subsystems, the simultaneous inner-outer declaration has been introduced. This eliminates the need for extra names and equations, and increases reusability, e.g. as needed by libraries such as Modelica.Stategraph. The declaration has both keywords inner and outer as depicted below.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">inner outer</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> &lt;Type&gt; &lt;variable&gt;</span></p><br>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">To demonstrate the use of simultaneous inner outer declarations we have introduced a subsystem level, SubEnvironment, with instance subEnv, in the previous Environment model. The new model is called Environments WithSubsystem and is shown below.The model contains two environment instances env1 and env2, each containing an inner definition of a temperature T0 and a subsystem subEnv. The top-level environment temperatures env1.T0 and env2.T0 respectively are picked up by the reference (outer) part of the simultaneous inner outer T0 in subEnv, transferred to its definition (inner) T0 part which is implicitly accessed by the reference declarations of T0 in the components comp1 and comp2.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model Component
    outer Real T0; // References temperature T0 defined in the subenvironment
    Real T;
@@ -43,7 +45,7 @@ equation
    T = T0;
 end Component;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model SubEnvironment
    inner outer Real T0;
   Component comp1,comp2;
@@ -51,7 +53,7 @@ equation
    T0 = comp1.T0;
 end SubEnvironment;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model Environment
    inner Real T0; // Definition of actual environment temperature T0
    SubEnvironment subEnv; // Lookup makes subEnv.comp1.T0=subEnv.comp2.T0=T0
@@ -60,17 +62,17 @@ equation
   T0=sin(k*time);
 end Environment;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model EnvironmentsWithSubsystem
    Environment env1(k=1);
    Environment env2(k=4);
 end EnvironmentsWithSubsystem;
 </textarea>  <div id=check3div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We simulate the EnvironmentsWithSubsystem model containing the two environments env1 and env2</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 simulate(EnvironmentsWithSubsystem, stopTime=2)
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot({env1.subEnv.comp1.T,env2.subEnv.comp1.T})
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">

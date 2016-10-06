@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,34 +32,38 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Partial Classes Describe Common Properties</span></p>
+Partial Classes Describe Common Properties
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Types from Modelica.SIunits</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Types from Modelica.SIunits
+</h2>
+<textarea id=check0textarea>
 type Voltage = Real(unit = "V");
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 type Current = Real(unit = "A");
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Electrical Connectors</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+2
+Electrical Connectors
+</h2>
+<textarea id=check2textarea>
 connector Pin
   Voltage v;
   flow Current i;
 end Pin;  
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Components</span></p>
-</h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">TwoPin</span></p>
-</h1>
+<h2>
+3
+Components
+</h2>
+<h3>
+3.1
+TwoPin
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">The class prefix </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">partial</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> is used to indicate that a class is incomplete such that it cannot be instatiated. The class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">TwoPin</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> can be used to define our own </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Resistor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Capacitor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Inductor</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, Voltage source AC and Ground classes.<br/></span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 partial class TwoPin        "Superclass of elements with two electrical pins"
   Pin p, n;
   Voltage v;
@@ -68,10 +74,11 @@ equation
   i = p.i;
 end TwoPin;
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Resistor</span></p>
-</h1>
-<textarea class="target" id=check4textarea>
+<h3>
+3.2
+Resistor
+</h3>
+<textarea id=check4textarea>
 class Resistor             "Ideal electrical Resistor"
   extends TwoPin;
   parameter Real R(unit = "Ohm")   "Resistance";
@@ -79,10 +86,11 @@ equation
   R*i = v;
 end Resistor;
 </textarea>  <div id=check4div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Capacitor</span></p>
-</h1>
-<textarea class="target" id=check5textarea>
+<h3>
+3.3
+Capacitor
+</h3>
+<textarea id=check5textarea>
 class Capacitor           "Ideal electrical Capacitor"
   extends TwoPin;
   parameter Real C(unit = "F")     "Capacitance";
@@ -90,10 +98,11 @@ equation
   C*der(v) = i;
 end Capacitor;
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Inductor</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
+<h3>
+3.4
+Inductor
+</h3>
+<textarea id=check6textarea>
 class Inductor             "Ideal electrical Inductor"
   extends TwoPin;
   parameter Real L(unit = "H")     "Inductance";
@@ -101,10 +110,11 @@ equation
   v = L*der(i);
 end Inductor;
 </textarea>  <div id=check6div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">VsourceAC</span></p>
-</h1>
-<textarea class="target" id=check7textarea>
+<h3>
+3.5
+VsourceAC
+</h3>
+<textarea id=check7textarea>
 class VsourceAC           "Sin-wave voltage source"
   extends TwoPin;
   parameter Voltage VA      = 220 "Amplitude";
@@ -116,21 +126,23 @@ equation
   u = VA*sin(2*PI*f*time);
 end VsourceAC;  
 </textarea>  <div id=check7div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Ground</span></p>
-</h1>
-<textarea class="target" id=check8textarea>
+<h3>
+3.6
+Ground
+</h3>
+<textarea id=check8textarea>
 class Ground
   Pin p;
 equation
   p.v = 0;
 end Ground;
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">SimpleCircuit</span></p>
-</h1>
+<h2>
+4
+SimpleCircuit
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Based on these classes we can declare the Simple Circuit Model: </span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class SimpleCircuit
   Resistor     R1(R = 10);
   Capacitor   C(C = 0.01, v(fixed = true));
@@ -148,13 +160,14 @@ equation
   connect(AC.n, G.p);      // 7, Ground
 end SimpleCircuit;    
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">SimpleCircuit Simulation</span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h2>
+5
+SimpleCircuit Simulation
+</h2>
+<textarea id=check10textarea>
 simulate( SimpleCircuit )
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 plot( {R1.v, R2.v } )
 </textarea> <br> <div id=check11div> </div> <br>
 <script type="text/javascript">
@@ -669,7 +682,7 @@ labels:
 }
 )
 </script>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 plot( {R1.i,R2.i} )
 </textarea> <br> <div id=check12div> </div> <br>
 <script type="text/javascript">

@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,43 +32,44 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Classes for Connectors, Places and Transitions</span></p>
+Classes for Connectors, Places and Transitions
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Petri Nets</span></p>
-</h1>
+<h2>
+1
+Petri Nets
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; font-style:italic; color:#000000;">Petri Nets</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> are bipartite graphs that only allow connection of different kinds of nodes, places to transitions or transitions to places. The Modelica type system can ensure that only legal connections are made if we define two different connector classes, one class </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PTPort</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for for places to transitions-with class prefix and variable suffixes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">PT</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, and another class TP</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Port</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for transitions for places - with class prefix and variable suffixes TP. Since variable names are different, the connector types are different in the Modelica type system, even though the connector classes in both cases represent the same kind of variables:state and firing information. <br/><br/>In order to have slightly different connector icons for the input version (filled triangle) and the output version (unfilled triangle), we also define otherwise identical input and output versions of these connector classes, see below. There is also a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ConditionPort</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> connector class for specifying an optional input condition to a </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Transition</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 connector PTPort   "Connecting Places to Transitions"
   Boolean sPT      "state information";
   Boolean fPT      "firing information";
 end PTPort;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 connector PTPortIn  = PTPort;        // Input version of PTPort
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 connector PTPortOut = PTPort;        // Output version of PTPort
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 connector TPPort     "Connecting Transitions to Places"
   Boolean sTP       "state information";
   Boolean fTP          "firing information";
 end TPPort;
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector TPPortIn  = TPPort;        // Input version of PTPort
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 connector TPPortOut = TPPort;        // Output version of PTPort
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 connector ConditionPort     "Optional condition to a Transition"
   Boolean c(start=true);
 end ConditionPort;
 </textarea>  <div id=check6div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>We now define </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Place</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Transition</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> classes.<br/></span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 class Place
   constant Integer nIn  = 1      "Number of input transition ports";
   constant Integer nOut = 1      "Number of output transition ports";
@@ -85,7 +88,7 @@ class Place
   state = (ostate and not anyTrue(outTrans.sPT)) or (anyTrue(inTrans.sTP));
 end Place;
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 class Transition
   ConditionPort condition     "Optional condition";
   constant Integer nIn  = 1;
@@ -102,7 +105,7 @@ class Transition
 end Transition;
 </textarea>  <div id=check8div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>We also need utility </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Boolean</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> reduction functions </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">anyTrue</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">allTrue</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 function anyTrue  "True, if at least one element is true in a vector"
   input  Boolean inp[:];
   output Boolean result;
@@ -113,7 +116,7 @@ function anyTrue  "True, if at least one element is true in a vector"
   end for;
 end anyTrue;
 </textarea>  <div id=check9div> </div> <br>
-<textarea class="target" id=check10textarea>
+<textarea id=check10textarea>
 function allTrue  "True, if all elements are true in a vector"
   input  Boolean inp[:];
   output Boolean result;
@@ -128,13 +131,14 @@ end allTrue;
 <h1>
 <p align="right" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">encapsulated package NormalPetriNet<br/>  connector PTPort ...;<br/>  connector PTPortIn ...;<br/>  connector PTPortOut ...;<br/>  connector TPPort ...;<br/>  connector TPPortIn ...;<br/>  connector TPPortOut ...;<br/>  connector ConditionPort ...;<br/>  class Place ...;<br/>  class Transition ...;<br/>  function anyTrue ...;<br/>  function allTrue ...; <br/>end NormalPetriNet;</span></p>
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">A Modelica Petri Net Model and Simulation of a Job Shop System</span></p>
-</h1>
+<h2>
+2
+A Modelica Petri Net Model and Simulation of a Job Shop System
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We now return to our job shop system example. Its Petri net graph is shown once more below in Figure 1, with the difference that the token has advanced, representing the condition C3 that a job is currently being processed.<br/></span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Courier New'; font-size:12pt; font-weight:600; color:#000000;">Figure 1:</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;"> The job shop system Petri Net graph once more. The job is in the stage of being processed.<br/></span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">We would now like to build a Modelica Petri net model of the job shop system, using our recently developed </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">NormalPetriNet</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> package. We need modified instances of the general </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Place</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Transition</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> classes in order to reflect the different numbers of input and output ports.The </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">JobShopSystem</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> model follows below, containing these modified instances of places and transitions, as well as connection equations.<br/></span></p><br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 model JobShopSystem
   Transition arrival(nIn = 0, nOut = 1);         // E1
   Place      inwait(nIn = 1, nOut = 1);            // C2
@@ -155,17 +159,32 @@ model JobShopSystem
   connect(outwait.outTrans[1], delivery.inPlaces[1]);
 end JobShopSystem;
 </textarea>  <div id=check11div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of JobShopSystem</span></p>
-</h1>
+<h3>
+2.1
+Simulation of JobShopSystem
+</h3>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Finally we simulate the job shop system model using the above default settings, for a job that passes through the system and is processed.</span></p><br>
-<textarea class="target" id=check12textarea>
+<textarea id=check12textarea>
 loadModel(Modelica)
 </textarea>  <div id=check12div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Simulation of the model fails as of October 2015, Will be fixed in the near future</span></p><br>
-<textarea class="target" id=check13textarea>
+<textarea id=check13textarea>
 simulate( JobShopSystem, stopTime = 1 )
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 plot( inWait.state )
 </textarea> <br> <div id=check14div> </div> <br>
+No data found
+<textarea id=check15textarea>
+plot( process.state )
+</textarea> <br> <div id=check15div> </div> <br>
+No data found
+<textarea id=check16textarea>
+plot( idle.state )
+</textarea> <br> <div id=check16div> </div> <br>
+No data found
+<textarea id=check17textarea>
+plot( outWait.state )
+</textarea> <br> <div id=check17div> </div> <br>
+No data found
+</div></body></html>

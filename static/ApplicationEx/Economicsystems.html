@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,14 +32,14 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Economic Systems</span></p>
+Economic Systems
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Economic systems are abstractions of physical systems with human beings where only so-called economic aspects are studied, e.g. money flow, monetary value, production, consumption, etc. Complete economic systems are intrinsically quite complex, especially since they to a large extent depend on human behavior.The subject area denoted national economy deals with the economic behavior of nations. Models of national economies often include variables such as GNP (Gross National Product), the total consumption of a nation, the total investments, and the government expenses of the nation. In particular, according to the simple Keynesian multiplier-accelerator model, the following approximate relation holds.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">GNP</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">= consumption</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> + investments</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t </span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">expenses</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t </span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Consumption</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">=a.GNP</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t-1</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">investments</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">=b.(consumption</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">-consumption</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000; vertical-align:sub;">t-1</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">)</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Let us make a simple Modelica model based on the above equation</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 class KeynesianModel
    parameter Real a = 0.5 "Consumption fraction";
    parameter Real b = 0.5 "Investment fraction of consumption increase";
@@ -56,10 +58,10 @@ equation
    end when;
 end KeynesianModel;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 simulate(KeynesianModel, stopTime=11)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 plot({GNP,consumption})
 </textarea> <br> <div id=check2div> </div> <br>
 <script type="text/javascript">

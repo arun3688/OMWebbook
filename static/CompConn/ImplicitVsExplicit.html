@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,17 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Implicit versus Explicit Connection Structures</span></p>
+Implicit versus Explicit Connection Structures
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">An implicit connection structure has the nice property that additional components can be added to the structure without the need for additional explicit connections. A new component becomes automatically connected to the system.</span></p><br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Consider the CircuitBoard Modelica code below. New components added to the compvec vector within the compTwo model instance become automatically connected. The reason is that all outer envHeat connectors within the compvec vector automatically reference the inner envHeat definition connector declared in the CircuitBoard.</span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 connector HeatPort
    Modelica.SIunits.Temp_K T "Temperature in [K]";
    flow Modelica.SIunits.HeatFlux q "Heat flux";
 end HeatPort;
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 model Component "Component within a circuit board in an environment"
    outer HeatPort envHeat; // Reference to environment heat interface
    HeatPort heat; // Local heat connector of component
@@ -48,12 +50,12 @@ equation
    connect(heat, envHeat);
 end Component;
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 model TwoComponents "Two Components together"
     Component compvec[2];
 end TwoComponents;
 </textarea>  <div id=check2div> </div> <br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 model CircuitBoard
    inner HeatPort envHeat; // Definition of environment heat interface
    Component comp;
@@ -61,21 +63,21 @@ model CircuitBoard
 end CircuitBoard;
 </textarea>  <div id=check3div> </div> <br>
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Explicit Connection</span></p>
+Explicit Connection
 </h1>
 <p align="justify" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">As a comparison we show the same example modeled using traditional explicit connections depicted in with corresponding Modelica code below.Each time we add a new component to the compvec vector in the compTwo instance, an additional explicit connection has to be added into the TwoComponents class as a connect-equation</span></p><br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 connector HeatPort
    Modelica.SIunits.Temp_K T "Temperature in [K]";
    flow Modelica.SIunits.HeatFlux q "Heat flux";
 end HeatPort;
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 model Component
    HeatPort heat;
 end Component;
 </textarea>  <div id=check5div> </div> <br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 model TwoComponents
   Component compvec[2];
   HeatPort heat;
@@ -84,7 +86,7 @@ equation
   connect(compvec[2].heat, heat);
 end TwoComponents;
 </textarea>  <div id=check6div> </div> <br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 model CircuitBoard
    HeatPort envHeat;
    Component comp;

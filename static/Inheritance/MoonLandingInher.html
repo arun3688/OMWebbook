@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,32 +32,35 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Moon Landing using Inheritance</span></p>
+Moon Landing using Inheritance
 </h1>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Body</span></p>
-</h1>
+<h2>
+1
+Body
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">In the </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">MoonLanding</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> example from Chapter 3 the declaration of certain fields like </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">mass</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">name</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> were repeated in each of the classes </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CelestialBody</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rocket</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. This can be avoided by collecting those field declarations into a generic body class called </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Body</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, and reusing these by inheriting </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Body</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> into </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">CelestialBody</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">Rocket</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. <br/><br/>We have replaced the general keyword </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> by the restricted class keyword </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">model</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> which has the same semantics as </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> apart from the fact that it cannot be used in connections. The reason is that it is more common practice to use the keyword </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">model</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> for modeling purposes than to use the keyword </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">class</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">. <br/></span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 model Body   "Generic body"
   Real mass;
   String name;
 end Body;  
 </textarea>  <div id=check0div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Celestial Body</span></p>
-</h1>
-<textarea class="target" id=check1textarea>
+<h2>
+2
+Celestial Body
+</h2>
+<textarea id=check1textarea>
 model CelestialBody    "Celestial body"
   extends Body;
   constant Real g = 6.672e-11;
   parameter Real radius;
 end CelestialBody;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Rocket</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h2>
+3
+Rocket
+</h2>
+<textarea id=check2textarea>
 class Rocket
   extends Body;
   Real altitude(start = 59404,fixed=true);
@@ -71,10 +76,11 @@ equation
   der(velocity) = acceleration;
 end Rocket;  
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Moon Landing</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+4
+Moon Landing
+</h2>
+<textarea id=check3textarea>
 model MoonLanding
   parameter Real force1 = 36350;
   parameter Real force2 = 1308;
@@ -89,13 +95,14 @@ equation
   apollo.gravity = moon.g*moon.mass/(apollo.altitude + moon.radius)^2;
 end MoonLanding;  
 </textarea>  <div id=check3div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Moonlanding Simulation</span></p>
-</h1>
-<textarea class="target" id=check4textarea>
+<h2>
+5
+Moonlanding Simulation
+</h2>
+<textarea id=check4textarea>
 simulate( MoonLanding, stopTime=230 ) 
 </textarea>  <div id=check4div> </div> <br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 plot( apollo.altitude )
 </textarea> <br> <div id=check5div> </div> <br>
 <script type="text/javascript">
@@ -615,7 +622,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Diagram 1:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> Altitude of the Apollo rocket over the lunar surface<br/></span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 plot( apollo.thrust)
 </textarea> <br> <div id=check6div> </div> <br>
 <script type="text/javascript">
@@ -1135,7 +1142,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Diagram 2:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> Thrust from the rocket motor, with an initial high thrust f1 followed by a lower thrust f2.<br/></span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 plot( apollo.mass )
 </textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
@@ -1655,7 +1662,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Diagram 3:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> Rocket mass decreases when the fuel is consumed<br/></span></p><br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 plot( apollo.gravity)
 </textarea> <br> <div id=check8div> </div> <br>
 <script type="text/javascript">
@@ -2175,7 +2182,7 @@ labels:
 )
 </script>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> </span><span style=" font-family:'Times New Roman'; font-size:12pt; font-weight:600; color:#000000;">Diagram 4:</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> Gradually increasing gravity when the rocket approaches the lunar surface<br/></span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 plot( apollo.velocity )
 </textarea> <br> <div id=check9div> </div> <br>
 <script type="text/javascript">

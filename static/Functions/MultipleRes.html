@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,10 +32,10 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">Functions with Multiple Results</span></p>
+Functions with Multiple Results
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>A function that has more than one output parameter has multiple results. </span></p><br>
-<textarea class="target" id=check0textarea>
+<textarea id=check0textarea>
 function multipleResultsFunction
   input Real x;
   input Real y;
@@ -47,23 +49,24 @@ algorithm
 end multipleResultsFunction;
 </textarea>  <div id=check0div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Call it directly:</span></p><br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 multipleResultsFunction(2.0, 1.0)
 </textarea>  <div id=check1div> </div> <br>
-<textarea class="target" id=check2textarea>
+<textarea id=check2textarea>
 class MRFcall
   Real a, b, c;
 equation
   (a, b, c) = multipleResultsFunction(2.0, 1.0);
 end MRFcall;
 </textarea>  <div id=check2div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of Call to MultipleResultsFunction</span></p>
-</h1>
-<textarea class="target" id=check3textarea>
+<h2>
+1
+Simulation of Call to MultipleResultsFunction
+</h2>
+<textarea id=check3textarea>
 simulate( MRFcall, stopTime=10 ) 
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot( {a,b,c} )
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -579,11 +582,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">PointOnCircle</span></p>
-</h1>
+<h2>
+2
+PointOnCircle
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Another example of a multiple results function is the function p</span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">ointOnCircle</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, which computes the cartesian coordinates of a point located at a certain angle on a circle with a certain radius. The cartesian coordinates are returned via the two result variables </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">x</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"> and </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">y</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">.<br/></span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 function pointOnCircle  "Computes cartesian coordinates of a point"
   input Real angle              "Angle in radians";
   input Real radius;
@@ -595,14 +599,14 @@ algorithm
 end pointOnCircle;
 </textarea>  <div id=check5div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Call it:</span></p><br>
-<textarea class="target" id=check6textarea>
+<textarea id=check6textarea>
 pointOnCircle(1.2, 2)
 </textarea>  <div id=check6div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">load Modelica library</span></p><br>
-<textarea class="target" id=check7textarea>
+<textarea id=check7textarea>
 loadModel(Modelica)
 </textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<textarea id=check8textarea>
 function pointOnCircle2  "Computes cartesian coordinates of a point"
   input Real angle              "Angle in radians";
   input Real radius;
@@ -613,24 +617,26 @@ algorithm
   y := radius*Modelica.Math.sin(angle);
 end pointOnCircle2;
 </textarea>  <div id=check8div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Function Call on Equation Form</span></p>
-</h1>
+<h2>
+3
+Function Call on Equation Form
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">When calling a multiple results functions there are two possibilities, equation form or statement form.</span></p><br>
-<textarea class="target" id=check9textarea>
+<textarea id=check9textarea>
 class PointOnCircleCall
   Real px, py;
 equation
   (px, py) = pointOnCircle(1.2, 2);
 end PointOnCircleCall;
 </textarea>  <div id=check9div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of EquationCall </span></p>
-</h1>
-<textarea class="target" id=check10textarea>
+<h2>
+4
+Simulation of EquationCall 
+</h2>
+<textarea id=check10textarea>
 simulate( PointOnCircleCall )  
 </textarea>  <div id=check10div> </div> <br>
-<textarea class="target" id=check11textarea>
+<textarea id=check11textarea>
 plot( {px,py} )
 </textarea> <br> <div id=check11div> </div> <br>
 <script type="text/javascript">
@@ -1145,23 +1151,25 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Function Call on Statement Form </span></p>
-</h1>
-<textarea class="target" id=check12textarea>
+<h2>
+5
+Function Call on Statement Form 
+</h2>
+<textarea id=check12textarea>
 class StatementCall
   Real px, py;
 equation
   (px, py) = pointOnCircle(1.2, 2);
 end StatementCall;
 </textarea>  <div id=check12div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Simulation of StatementCall </span></p>
-</h1>
-<textarea class="target" id=check13textarea>
+<h2>
+6
+Simulation of StatementCall 
+</h2>
+<textarea id=check13textarea>
 simulate( StatementCall )  
 </textarea>  <div id=check13div> </div> <br>
-<textarea class="target" id=check14textarea>
+<textarea id=check14textarea>
 {val(px,0), val(py,0)}
 </textarea>  <div id=check14div> </div> <br>
 </div></body></html>

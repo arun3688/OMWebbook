@@ -1,17 +1,19 @@
   
-<html>
+<!doctype html>
 <head>
-<script src="../jquery.min1.10.2.js"></script>
-<script src='../dygraph-combined.js'></script>
-<script src='../evalcells.js'></script>
-<link rel="stylesheet" href="../bootstrap.min.css">
-<script src="../bootstrap.min.js"></script>
-<link rel="stylesheet" href="../main.css">
-
-<script src="../trie.js"></script>
-<script src="../helper.js"></script>
-<script src="../jquery.textarea-highlighter.js"></script>
-<script src="../index.js"></script>
+  <title>OMWEBbook</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="../jquery.min1.10.2.js"></script>
+  <script src='../dygraph-combined.js'></script>
+  <link rel="stylesheet" href="../bootstrap.min.css">
+  <script src="../bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../codemirror.css">
+ <script src="../codemirror.js"></script>
+ <script src="../modelica.js"></script>
+ <link rel="stylesheet" href="../custom.css">
+  <script src="../autorefresh.js"></script>
+  <script src="../evalnotebook.js"></script>
 </head>
 
 
@@ -30,16 +32,17 @@
 <br> <br> <br>
 
 <h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Arial'; font-size:38pt; font-weight:600; color:#000000;">General Array Construction</span></p>
+General Array Construction
 </h1>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;"><br/>An array constructor is just a function accepting scalar or array arguments and returning an array result. The array constructor function </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">array(A,B,C,...)</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, with short hand notation </span><span style=" font-family:'Courier New'; font-size:12pt; color:#000000;">{A, B, C, ...}</span><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">, constructs an array from its arguments according to certain rules.<br/></span></p><br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Constructing Arrays</span></p>
-</h1>
-<textarea class="target" id=check0textarea>
+<h2>
+1
+Constructing Arrays
+</h2>
+<textarea id=check0textarea>
 type Angle = Real(unit="rad");     // The type Angle is a subtype of Real  
 </textarea>  <div id=check0div> </div> <br>
-<textarea class="target" id=check1textarea>
+<textarea id=check1textarea>
 class ArrayConstruction
   Integer[3]   a = {1, 2, 3};             // A 3-vector of type Integer[3]
   Real[3]    b = array(1.0, 2.0, 3);        // A 3-vector of type Real[3]
@@ -54,17 +57,18 @@ class ArrayConstruction
   Angle[3] A = {1.0, alpha, 4};      // The expanded type of A is Real[3]
 end ArrayConstruction;
 </textarea>  <div id=check1div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of ArrayConstruction</span></p>
-</h1>
-<textarea class="target" id=check2textarea>
+<h3>
+1.1
+Simulation of ArrayConstruction
+</h3>
+<textarea id=check2textarea>
 simulate( ArrayConstruction )
 </textarea>  <div id=check2div> </div> <br>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Take a look at the result at time=0:</span></p><br>
-<textarea class="target" id=check3textarea>
+<textarea id=check3textarea>
 val(d[1,1,1],0) 
 </textarea>  <div id=check3div> </div> <br>
-<textarea class="target" id=check4textarea>
+<textarea id=check4textarea>
 plot({d[1,1,1],c[2,1]})
 </textarea> <br> <div id=check4div> </div> <br>
 <script type="text/javascript">
@@ -579,11 +583,12 @@ labels:
 }
 )
 </script>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:18pt; font-weight:600; color:#000000;">Range Vector Construction</span></p>
-</h1>
+<h2>
+2
+Range Vector Construction
+</h2>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">A range vector is a vector containing a range of numeric values increasing or decreasing by a fixed increment or decrement value for each additional element. For example, {1, 2, 3} is an Integer range vector starting at 1 and increasing by 1 for each element.<br/></span></p><br>
-<textarea class="target" id=check5textarea>
+<textarea id=check5textarea>
 class Range
   Real v1[5]       = 2.7 : 6.8;       // v1 is {2.7, 3.7, 4.7, 5.7, 6.7}
   Real v2[5]       = {2.7, 3.7, 4.7, 5.7, 6.7};    // v2 is equal to v1
@@ -596,24 +601,18 @@ class Range
   Real[0] v7none;                      // v7 none is an empty Real vector
 end Range;  
 </textarea>  <div id=check5div> </div> <br>
-<h1>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times'; font-size:14pt; font-weight:600; color:#000000;">Simulation of Range</span></p>
-</h1>
-<textarea class="target" id=check6textarea>
-simulate( Range )    //??Error - not yet implemented
-</textarea>  <div id=check6div> </div> <br>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Times New Roman'; font-size:12pt; color:#000000;">Take a look at the result at time=0:</span></p><br>
-<textarea class="target" id=check7textarea>
-val(v3[1],0)
-</textarea>  <div id=check7div> </div> <br>
-<textarea class="target" id=check8textarea>
+<h3>
+2.1
+Simulation of Range
+</h3>
+<textarea id=check6textarea>
 simulate(Range)
-</textarea>  <div id=check8div> </div> <br>
-<textarea class="target" id=check9textarea>
+</textarea>  <div id=check6div> </div> <br>
+<textarea id=check7textarea>
 plot({v1[4],v5[3]})
-</textarea> <br> <div id=check9div> </div> <br>
+</textarea> <br> <div id=check7div> </div> <br>
 <script type="text/javascript">
-g = new Dygraph(document.getElementById("check9div"),
+g = new Dygraph(document.getElementById("check7div"),
   [[  0.00000000e+00,   5.70000000e+00,   5.00000000e+00],
        [  2.00000000e-03,   5.70000000e+00,   5.00000000e+00],
        [  4.00000000e-03,   5.70000000e+00,   5.00000000e+00],
