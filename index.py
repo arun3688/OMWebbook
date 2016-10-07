@@ -85,47 +85,85 @@ def eval(var1,var2,omc):
       z="\n".join(x[i].splitlines())
       z1 = filter(lambda x: not re.match(r'^\s*$', x), z)
       #z1="".join(x[i].splitlines())
-      simcommand=z1.replace(' ','').startswith('simulate(')and z1.replace(' ','').endswith(')')
-      plotcommand=z1.replace(' ','').startswith('plot(')and z1.replace(' ','').endswith(')')
-      plotparametriccommand=z1.replace(' ','').startswith('plotParametric(')and z1.replace(' ','').endswith(')')
-      print plotparametriccommand
+      #simcommand=z1.replace(' ','').startswith('simulate(')and z1.replace(' ','').endswith(')')
+      #plotcommand=z1.replace(' ','').startswith('plot(')and z1.replace(' ','').endswith(')')
+      #plotparametriccommand=z1.replace(' ','').startswith('plotParametric(')and z1.replace(' ','').endswith(')')
+      simcommand=z1.replace(' ','').startswith('simulate(')
+      plotcommand=z1.replace(' ','').startswith('plot(')
+      plotparametriccommand=z1.replace(' ','').startswith('plotParametric(')
+
       if (simcommand==True):
-        try:
-          s=omc.sendExpression(z1)
-          name=s['resultFile']
-          addmsg=s['messages']
-          if (name!=''):
-             #session['mat'].append(name)
-             mat.append(name)             
-             tempres="".join(['Simulation Success: Temp/',os.path.basename(name)])
-             divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(tempres),'</b>','</div>'])
-          else:
-             error=omc.sendExpression("getErrorString()")
-             finalmsg=error+addmsg
-             divcontent=" ".join(['<div id='+y[i]+' align="justify" >','<b>',str(finalmsg),'</b>','</div>'])
-        except:
-           divcontent=" ".join(['<div id='+y[i]+'>','<b>','failed()','</b>','</div>'])         
-        
-        session['msg'].append(divcontent)
+        ## look for comments in the string
+        s=remove_comments(z1)
+        sim=s.replace(' ','').startswith('simulate(')and s.replace(' ','').endswith(')')
+        if(sim==True):
+		try:
+		  s=omc.sendExpression(z1)
+		  name=s['resultFile']
+		  addmsg=s['messages']
+		  if (name!=''):
+		     #session['mat'].append(name)
+		     mat.append(name)             
+		     tempres="".join(['Simulation Success: Temp/',os.path.basename(name)])
+		     divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(tempres),'</b>','</div>'])
+		  else:
+		     error=omc.sendExpression("getErrorString()")
+		     finalmsg=error+addmsg
+		     divcontent=" ".join(['<div id='+y[i]+' align="justify" >','<b>',str(finalmsg),'</b>','</div>'])
+		except:
+		   divcontent=" ".join(['<div id='+y[i]+'>','<b>','failed()','</b>','</div>'])         
+	
+		session['msg'].append(divcontent)
+
+        else:
+          try:
+            l=omc.sendExpression(z)
+          except:
+            #l="failed()"
+            l=omc.sendExpression(z,parsed=False)            
+          divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(l).replace('<','&lt;').replace('>','&gt;'),'</b>','</div>'])
+          session['msg'].append(divcontent)
       
       elif (plotparametriccommand==True):
-          l1=z1.replace(' ','')
-          l=l1[0:-1]
-          plotvar=l[15:].replace('{','').replace('}','')
-          divcontent=" ".join(['<div id='+y[i]+'>'])
-          session['msg'].append(divcontent)
-          plotdivid=y[i]
-          plotgraph(plotvar,plotdivid,omc)
+          p=remove_comments(z1)
+          pltpar=p.replace(' ','').startswith('plotParametric(')and p.replace(' ','').endswith(')')
+          if (pltpar==True):
+		  l1=p.replace(' ','')
+		  l=l1[0:-1]
+		  plotvar=l[15:].replace('{','').replace('}','')
+		  divcontent=" ".join(['<div id='+y[i]+'>'])
+		  session['msg'].append(divcontent)
+		  plotdivid=y[i]
+		  plotgraph(plotvar,plotdivid,omc)
+          else:
+		  try:
+		    l=omc.sendExpression(z)
+		  except:
+		    #l="failed()"
+		    l=omc.sendExpression(z,parsed=False)            
+		  divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(l).replace('<','&lt;').replace('>','&gt;'),'</b>','</div>'])
+		  session['msg'].append(divcontent)
 
       elif (plotcommand==True):
-          l1=z1.replace(' ','')
-          l=l1[0:-1]
-          plotvar=l[5:].replace('{','').replace('}','')
-          divcontent=" ".join(['<div id='+y[i]+'>'])
-          session['msg'].append(divcontent)
-          plotdivid=y[i]
-          plotgraph(plotvar,plotdivid,omc)
-      
+          p=remove_comments(z1)
+          plt=p.replace(' ','').startswith('plot(')and p.replace(' ','').endswith(')')
+          if(plt==True):
+		  l1=p.replace(' ','')
+		  l=l1[0:-1]
+		  plotvar=l[5:].replace('{','').replace('}','')
+		  divcontent=" ".join(['<div id='+y[i]+'>'])
+		  session['msg'].append(divcontent)
+		  plotdivid=y[i]
+		  plotgraph(plotvar,plotdivid,omc)
+          else:
+               try:
+		    l=omc.sendExpression(z)
+	       except:
+		    #l="failed()"
+		    l=omc.sendExpression(z,parsed=False)            
+	       divcontent=" ".join(['<div id='+y[i]+'>','<b>',str(l).replace('<','&lt;').replace('>','&gt;'),'</b>','</div>'])
+	       session['msg'].append(divcontent)
+
       else:
           try:
             l=omc.sendExpression(z)
@@ -139,6 +177,57 @@ def eval(var1,var2,omc):
    ## delete the process ##
    ##omc.__del__()
    #os.chdir("..")   
+
+
+def remove_comments(text):
+    """ remove c-style comments.
+        text: blob of text with comments (can include newlines)
+        returns: text with comments removed
+    """
+    pattern = r"""
+                            ##  --------- COMMENT ---------
+           /\*              ##  Start of /* ... */ comment
+           [^*]*\*+         ##  Non-* followed by 1-or-more *'s
+           (                ##
+             [^/*][^*]*\*+  ##
+           )*               ##  0-or-more things which don't start with /
+                            ##    but do end with '*'
+           /                ##  End of /* ... */ comment
+         |                  ## OR it is a line comment with //
+          \s*//.*           ## Single line comment  
+         |                  ##  -OR-  various things which aren't comments:
+           (                ## 
+                            ##  ------ " ... " STRING ------
+             "              ##  Start of " ... " string
+             (              ##
+               \\.          ##  Escaped char
+             |              ##  -OR-
+               [^"\\]       ##  Non "\ characters
+             )*             ##
+             "              ##  End of " ... " string
+           |                ##  -OR-
+                            ##
+                            ##  ------ ' ... ' STRING ------
+             '              ##  Start of ' ... ' string
+             (              ##
+               \\.          ##  Escaped char
+             |              ##  -OR-
+               [^'\\]       ##  Non '\ characters
+             )*             ##
+             '              ##  End of ' ... ' string
+           |                ##  -OR-
+                            ##
+                            ##  ------ ANYTHING ELSE -------
+             .              ##  Anything other char
+             [^/"'\\]*      ##  Chars which doesn't start a comment, string
+           )                ##    or escape
+    """
+
+    regex = re.compile(pattern, re.VERBOSE|re.MULTILINE|re.DOTALL)
+    noncomments = [m.group(2) for m in regex.finditer(text) if m.group(2)]
+
+    return "".join(noncomments)
+
    
 def plotgraph(plotvar,divid,omc):
   
