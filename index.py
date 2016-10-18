@@ -134,7 +134,8 @@ def eval(var1,var2,omc):
 		  divcontent=" ".join(['<div id='+y[i]+'>'])
 		  session['msg'].append(divcontent)
 		  plotdivid=y[i]
-		  plotgraph(plotvar,plotdivid,omc)
+                  #print 'plotparm',plotvar
+		  plotgraph(plotvar,plotdivid,omc,"plotParametric")
           else:
 		  try:
 		    l=omc.sendExpression(z)
@@ -154,7 +155,7 @@ def eval(var1,var2,omc):
 		  divcontent=" ".join(['<div id='+y[i]+'>'])
 		  session['msg'].append(divcontent)
 		  plotdivid=y[i]
-		  plotgraph(plotvar,plotdivid,omc)
+		  plotgraph(plotvar,plotdivid,omc,"plot")
           else:
                try:
 		    l=omc.sendExpression(z)
@@ -229,16 +230,22 @@ def remove_comments(text):
     return "".join(noncomments)
 
    
-def plotgraph(plotvar,divid,omc):
+def plotgraph(plotvar,divid,omc,command):
   
   ## Function to handle plotting in browser ##
-  
   if (len(mat)!=0):
      res=mat[-1]
      try:
-       readResult = omc.sendExpression("readSimulationResult(\"" + os.path.basename(res) + "\",{time," + plotvar + "})")
+       if(command=="plotParametric"):
+           readResult = omc.sendExpression("readSimulationResult(\"" + os.path.basename(res) + "\",{" + plotvar + "})")
+           scaledxrange="["+str(min(readResult[0]))+","+str(max(readResult[0]))+"]"
+           plotlabels=[]
+       else:
+           readResult = omc.sendExpression("readSimulationResult(\"" + os.path.basename(res) + "\",{time," + plotvar + "})")
+           plotlabels=['Time']
+   
        omc.sendExpression("closeSimulationResultFile()")
-       plotlabels=['Time']
+
        exp='(\s?,\s?)(?=[^\[]*\])|(\s?,\s?)(?=[^\(]*\))'
        #print 'inside_plot1'
        subexp=re.sub(exp,'$#',plotvar)
@@ -261,7 +268,11 @@ def plotgraph(plotvar,divid,omc):
        n=numpy.array(plots)
        numpy.set_printoptions(threshold='nan')
        dygraph_array= repr(numpy.hstack(n)).replace('array',' ').replace('(' ,' ').replace(')' ,' ')
-       dygraphoptions=" ".join(['{', 'legend:"always",','labels:',str(plotlabel1),'}'])
+       if(command=="plotParametric"):
+           dygraphoptions=" ".join(['{', 'legend:"always",','dateWindow:',scaledxrange,',','labels:',str(plotlabel1),'}'])
+       else:
+           dygraphoptions=" ".join(['{', 'legend:"always",','labels:',str(plotlabel1),'}'])
+
        data="".join(['<script type="text/javascript"> g = new Dygraph(document.getElementById('+'"'+str(divid)+'"'+'),',str(dygraph_array),',',dygraphoptions,')','</script>']) 
        divcontent="\n".join([str(data),"</div>"])
        session['msg'].append(divcontent)
