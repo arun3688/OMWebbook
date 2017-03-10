@@ -1,4 +1,18 @@
 $(document).ready(function(){
+       $.getScript("../jquery.key.js", function(){
+            //alert("Script loaded.");
+            
+            /* evaluate cells using keys shift+enter */        
+            $.key("shift+return", function() {
+                evaluate()
+                });
+            
+            /* evaluate all cells using keys shift+ctrl */        
+            $.key("shift+ctrl", function() {
+                evaluateall()
+                    });
+          }); 
+       
        $("#progressbar").hide();
         count = 0;
         var editorinstance=[]
@@ -14,6 +28,7 @@ $(document).ready(function(){
              }
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
            }
+        
         
         /* create a unique omc session object */
         $( window ).load(function() {
@@ -61,24 +76,34 @@ $(document).ready(function(){
                 lineNumbers: true,
                 mode: "text/x-modelica",
                 autoRefresh: true,
+                extraKeys: {
+               "Shift-Enter": onNewLine
+                   },
                 viewportMargin: Infinity
               });
               editorinstance.push(editor)
+              
               /* handle click event for selecting a cells */
                editor.on('mousedown', function () {
                editorid=editor
                 });
+                             
+             /* prevent default functionality when shift+enter pressed */ 
+               function onNewLine(e) {
+                if ((e.keyCode == 10 || e.keyCode == 13)) {
+                    e.preventDefault();
+                    }
+                } 
              
               });
-       
-         /* evaluate single cells */        
-         $('#evaluate').click(function(){
-          //alert(value);
+         
+         /* function to evaluate single cells */     
+         function evaluate()
+          {
           var divid=[]
           var valuesarray=[]
-
             //alert(editorid.getValue())
-             //alert(editorid.getTextArea().id)
+            //alert(editorid.getTextArea().id)
           if (editorid!='')
           {       
             var textareaid=editorid.getTextArea().id
@@ -100,7 +125,7 @@ $(document).ready(function(){
                type: 'POST',              
                success: function(result){
                $("#progressbar").hide();
-               alert("Ok")
+               //alert("Ok")
                if (result!="failed")
                 {                       
                var $response=$(result);
@@ -131,12 +156,13 @@ $(document).ready(function(){
           else
             {
              alert("Nothing to evaluate, Add cells first to evaluate")
-               }            
-              });
-         
-          /* evaluate all cells */        
-          $('#evaluateall').click(function(){
-          //alert(editorinstance)
+               }  
+
+           } 
+
+         /*function to evaluate all cells in document */ 
+         function evaluateall()
+          {
            var divid=[]
            var tempArray=[]
            for (var i = 0; i < editorinstance.length; i++) 
@@ -153,7 +179,6 @@ $(document).ready(function(){
                       }
            var valuesArray=tempArray.join('#')
            //alert(valuesArray)
-
            var divlisttostring=divid.toString();
              //alert(valuesArray)
              if (divid.length != 0)
@@ -168,7 +193,7 @@ $(document).ready(function(){
                success: function(result){
                $("#progressbar").hide();
                //alert(result)
-               alert("Ok")
+               //alert("Ok")
                if (result!="failed")
                 {                    
                var $response=$(result);
@@ -192,8 +217,18 @@ $(document).ready(function(){
              {
                alert("No Cells Selected To Evaluate")
               } 
-
-     
+           
+             }          
+         /* evaluate single cells */        
+         $('#evaluate').click(function(){
+               //alert(value);
+               evaluate()     
+              });
+         
+          /* evaluate all cells */        
+          $('#evaluateall').click(function(){
+              //alert(editorinstance)
+              evaluateall()  
           });
 
 });
