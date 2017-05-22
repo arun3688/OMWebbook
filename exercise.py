@@ -1,3 +1,43 @@
+# -*- coding: utf-8 -*-
+
+"""
+OMWebbook is a An OpenModelica interactive notebook online. The Webbook is generated 
+with the help of Flask framework.This file is used for the conversion of DrModelica exercise files 
+to HTML Files with some control over the numbering of sections and subsections
+"""
+
+__license__ = """
+ This file is part of OpenModelica.
+
+ Copyright (c) 1998-CurrentYear, Open Source Modelica Consortium (OSMC),
+ c/o Linköpings universitet, Department of Computer and Information Science,
+ SE-58183 Linköping, Sweden.
+
+ All rights reserved.
+
+ THIS PROGRAM IS PROVIDED UNDER THE TERMS OF THE BSD NEW LICENSE OR THE
+ GPL VERSION 3 LICENSE OR THE OSMC PUBLIC LICENSE (OSMC-PL) VERSION 1.2.
+ ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS PROGRAM CONSTITUTES
+ RECIPIENT'S ACCEPTANCE OF THE OSMC PUBLIC LICENSE OR THE GPL VERSION 3,
+ ACCORDING TO RECIPIENTS CHOICE.
+
+ The OpenModelica software and the OSMC (Open Source Modelica Consortium)
+ Public License (OSMC-PL) are obtained from OSMC, either from the above
+ address, from the URLs: http://www.openmodelica.org or
+ http://www.ida.liu.se/projects/OpenModelica, and in the OpenModelica
+ distribution. GNU version 3 is obtained from:
+ http://www.gnu.org/copyleft/gpl.html. The New BSD License is obtained from:
+ http://www.opensource.org/licenses/BSD-3-Clause.
+
+ This program is distributed WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE, EXCEPT AS
+ EXPRESSLY SET FORTH IN THE BY RECIPIENT SELECTED SUBSIDIARY LICENSE
+ CONDITIONS OF OSMC-PL.
+ 
+ Author : Arunkumar Palanisamy, arunkumar.palanisamy@liu.se
+"""
+
+
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 import os
@@ -10,12 +50,6 @@ import numpy
 from numpy import array
 import struct
 import base64
-'''
-filename='C:/OPENMODELICAGIT/OpenModelica/build/share/omnotebook/drmodelica/QuickTour/Exercise1arrays.onb'
-tree = ET.parse(filename)
-#tree = ET.parse('C:/OPENMODELICAGIT/OpenModelica/build/share/omnotebook/drmodelica/QuickTour/HelloWorld.onb')
-
-root = tree.getroot()'''
 
 def parsetags(all_tags,f):
     global sectioncheck,subsectioncheck,currentlevel,subsectioncount,g,g1,r,sectioncount,check
